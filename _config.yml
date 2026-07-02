@@ -1,0 +1,5 @@
+# Configuration GitHub Pages (Jekyll) du site public Rami Chinois.
+title: Rami Chinois
+description: Le rami chinois entre amis — parties en ligne, salons privés, sans pub.
+lang: fr
+theme: jekyll-theme-cayman
