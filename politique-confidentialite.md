@@ -13,7 +13,7 @@ des joueurs.
 ## Qui est responsable des données ?
 
 L'application est éditée par Tristan Hurel.
-Contact : hurel.tristan@gmail.com
+Contact : ramio.contact@gmail.com
 
 ## Quelles données sont collectées ?
 
@@ -64,7 +64,7 @@ Conformément au Règlement général sur la protection des données, vous
 disposez d'un droit d'accès, de rectification, d'effacement, de limitation
 et de portabilité de vos données. Pour exercer ces droits (par exemple
 demander la suppression de votre compte et de votre historique), écrivez à
-hurel.tristan@gmail.com. Vous pouvez aussi saisir la CNIL (www.cnil.fr).
+ramio.contact@gmail.com. Vous pouvez aussi saisir la CNIL (www.cnil.fr).
 
 ## Mineurs
 

@@ -63,4 +63,4 @@ une seule manche gagnante, idéale pour une partie rapide.
 ## Confidentialité et contact
 
 - [Politique de confidentialité](politique-confidentialite)
-- Contact : hurel.tristan@gmail.com
+- Contact : ramio.contact@gmail.com
