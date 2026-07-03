@@ -1,12 +1,12 @@
 ---
-title: Rami Chinois — le jeu de cartes, en ligne entre amis
+title: Ramio — le rami chinois, en ligne entre amis
 ---
 
-# Rami Chinois
+# Ramio
 
-**Le rami chinois, le vrai, à jouer entre amis où que vous soyez.**
-Créez un salon privé, partagez son code, et jouez à 2, 3 ou 4 sur vos
-téléphones. Sans publicité.
+**Ramio, c'est le rami chinois, le vrai, à jouer entre amis où que vous
+soyez.** Créez un salon privé, partagez son code, et jouez à 2, 3 ou 4 sur
+vos téléphones. Sans publicité.
 
 L'application arrive bientôt sur Google Play (bêta fermée en cours),
 puis sur l'App Store.
@@ -52,7 +52,7 @@ la partie se termine dès qu'un joueur atteint 300 points, et le joueur le
 moins pénalisé gagne. L'application propose aussi une **partie simple** :
 une seule manche gagnante, idéale pour une partie rapide.
 
-## L'application
+## L'application Ramio
 
 - Salons privés entre amis (code à 6 caractères) ou parties publiques
 - Avec ou sans jokers, partie aux points ou partie simple

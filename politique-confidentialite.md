@@ -2,12 +2,13 @@
 title: Politique de confidentialité
 ---
 
-# Politique de confidentialité — Rami Chinois
+# Politique de confidentialité — Ramio
 
-Dernière mise à jour : 2 juillet 2026
+Dernière mise à jour : 3 juillet 2026
 
 Cette politique décrit les données traitées par l'application mobile
-« Rami Chinois » (ci-après « l'application ») et les droits des joueurs.
+« Ramio » (jeu de rami chinois, ci-après « l'application ») et les droits
+des joueurs.
 
 ## Qui est responsable des données ?
 

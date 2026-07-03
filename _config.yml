@@ -1,5 +1,10 @@
-# Configuration GitHub Pages (Jekyll) du site public Rami Chinois.
-title: Rami Chinois
-description: Le rami chinois entre amis — parties en ligne, salons privés, sans pub.
+# Configuration GitHub Pages (Jekyll) du mini-site public.
+title: Ramio
+description: Ramio, le rami chinois entre amis — parties en ligne, salons privés, sans pub.
 lang: fr
 theme: jekyll-theme-cayman
+# On ne publie que les pages du site, pas les documents internes du projet.
+exclude:
+  - deploiement-serveur.md
+  - publication-stores.md
+  - fiche-store.md
