@@ -4,7 +4,7 @@ title: Politique de confidentialité
 
 # Politique de confidentialité — Ramio
 
-Dernière mise à jour : 3 juillet 2026
+Dernière mise à jour : 5 juillet 2026
 
 Cette politique décrit les données traitées par l'application mobile
 « Ramio » (jeu de rami chinois, ci-après « l'application ») et les droits
@@ -62,9 +62,16 @@ que votre pseudo et vos actions de jeu.
 
 Conformément au Règlement général sur la protection des données, vous
 disposez d'un droit d'accès, de rectification, d'effacement, de limitation
-et de portabilité de vos données. Pour exercer ces droits (par exemple
-demander la suppression de votre compte et de votre historique), écrivez à
-ramio.contact@gmail.com. Vous pouvez aussi saisir la CNIL (www.cnil.fr).
+et de portabilité de vos données.
+
+Vous pouvez **supprimer votre compte directement dans l'application** :
+écran « Mon profil », bouton « Supprimer mon compte » (voir la page
+[Suppression de compte](suppression-compte)). La suppression est immédiate
+et efface le compte, les statistiques et l'historique de parties.
+
+Pour exercer vos autres droits, ou demander la suppression sans accès à
+l'application, écrivez à ramio.contact@gmail.com. Vous pouvez aussi saisir
+la CNIL (www.cnil.fr).
 
 ## Mineurs
 
