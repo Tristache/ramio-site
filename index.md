@@ -47,10 +47,12 @@ la table, sous forme de combinaisons :
 
 La manche s'arrête quand un joueur a vidé sa main. Les autres comptent
 leurs pénalités : les cartes 2 à 10 valent leur valeur, les figures 10,
-l'As 11 et le joker 50. Les pénalités s'additionnent de manche en manche ;
-la partie se termine dès qu'un joueur atteint 300 points, et le joueur le
-moins pénalisé gagne. L'application propose aussi une **partie simple** :
-une seule manche gagnante, idéale pour une partie rapide.
+l'As 11 et le joker 50. Si la pioche s'épuise avant qu'un joueur ait fini,
+la manche s'arrête et chacun compte les points restants dans sa main.
+Les pénalités s'additionnent de manche en manche ; la partie se termine
+dès qu'un joueur atteint 100 points, et le joueur le moins pénalisé
+gagne. L'application propose aussi une **partie simple** : une seule
+manche gagnante, idéale pour une partie rapide.
 
 ## L'application Ramio
 
