@@ -1,5 +1,5 @@
 {
   "_doc": "Dernier build publié de l'app Ramio. À mettre à jour à CHAQUE release (latestBuild = numéro après le + dans pubspec.yaml), puis recopier dans le dépôt ramio-site et pousser. L'app compare ce numéro au sien et propose la mise à jour (lib/update_check.dart). Ajouter la clé ios (fiche App Store) à la publication iOS.",
-  "latestBuild": 20,
+  "latestBuild": 22,
   "android": "https://play.google.com/store/apps/details?id=com.ramio"
 }
