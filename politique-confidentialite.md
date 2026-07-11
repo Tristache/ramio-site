@@ -4,7 +4,7 @@ title: Politique de confidentialité
 
 # Politique de confidentialité — Ramio
 
-Dernière mise à jour : 5 juillet 2026
+Dernière mise à jour : 8 juillet 2026
 
 Cette politique décrit les données traitées par l'application mobile
 « Ramio » (jeu de rami chinois, ci-après « l'application ») et les droits
@@ -21,17 +21,50 @@ L'application collecte le strict nécessaire au fonctionnement du jeu :
 
 - **Adresse e-mail et mot de passe** : pour créer le compte et se connecter.
   Le mot de passe n'est jamais stocké en clair (il est haché par notre
-  prestataire d'authentification).
-- **Pseudo** : le nom affiché aux autres joueurs pendant une partie.
+  prestataire d'authentification). Si vous choisissez la **connexion via
+  Google ou Apple**, l'application reçoit uniquement l'adresse e-mail du
+  compte choisi (aucun accès à vos autres données Google ou Apple).
+- **Pseudo** : le nom affiché aux autres joueurs pendant une partie. Il est
+  unique et visible des joueurs connectés (ajout d'amis par pseudo).
+- **Liste d'amis et invitations** : les relations d'amitié que vous créez
+  dans le jeu et les invitations de salon échangées entre amis.
+- **Messages entre amis** : les messages privés que vous échangez avec vos
+  amis depuis l'écran « Mes amis » sont stockés pour que la conversation
+  reste consultable. Ils ne sont visibles que de vous et de votre
+  correspondant, et sont supprimés avec le compte.
 - **Résultats de parties** : score, classement, date et mode de jeu de chaque
-  partie terminée, pour alimenter l'écran « Mon profil » (statistiques et
-  historique personnels).
+  partie terminée, pour alimenter l'écran « Mon profil » (statistiques,
+  historique personnels et classement Elo).
+- **Jeton de notification** : un identifiant technique de l'appareil, fourni
+  par le service de notifications, pour recevoir les invitations d'amis en
+  notification « push ». Supprimé à la déconnexion.
+- **Signalements** : si vous signalez un joueur (pseudo ou propos déplacés),
+  nous conservons le pseudo signalé, le motif que vous indiquez et la date,
+  afin de modérer le jeu. Les messages du salon de discussion ne sont
+  jamais stockés ; les mots injurieux y sont masqués automatiquement.
 - **Données techniques de connexion** : adresse IP et journaux techniques,
   traités transitoirement pour acheminer les parties en ligne et assurer la
   sécurité du service.
 
-L'application ne collecte **aucune** donnée de localisation, aucun contact,
-aucune photo, et ne contient **ni publicité ni traceur publicitaire**.
+L'application ne collecte **aucune** donnée de localisation, aucune photo,
+et ne contient **ni publicité ni traceur publicitaire**.
+
+## Contacts du téléphone (fonctionnalité facultative)
+
+L'application propose de **retrouver vos amis dans vos contacts**. Cette
+fonctionnalité ne s'active jamais seule : elle demande votre accord dans
+l'application, puis la permission du système.
+
+Si vous l'utilisez :
+
+- seules des **empreintes chiffrées** (hachage SHA-256) des adresses e-mail
+  de vos contacts sont envoyées à nos serveurs — jamais les noms, jamais
+  les adresses en clair, jamais les numéros de téléphone ;
+- ces empreintes sont comparées à la volée à celles des comptes existants
+  pour vous proposer les joueurs correspondants, puis **oubliées : rien
+  n'est conservé** de votre carnet d'adresses ;
+- vous pouvez refuser ou révoquer la permission à tout moment dans les
+  réglages du téléphone, sans perdre aucune autre fonction du jeu.
 
 ## Où sont stockées les données ?
 
@@ -53,7 +86,8 @@ Les échanges entre l'application et les serveurs sont chiffrés (HTTPS/WSS).
 ## Qui a accès aux données ?
 
 Personne d'autre que l'éditeur et ses prestataires techniques (Supabase,
-Fly.io), dans la seule mesure nécessaire au fonctionnement du service.
+Fly.io, et Google Firebase pour l'acheminement des notifications), dans la
+seule mesure nécessaire au fonctionnement du service.
 Les données ne sont **ni vendues, ni louées, ni partagées** à des fins
 publicitaires ou commerciales. Les autres joueurs d'une partie ne voient
 que votre pseudo et vos actions de jeu.
