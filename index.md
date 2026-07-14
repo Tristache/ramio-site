@@ -14,7 +14,10 @@ puis sur l'App Store.
 ## Les règles du rami chinois
 
 Le rami chinois se joue de 2 à 4 joueurs, avec deux jeux de 52 cartes,
-avec ou sans jokers.
+avec ou sans jokers. L'essentiel est résumé ci-dessous ; le guide
+complet, avec le détail des points et les différences avec le rami
+classique et le Rummikub, est sur la page
+[Règles du rami chinois](regles-rami-chinois).
 
 ### Le but du jeu
 
