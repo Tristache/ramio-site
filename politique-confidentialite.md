@@ -42,6 +42,12 @@ L'application collecte le strict nécessaire au fonctionnement du jeu :
   nous conservons le pseudo signalé, le motif que vous indiquez et la date,
   afin de modérer le jeu. Les messages du salon de discussion ne sont
   jamais stockés ; les mots injurieux y sont masqués automatiquement.
+- **Joueurs bloqués** : si vous bloquez un joueur, nous conservons ce lien
+  (votre compte, le compte bloqué, la date) pour empêcher ce joueur de vous
+  contacter (demandes d'ami, messages, invitations, discussion en partie).
+  Le joueur bloqué n'en est pas informé ; vous pouvez le débloquer à tout
+  moment depuis l'écran « Mes amis ». Ces liens sont supprimés avec le
+  compte.
 - **Données techniques de connexion** : adresse IP et journaux techniques,
   traités transitoirement pour acheminer les parties en ligne et assurer la
   sécurité du service.
