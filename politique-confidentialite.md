@@ -4,7 +4,7 @@ title: Politique de confidentialité
 
 # Politique de confidentialité — Ramio
 
-Dernière mise à jour : 8 juillet 2026
+Dernière mise à jour : 16 juillet 2026
 
 Cette politique décrit les données traitées par l'application mobile
 « Ramio » (jeu de rami chinois, ci-après « l'application ») et les droits
@@ -24,6 +24,10 @@ L'application collecte le strict nécessaire au fonctionnement du jeu :
   prestataire d'authentification). Si vous choisissez la **connexion via
   Google ou Apple**, l'application reçoit uniquement l'adresse e-mail du
   compte choisi (aucun accès à vos autres données Google ou Apple).
+- **Compte invité** : vous pouvez essayer le jeu sans créer de compte. Un
+  compte technique anonyme (sans adresse e-mail) est alors créé pour
+  conserver votre progression ; vous pouvez le convertir en compte complet
+  à tout moment, ou le supprimer comme n'importe quel compte.
 - **Pseudo** : le nom affiché aux autres joueurs pendant une partie. Il est
   unique et visible des joueurs connectés (ajout d'amis par pseudo).
 - **Liste d'amis et invitations** : les relations d'amitié que vous créez
@@ -51,6 +55,17 @@ L'application collecte le strict nécessaire au fonctionnement du jeu :
 - **Données techniques de connexion** : adresse IP et journaux techniques,
   traités transitoirement pour acheminer les parties en ligne et assurer la
   sécurité du service.
+- **Mesure d'audience anonyme** : pour savoir si le jeu plaît et
+  l'améliorer, l'application envoie un identifiant d'appareil **aléatoire**
+  (jamais rattaché à votre compte ni à votre adresse e-mail), la date de
+  première ouverture, les jours d'utilisation et deux jalons de découverte
+  (didacticiel terminé, première partie lancée). Ces mesures ne permettent
+  pas de vous identifier.
+- **Rapports de plantage** : en cas d'erreur technique, un rapport anonyme
+  (modèle d'appareil, versions du système et de l'application, trace
+  technique de l'erreur) est envoyé à notre prestataire **Sentry**
+  (ingestion en Union européenne) pour corriger les bogues. Il n'est pas
+  rattaché à votre compte.
 
 L'application ne collecte **aucune** donnée de localisation, aucune photo,
 et ne contient **ni publicité ni traceur publicitaire**.
@@ -92,8 +107,9 @@ Les échanges entre l'application et les serveurs sont chiffrés (HTTPS/WSS).
 ## Qui a accès aux données ?
 
 Personne d'autre que l'éditeur et ses prestataires techniques (Supabase,
-Fly.io, et Google Firebase pour l'acheminement des notifications), dans la
-seule mesure nécessaire au fonctionnement du service.
+Fly.io, Google Firebase pour l'acheminement des notifications, et Sentry
+pour les rapports de plantage), dans la seule mesure nécessaire au
+fonctionnement du service.
 Les données ne sont **ni vendues, ni louées, ni partagées** à des fins
 publicitaires ou commerciales. Les autres joueurs d'une partie ne voient
 que votre pseudo et vos actions de jeu.
