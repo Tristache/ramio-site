@@ -58,8 +58,9 @@ L'application collecte le strict nécessaire au fonctionnement du jeu :
 - **Mesure d'audience anonyme** : pour savoir si le jeu plaît et
   l'améliorer, l'application envoie un identifiant d'appareil **aléatoire**
   (jamais rattaché à votre compte ni à votre adresse e-mail), la date de
-  première ouverture, les jours d'utilisation et deux jalons de découverte
-  (didacticiel terminé, première partie lancée). Ces mesures ne permettent
+  première ouverture, les jours d'utilisation, deux jalons de découverte
+  (didacticiel terminé, première partie lancée) et le thème visuel (« kit
+  d'ambiance ») choisi dans l'application. Ces mesures ne permettent
   pas de vous identifier.
 - **Rapports de plantage** : en cas d'erreur technique, un rapport anonyme
   (modèle d'appareil, versions du système et de l'application, trace
