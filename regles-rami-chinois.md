@@ -1,15 +1,16 @@
 ---
 title: Les règles du rami chinois — le guide complet
 description: >-
-  Règles complètes du rami chinois : 13 cartes, pas de défausse, tierce
-  franche, réorganisation libre de la table. Le guide de référence, avec
-  le décompte des points et les différences avec le rami classique et le
-  Rummikub.
+  Règles complètes du rami chinois, aussi appelé rami voleur : 13 cartes,
+  pas de défausse, tierce franche, réorganisation libre de la table. Le
+  guide de référence, avec le décompte des points et les différences avec
+  le rami classique et le Rummikub.
 ---
 
 # Les règles du rami chinois
 
-Le rami chinois est un jeu de cartes de la famille du rami, qui se joue de
+Le rami chinois — aussi appelé **rami voleur** — est un jeu de cartes de
+la famille du rami, qui se joue de
 **2 à 4 joueurs** avec **deux jeux de 52 cartes** (et, au choix, 4 jokers).
 Sa grande particularité : **on ne se défausse jamais**, et une fois sa
 première pose faite, chacun peut **réorganiser librement toute la table**
@@ -142,6 +143,16 @@ italien et le Vatikan. Le rami chinois en est la variante française : 13
 cartes, tierce franche, jokers à 50 points. Quant au nom ? Le rami descend
 historiquement du khanhoo, un jeu chinois du XIIe siècle — la boucle est
 bouclée.
+
+## Rami chinois ou rami voleur ?
+
+Deux noms, un seul jeu. Ce jeu est aussi largement connu sous le nom de
+**rami voleur** — parce qu'on y « vole » les cartes déjà posées par ses
+adversaires : emprunter le 4e cœur d'un carré, découper la suite du
+voisin pour y caser les siennes, c'est tout le sel du jeu. Selon les
+familles et les régions on dira rami voleur, rami chinois, ou simplement
+« notre rami » ; les règles de cette page valent pour tous. Ramio est
+donc aussi l'application du rami voleur.
 
 ## Jouer au rami chinois en ligne
 
