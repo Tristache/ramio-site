@@ -39,8 +39,9 @@ L'application est en **bêta ouverte**, gratuite et sans publicité.
 </p>
 
 <p align="center">
-  <img src="assets/partie-nuit-elfique.png" alt="Une partie en cours, ambiance Nuit elfique" width="240" style="border-radius:12px;max-width:45%;">
-  <img src="assets/apercu-kit-creole.png" alt="L'ambiance Créole Océan Indien : tapis, dos de cartes et avatars" width="240" style="border-radius:12px;max-width:45%;">
+  <img src="assets/fr-partie-art-deco.png" alt="Une partie en cours, ambiance Art déco" width="200" style="border-radius:12px;max-width:30%;">
+  <img src="assets/fr-salon-prive.png" alt="Un salon privé entre amis, avec son code à partager" width="200" style="border-radius:12px;max-width:30%;">
+  <img src="assets/fr-kits-forge.png" alt="Les ambiances : tapis, dos de cartes et avatars au choix" width="200" style="border-radius:12px;max-width:30%;">
 </p>
 
 ## Les règles du rami voleur (rami chinois)

@@ -39,8 +39,9 @@ The app is in **open beta**, free and without ads.
 </p>
 
 <p align="center">
-  <img src="assets/partie-nuit-elfique.png" alt="A game in progress, Elven Night theme" width="240" style="border-radius:12px;max-width:45%;">
-  <img src="assets/apercu-kit-creole.png" alt="The Creole Indian Ocean theme: table felt, card backs and avatars" width="240" style="border-radius:12px;max-width:45%;">
+  <img src="assets/en-game-art-deco.png" alt="A game in progress, Art Deco theme" width="200" style="border-radius:12px;max-width:30%;">
+  <img src="assets/en-private-room.png" alt="A private room with friends, with its shareable code" width="200" style="border-radius:12px;max-width:30%;">
+  <img src="assets/en-kits-forge.png" alt="Themes: table felts, card backs and avatars to choose from" width="200" style="border-radius:12px;max-width:30%;">
 </p>
 
 ## The rules of thief rummy (Manipulation Rummy)
