@@ -4,12 +4,42 @@ title: Ramio — le rami chinois, en ligne entre amis
 
 # Ramio
 
-**Ramio, c'est le rami chinois, le vrai, à jouer entre amis où que vous
-soyez.** Créez un salon privé, partagez son code, et jouez à 2, 3 ou 4 sur
-vos téléphones. Sans publicité.
+**Ramio, c'est le rami voleur — le rami chinois, le vrai — à jouer entre
+amis où que vous soyez.** Vous ne posez pas seulement vos cartes : vous
+démontez et recomposez celles qui sont déjà sur la table pour y glisser les
+vôtres.
 
-L'application arrive bientôt sur Google Play (bêta fermée en cours),
-puis sur l'App Store.
+<p align="center">
+  <img src="assets/ramio-reorganisation.gif"
+       alt="Un joker est retiré d'un groupe de valets pour prolonger une suite de cœur, puis un valet de trèfle vient réparer le groupe."
+       width="320" style="border-radius:12px;max-width:100%;">
+</p>
+
+## Essayer Ramio
+
+L'application est en **bêta ouverte**, gratuite et sans publicité.
+
+<p align="center" style="margin:1.5em 0;">
+  <a href="https://play.google.com/store/apps/details?id=com.ramio"
+     style="display:inline-block;margin:6px 8px;padding:14px 28px;border-radius:10px;
+            background:#2f6f62;color:#fff;font-weight:600;text-decoration:none;">
+    Android — installer depuis Google Play
+  </a>
+  <a href="https://testflight.apple.com/join/X8tt9MQw"
+     style="display:inline-block;margin:6px 8px;padding:14px 28px;border-radius:10px;
+            background:#2f6f62;color:#fff;font-weight:600;text-decoration:none;">
+    iPhone — rejoindre la bêta TestFlight
+  </a>
+</p>
+
+<p align="center" style="font-size:0.9em;color:#666;">
+  Sur iPhone, la bêta passe par l'application TestFlight d'Apple.
+</p>
+
+<p align="center">
+  <img src="assets/partie-nuit-elfique.png" alt="Une partie en cours, ambiance Nuit elfique" width="240" style="border-radius:12px;max-width:45%;">
+  <img src="assets/apercu-kit-creole.png" alt="L'ambiance Créole Océan Indien : tapis, dos de cartes et avatars" width="240" style="border-radius:12px;max-width:45%;">
+</p>
 
 ## Les règles du rami chinois
 
@@ -60,9 +90,14 @@ manche gagnante, idéale pour une partie rapide.
 ## L'application Ramio
 
 - Salons privés entre amis (code à 6 caractères) ou parties publiques
+- Solo contre l'ordinateur, **même sans connexion**, à quatre niveaux
+- Plus de 300 défis de recomposition, et un défi du jour commun à tous
+- Duels de rapidité : le même défi pour tout le monde, le plus rapide gagne
 - Avec ou sans jokers, partie aux points ou partie simple
+- Amis, messagerie, classement Elo, statistiques et historique
+- Une vingtaine d'ambiances : tapis, dos de cartes et avatars au choix
+- Disponible en onze langues
 - Reconnexion automatique en cas de coupure
-- Statistiques et historique personnels
 - Aucune publicité, règles arbitrées par le serveur : impossible de tricher
 
 ## Confidentialité et contact
