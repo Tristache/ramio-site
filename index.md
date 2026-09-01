@@ -1,12 +1,12 @@
 ---
-title: Ramio — le rami voleur (rami chinois), en ligne entre amis
+title: Ramio — le rami voleur (aussi appelé rami chinois), en ligne entre amis
 ---
 
 <p align="right"><a href="en">English version</a></p>
 
 # Ramio
 
-**Ramio, c'est le rami voleur — le rami chinois, le vrai — à jouer entre
+**Ramio, c'est le rami voleur — aussi appelé rami chinois — à jouer entre
 amis où que vous soyez.** Vous ne posez pas seulement vos cartes : vous
 démontez et recomposez celles qui sont déjà sur la table pour y glisser les
 vôtres.

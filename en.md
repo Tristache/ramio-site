@@ -1,5 +1,6 @@
 ---
 title: Ramio — Manipulation Rummy online with friends
+description: Ramio, thief rummy with friends — online games, private rooms, no ads.
 ---
 
 <p align="right"><a href="./">Version française</a></p>
