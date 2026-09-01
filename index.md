@@ -1,6 +1,8 @@
 ---
-title: Ramio — le rami chinois, en ligne entre amis
+title: Ramio — le rami voleur (rami chinois), en ligne entre amis
 ---
+
+<p align="right"><a href="en">English version</a></p>
 
 # Ramio
 
@@ -41,12 +43,12 @@ L'application est en **bêta ouverte**, gratuite et sans publicité.
   <img src="assets/apercu-kit-creole.png" alt="L'ambiance Créole Océan Indien : tapis, dos de cartes et avatars" width="240" style="border-radius:12px;max-width:45%;">
 </p>
 
-## Les règles du rami chinois
+## Les règles du rami voleur (rami chinois)
 
-Le rami chinois se joue de 2 à 4 joueurs, avec deux jeux de 52 cartes,
-avec ou sans jokers. L'essentiel est résumé ci-dessous ; le guide
-complet, avec le détail des points et les différences avec le rami
-classique et le Rummikub, est sur la page
+Le rami voleur — ou rami chinois — se joue de 2 à 4 joueurs, avec deux
+jeux de 52 cartes, avec ou sans jokers. L'essentiel est résumé
+ci-dessous ; le guide complet, avec le détail des points et les
+différences avec le rami classique et le Rummikub, est sur la page
 [Règles du rami chinois](regles-rami-chinois).
 
 ### Le but du jeu
@@ -74,13 +76,16 @@ la table, sous forme de combinaisons :
    le monde) pour caser ses cartes, tant que la table reste entièrement
    valide à la fin de son tour.
 5. Le **joker** remplace n'importe quelle carte. Sur la table, il peut
-   être réutilisé lors des réorganisations, tant qu'il reste sur la table.
+   être réutilisé lors des réorganisations, tant qu'il reste sur la
+   table. Les jokers sont optionnels : chaque partie se crée avec ou
+   sans.
 
 ### La fin de manche et les points
 
 La manche s'arrête quand un joueur a vidé sa main. Les autres comptent
 leurs pénalités : les cartes 2 à 10 valent leur valeur, les figures 10,
-l'As 11 et le joker 50. Si la pioche s'épuise avant qu'un joueur ait fini,
+l'As 11 et le joker 20 ou 50 points (50 dans la version actuelle de
+l'application). Si la pioche s'épuise avant qu'un joueur ait fini,
 la manche s'arrête et chacun compte les points restants dans sa main.
 Les pénalités s'additionnent de manche en manche ; la partie se termine
 dès qu'un joueur atteint 100 points, et le joueur le moins pénalisé
