@@ -11,12 +11,6 @@ amis où que vous soyez.** Vous ne posez pas seulement vos cartes : vous
 démontez et recomposez celles qui sont déjà sur la table pour y glisser les
 vôtres.
 
-<p align="center">
-  <img src="assets/ramio-reorganisation.gif"
-       alt="Un joker est retiré d'un groupe de valets pour prolonger une suite de cœur, puis un valet de trèfle vient réparer le groupe."
-       width="320" style="border-radius:12px;max-width:100%;">
-</p>
-
 ## Essayer Ramio
 
 L'application est en **bêta ouverte**, gratuite et sans publicité.
