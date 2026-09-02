@@ -105,6 +105,6 @@ offers a **single-round game**, ideal for a quick match.
 
 ## Privacy and contact
 
-- [Privacy policy](politique-confidentialite) (in French)
-- [Delete your account](suppression-compte) (in French)
+- [Privacy policy](privacy-policy)
+- [Delete your account](delete-account)
 - Contact: ramio.contact@gmail.com
