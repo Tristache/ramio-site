@@ -49,8 +49,8 @@ The app is in **open beta**, free and without ads.
 ## The rules of Manipulation Rummy
 
 Manipulation Rummy is played by 2 to 4 players with two 52-card decks,
-with or without jokers. The game is known under many names: Robbers'
-rummy in English, Räuber-Rommé in Germany, Machiavelli in Italy,
+with or without jokers. The game is known under many names: [Robbers'
+rummy](https://en.wikipedia.org/wiki/Robbers%27_rummy) in English, Räuber-Rommé in Germany, Machiavelli in Italy,
 Mexe-Mexe in Brazil, rami voleur or rami chinois in France. The
 essentials are below.
 
