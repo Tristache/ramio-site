@@ -11,6 +11,12 @@ amis où que vous soyez.** Vous ne posez pas seulement vos cartes : vous
 démontez et recomposez celles qui sont déjà sur la table pour y glisser les
 vôtres.
 
+<p align="center">
+  <img src="assets/ramio-reorganisation-fr.gif"
+       alt="Le joker quitte un brelan de valets pour prolonger une suite de cœur, puis le valet de trèfle de la main vient réparer le brelan : la pose est validée."
+       width="300" style="border-radius:12px;max-width:100%;">
+</p>
+
 ## Essayer Ramio
 
 L'application est en **bêta ouverte**, gratuite et sans publicité.

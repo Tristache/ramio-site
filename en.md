@@ -12,6 +12,12 @@ with cards, online with friends wherever you are.** You don't just lay
 down your cards: you take apart and rebuild what is already on the
 table to fit yours in.
 
+<p align="center">
+  <img src="assets/ramio-reorganisation-en.gif"
+       alt="The joker leaves a set of jacks to extend a run of hearts, then the jack of clubs from the hand repairs the set: the play is confirmed."
+       width="300" style="border-radius:12px;max-width:100%;">
+</p>
+
 ## Try Ramio
 
 The app is in **open beta**, free and without ads.
