@@ -1,13 +1,13 @@
 ---
 title: Ramio — Manipulation Rummy online with friends
-description: Ramio, thief rummy with friends — online games, private rooms, no ads.
+description: Ramio, Robbers' rummy (manipulation rummy) with friends — online games, private rooms, no ads.
 ---
 
 <p align="right"><a href="./">Version française</a></p>
 
 # Ramio
 
-**Ramio is thief rummy ("rami voleur") — a Manipulation Rummy played
+**Ramio is « rami voleur » — Robbers' rummy, a Manipulation Rummy played
 with cards, online with friends wherever you are.** You don't just lay
 down your cards: you take apart and rebuild what is already on the
 table to fit yours in.
@@ -46,13 +46,13 @@ The app is in **open beta**, free and without ads.
   <img src="assets/en-kits-forge.png" alt="Themes: table felts, card backs and avatars to choose from" width="170" style="border-radius:12px;max-width:23%;">
 </p>
 
-## The rules of thief rummy (Manipulation Rummy)
+## The rules of Robbers' rummy (Manipulation Rummy)
 
-Thief rummy is played by 2 to 4 players with two 52-card decks, with or
-without jokers. The game is known under many names: Manipulation Rummy,
-Robbers' rummy, Räuber-Rommé in Germany, Machiavelli in Italy,
-Mexe-Mexe in Brazil, rami voleur or rami chinois in France. The
-essentials are below.
+Robbers' rummy is played by 2 to 4 players with two 52-card decks, with
+or without jokers. The game is known under many names: Manipulation
+Rummy or Robbers' rummy in English, Räuber-Rommé in Germany, Machiavelli
+in Italy, Mexe-Mexe in Brazil, rami voleur or rami chinois in France.
+The essentials are below.
 
 ### The goal
 
