@@ -7,8 +7,8 @@ description: Ramio, Robbers' rummy (manipulation rummy) with friends — online 
 
 # Ramio
 
-**Ramio is « rami voleur » — Robbers' rummy, a Manipulation Rummy played
-with cards, online with friends wherever you are.** You don't just lay
+**Ramio is Robbers' rummy — a Manipulation Rummy played with cards,
+online with friends wherever you are.** You don't just lay
 down your cards: you take apart and rebuild what is already on the
 table to fit yours in.
 
