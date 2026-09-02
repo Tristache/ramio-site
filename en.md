@@ -40,9 +40,10 @@ The app is in **open beta**, free and without ads.
 </p>
 
 <p align="center">
-  <img src="assets/en-game-art-deco.png" alt="A game in progress, Art Deco theme" width="200" style="border-radius:12px;max-width:30%;">
-  <img src="assets/en-private-room.png" alt="A private room with friends, with its shareable code" width="200" style="border-radius:12px;max-width:30%;">
-  <img src="assets/en-kits-forge.png" alt="Themes: table felts, card backs and avatars to choose from" width="200" style="border-radius:12px;max-width:30%;">
+  <img src="assets/en-game-art-deco.png" alt="A game in progress, Art Deco theme" width="170" style="border-radius:12px;max-width:23%;">
+  <img src="assets/en-online-game.png" alt="An online game against Maya: her avatar, her cards and the counter at the top, your hand at the bottom" width="170" style="border-radius:12px;max-width:23%;">
+  <img src="assets/en-private-room.png" alt="A private room with friends, with its shareable code" width="170" style="border-radius:12px;max-width:23%;">
+  <img src="assets/en-kits-forge.png" alt="Themes: table felts, card backs and avatars to choose from" width="170" style="border-radius:12px;max-width:23%;">
 </p>
 
 ## The rules of thief rummy (Manipulation Rummy)

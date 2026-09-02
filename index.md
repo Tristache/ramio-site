@@ -39,9 +39,10 @@ L'application est en **bêta ouverte**, gratuite et sans publicité.
 </p>
 
 <p align="center">
-  <img src="assets/fr-partie-art-deco.png" alt="Une partie en cours, ambiance Art déco" width="200" style="border-radius:12px;max-width:30%;">
-  <img src="assets/fr-salon-prive.png" alt="Un salon privé entre amis, avec son code à partager" width="200" style="border-radius:12px;max-width:30%;">
-  <img src="assets/fr-kits-forge.png" alt="Les ambiances : tapis, dos de cartes et avatars au choix" width="200" style="border-radius:12px;max-width:30%;">
+  <img src="assets/fr-partie-art-deco.png" alt="Une partie en cours, ambiance Art déco" width="170" style="border-radius:12px;max-width:23%;">
+  <img src="assets/fr-partie-en-ligne.png" alt="Une partie en ligne contre Maya : son avatar, ses cartes et le compteur en haut, votre main en bas" width="170" style="border-radius:12px;max-width:23%;">
+  <img src="assets/fr-salon-prive.png" alt="Un salon privé entre amis, avec son code à partager" width="170" style="border-radius:12px;max-width:23%;">
+  <img src="assets/fr-kits-forge.png" alt="Les ambiances : tapis, dos de cartes et avatars au choix" width="170" style="border-radius:12px;max-width:23%;">
 </p>
 
 ## Les règles du rami voleur (rami chinois)
