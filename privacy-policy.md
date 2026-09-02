@@ -12,7 +12,7 @@ This is an English translation of the French policy; in case of
 discrepancy, the [French version](politique-confidentialite) prevails.
 
 This policy describes the data processed by the "Ramio" mobile app
-(a Robbers' rummy card game, hereafter "the app") and the players'
+(a manipulation rummy card game, hereafter "the app") and the players'
 rights.
 
 ## Who is responsible for the data?
