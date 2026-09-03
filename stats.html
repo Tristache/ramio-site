@@ -331,7 +331,10 @@
         [['Départs anticipés (lignes joueur)', gq.left_early + ' / ' + gq.rows + ' (' + pct(gq.left_early, gq.rows) + ')'],
          ['Temps épuisés', gq.timeouts],
          ['Adversaires avec compte', gq.opponents_with_account + ' / ' + gq.opponents + ' (' + pct(gq.opponents_with_account, gq.opponents) + ')'],
-         ['Abandons de file publique', d.queue_30d.abandons + ' · attente médiane ' + fmtDur(d.queue_30d.median_wait_s)]]
+         ['File publique : entrées / appariées / ordi / abandons',
+          (d.queue_30d.starts == null ? '—' : d.queue_30d.starts) + ' / ' + d.queue_30d.matched + ' / ' + d.queue_30d.bot + ' / ' + d.queue_30d.abandons],
+         ['Attente médiane avant appariement / avant abandon',
+          fmtDur(d.queue_30d.median_match_s) + ' / ' + fmtDur(d.queue_30d.median_wait_s)]]
         .concat(kv(gq.reasons).map(function (x) { return ['Fin : ' + x[0], x[1]]; }))
         .concat(kv(gq.by_players).map(function (x) { return ['Tables à ' + x[0] + ' joueurs', x[1]]; })));
 
@@ -351,6 +354,17 @@
 
       html += tableCard('Invitations (30 jours)', 'par genre · ' + d.totals.invites_total + ' depuis le début',
         [{ t: 'Genre' }, { t: 'Envoyées', n: 1 }], kv(d.social_30d, { rami: 'partie directe', puzzle: 'duel', async: 'en différé' }));
+    }
+    if (d.locales) {   // migration 77 (release 66)
+      html += tableCard('Langues des appareils', 'réglage de l\'appareil · « ? » = build antérieure à la 66',
+        [{ t: 'Langue' }, { t: 'Appareils', n: 1 }, { t: 'Engagés', n: 1 }],
+        d.locales.map(function (r) { return [r.locale, r.devices, r.engaged]; }));
+      html += tableCard('Pays des appareils', 'réglage de l\'appareil, pas une géolocalisation',
+        [{ t: 'Pays' }, { t: 'Appareils', n: 1 }, { t: 'Engagés', n: 1 }],
+        d.countries.map(function (r) { return [r.country, r.devices, r.engaged]; }));
+      html += tableCard('Sources d\'installation Android (30 jours)', 'référent Google Play (utm_source) · iPhone n\'en a pas',
+        [{ t: 'Source' }, { t: 'Installs', n: 1 }, { t: 'Engagés', n: 1 }],
+        d.referrers_30d.map(function (r) { return [r.source, r.devices, r.engaged]; }));
     }
 
     $('charts').innerHTML = html;
