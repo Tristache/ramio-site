@@ -179,6 +179,10 @@
   }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function pct(a, b) { return b ? Math.round(100 * a / b) + ' %' : '—'; }
+  function fmtDur(sec) { if (sec == null) return '—'; sec = Math.round(sec); return sec < 90 ? sec + ' s' : Math.round(sec / 60) + ' min'; }
+  function kv(obj, labels) {
+    return Object.keys(obj || {}).map(function (k) { return [labels && labels[k] || k, obj[k]]; }).sort(function (a, b) { return b[1] - a[1]; });
+  }
 
   // ---------- graphique en barres (empilées) ----------
   function bars(rows, series) {
@@ -242,15 +246,20 @@
   // ---------- rendu ----------
   function render(d) {
     var t = d.totals;
+    var v2 = t.engaged != null;   // migration 76 passée ?
     var tiles = [
       ['Appareils', t.devices, t.devices_android + ' Android · ' + t.devices_ios + ' iPhone'],
-      ['Installs 24 h', t.installs_24h, 'premières ouvertures'],
+      ['Personnes engagées', v2 ? t.engaged : '—', v2 ? pct(t.engaged, t.devices) + ' des appareils · robots exclus' : 'migration 76'],
+      ['Installs 24 h', t.installs_24h, v2 ? t.engaged_24h + ' engagées' : 'premières ouvertures'],
       ['Actifs aujourd\'hui', t.active_today, t.active_7d + ' sur 7 jours'],
+      ['Session médiane 7 j', v2 ? fmtDur(t.session_median_s_7d) : '—', v2 ? 'p90 ' + fmtDur(t.session_p90_s_7d) + ' · ' + t.sessions_7d + ' sessions' : 'migration 76'],
       ['En ligne', t.online_now, 'profils vus < 5 min'],
       ['Comptes', t.accounts, t.accounts_anon + ' invités · ' + t.profiles + ' profils'],
       ['Parties en ligne', t.games, t.games_1h + ' dans l\'heure'],
       ['Défis résolus', t.puzzles, 'toutes difficultés'],
-      ['Amitiés', t.friendships, 'liens acceptés'],
+      ['Attrition 14 j', v2 ? t.churned_14d : '—', 'appareils sans session depuis 14 j'],
+      ['Push activé', v2 ? t.push_users : '—', v2 ? pct(t.push_users, t.accounts) + ' des comptes' : 'migration 76'],
+      ['Amitiés', t.friendships, v2 ? t.invites_30d + ' invitations · ' + t.shares_30d + ' partages sur 30 j' : 'liens acceptés'],
       ['Visites du site 24 h', t.site_visits_24h, 'pages fr + en']
     ];
     $('tiles').innerHTML = tiles.map(function (x) {
@@ -292,12 +301,57 @@
     var modes = Object.keys(d.games_by_mode_30d).map(function (m) { return [m, d.games_by_mode_30d[m]]; }).sort(function (a, b) { return b[1] - a[1]; });
     html += tableCard('Parties par mode (30 jours)', 'parties distinctes', [{ t: 'Mode' }, { t: 'Parties', n: 1 }], modes);
 
-    html += tableCard('Dernières installations', 'heure de Paris', [{ t: 'Quand' }, { t: 'Plateforme' }, { t: 'Build', n: 1 }],
-      d.recent_installs.map(function (r) { return [fmtDateTime(r.at), r.platform, r.build]; }));
-    html += tableCard('Dernières parties en ligne', 'heure de Paris', [{ t: 'Fin' }, { t: 'Mode' }, { t: 'Joueurs', n: 1 }, { t: 'Minutes', n: 1 }],
-      d.recent_games.map(function (r) { return [fmtDateTime(r.at), r.mode, r.players, r.minutes]; }));
+    html += tableCard('Dernières installations', 'heure de Paris', [{ t: 'Quand' }, { t: 'Plateforme' }, { t: 'Build', n: 1 }, { t: 'Engagé' }],
+      d.recent_installs.map(function (r) { return [fmtDateTime(r.at), r.platform, r.build, r.engaged == null ? '' : (r.engaged ? 'oui' : 'non')]; }));
+    html += tableCard('Dernières parties en ligne', 'heure de Paris', [{ t: 'Fin' }, { t: 'Mode' }, { t: 'Joueurs', n: 1 }, { t: 'Minutes', n: 1 }, { t: 'Motif' }],
+      d.recent_games.map(function (r) { return [fmtDateTime(r.at), r.mode, r.players, r.minutes, r.reason || '']; }));
     html += tableCard('Dernières visites du site', 'heure de Paris', [{ t: 'Quand' }, { t: 'Type' }, { t: 'Canal' }, { t: 'Page' }, { t: 'Origine' }],
       d.recent_site.map(function (r) { return [fmtDateTime(r.at), r.kind, r.src || '(direct)', r.lang, r.ref || '']; }));
+
+    if (v2) {
+      html += chartCard('Personnes engagées par jour d\'arrivée', 'appareils ayant joué, sans les robots Play',
+        byDay(d.installs_by_day, ['engaged'], 30), [{ key: 'engaged', label: 'engagées', color: S3 }]);
+      html += chartCard('Durée médiane de session', 'secondes, par jour', byDay(d.session_by_day, ['median_s'], 30),
+        [{ key: 'median_s', label: 'médiane (s)', color: S1 }]);
+
+      html += tableCard('Défis par niveau (30 jours)', 'débuts, réussites, abandons, temps médian, étoiles · indices utilisés : ' + d.hints_30d,
+        [{ t: 'Niveau' }, { t: 'Débuts', n: 1 }, { t: 'Réussis', n: 1 }, { t: 'Abandons', n: 1 }, { t: 'Abandon', n: 1 }, { t: 'Médiane', n: 1 }, { t: 'Étoiles', n: 1 }],
+        d.puzzles_by_level_30d.map(function (r) {
+          return [r.level, r.starts, r.wins, r.abandons, pct(r.abandons, r.starts), fmtDur(r.median_s), r.stars == null ? '—' : r.stars];
+        }));
+
+      var dj = d.daily_30d, as = dj.assiduite_7j;
+      html += tableCard('Défi du jour (30 jours)', dj.players + ' joueurs · réussite ' + pct(dj.wins, dj.starts) + ' (' + dj.wins + '/' + dj.starts + ' lancements)',
+        [{ t: 'Assiduité sur les 7 derniers jours' }, { t: 'Joueurs', n: 1 }],
+        [['7 jours sur 7', as.tous_les_jours], ['4 à 6 jours', as.quatre_a_six], ['1 à 3 jours', as.un_a_trois]]);
+
+      var gq = d.games_quality_30d;
+      html += tableCard('Qualité des parties en ligne (30 jours)', gq.games + ' parties · ' + gq.avg_minutes + ' min en moyenne · ' + gq.avg_rounds + ' manches',
+        [{ t: 'Mesure' }, { t: 'Valeur', n: 1 }],
+        [['Départs anticipés (lignes joueur)', gq.left_early + ' / ' + gq.rows + ' (' + pct(gq.left_early, gq.rows) + ')'],
+         ['Temps épuisés', gq.timeouts],
+         ['Adversaires avec compte', gq.opponents_with_account + ' / ' + gq.opponents + ' (' + pct(gq.opponents_with_account, gq.opponents) + ')'],
+         ['Abandons de file publique', d.queue_30d.abandons + ' · attente médiane ' + fmtDur(d.queue_30d.median_wait_s)]]
+        .concat(kv(gq.reasons).map(function (x) { return ['Fin : ' + x[0], x[1]]; }))
+        .concat(kv(gq.by_players).map(function (x) { return ['Tables à ' + x[0] + ' joueurs', x[1]]; })));
+
+      var screenNames = { ecran_defis: 'Défis', ecran_perso: 'Personnalisation', ecran_classement: 'Classement', ecran_profil: 'Profil',
+                          ecran_progression: 'Progression', ecran_amis: 'Amis', ecran_regles: 'Règles', ecran_prototypes: 'Prototypes' };
+      html += tableCard('Écrans ouverts (30 jours)', 'appareils distincts', [{ t: 'Écran' }, { t: 'Appareils', n: 1 }], kv(d.screens_30d, screenNames));
+
+      html += tableCard('Builds actives (7 jours)', 'mises à jour proposées : ' + d.updates_30d.proposed + ' · acceptées : ' + d.updates_30d.accepted + ' (30 j)',
+        [{ t: 'Build' }, { t: 'Appareils', n: 1 }], d.builds_7d.map(function (r) { return [r.build, r.devices]; }));
+
+      var ec = d.economy;
+      html += tableCard('Économie', ec.players + ' progressions',
+        [{ t: 'Mesure' }, { t: 'Valeur', n: 1 }],
+        [['Jetons en circulation', ec.jetons_total], ['Jetons médians par joueur', Math.round(ec.jetons_median)],
+         ['Cosmétiques possédés (moyenne)', ec.cosmetics_avg], ['Joueurs avec au moins un kit', ec.with_kit],
+         ['Indices utilisés (30 j)', d.hints_30d]]);
+
+      html += tableCard('Invitations (30 jours)', 'par genre · ' + d.totals.invites_total + ' depuis le début',
+        [{ t: 'Genre' }, { t: 'Envoyées', n: 1 }], kv(d.social_30d, { rami: 'partie directe', puzzle: 'duel', async: 'en différé' }));
+    }
 
     $('charts').innerHTML = html;
   }
