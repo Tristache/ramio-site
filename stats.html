@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ramio — tableau de bord</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f4f4f2; --surface: #fcfcfb; --line: #e2e1dc;
+    --text: #0b0b0b; --text-2: #52514e; --muted: #8a8985;
+    --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #4a3aa7;
+    --bad: #e34948;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --bg: #121211; --surface: #1a1a19; --line: #2c2c2a;
+      --text: #ffffff; --text-2: #c3c2b7; --muted: #8a8985;
+      --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #9085e9;
+      --bad: #e66767;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  header { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline;
+           padding: 14px 20px; border-bottom: 1px solid var(--line); background: var(--surface); }
+  header h1 { font-size: 18px; margin: 0; }
+  header .meta { color: var(--text-2); font-size: 13px; }
+  header .spacer { flex: 1; }
+  button, input { font: inherit; }
+  button { border: 1px solid var(--line); background: var(--surface); color: var(--text);
+           border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+  button:hover { border-color: var(--text-2); }
+  main { padding: 16px 20px 40px; max-width: 1240px; margin: 0 auto; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-bottom: 18px; }
+  .tile { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+  .tile .k { font-size: 12px; color: var(--text-2); }
+  .tile .v { font-size: 26px; font-weight: 600; line-height: 1.2; }
+  .tile .s { font-size: 12px; color: var(--muted); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 14px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; overflow: hidden; }
+  .card h2 { font-size: 14px; margin: 0 0 2px; }
+  .card .sub { font-size: 12px; color: var(--text-2); margin-bottom: 8px; }
+  .legend { display: flex; gap: 12px; font-size: 12px; color: var(--text-2); margin-bottom: 4px; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+  svg { display: block; width: 100%; height: auto; }
+  .axis { font-size: 10px; fill: var(--muted); }
+  .gridline { stroke: var(--line); stroke-width: 1; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 5px 6px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th { color: var(--text-2); font-weight: 500; font-size: 12px; }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+  .scroll { overflow-x: auto; }
+  .empty { color: var(--muted); font-size: 13px; padding: 10px 0; }
+  #tip { position: fixed; pointer-events: none; background: var(--text); color: var(--bg);
+         font-size: 12px; padding: 5px 8px; border-radius: 6px; display: none; z-index: 10; white-space: nowrap; }
+  #gate { max-width: 420px; margin: 60px auto; background: var(--surface); border: 1px solid var(--line);
+          border-radius: 12px; padding: 20px; }
+  #gate input { width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px;
+                background: var(--bg); color: var(--text); margin: 8px 0 10px; }
+  #err { color: var(--bad); font-size: 13px; min-height: 1.2em; }
+  .funnel .bar { height: 18px; background: var(--s1); border-radius: 0 4px 4px 0; }
+  .funnel td:first-child { width: 42%; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Ramio — tableau de bord</h1>
+  <span class="meta" id="updated">en attente…</span>
+  <span class="spacer"></span>
+  <button id="refresh" type="button">Actualiser</button>
+  <button id="auto" type="button">Auto : 60 s</button>
+  <button id="logout" type="button">Oublier la clé</button>
+</header>
+
+<div id="gate" hidden>
+  <h2 style="margin:0 0 6px;font-size:16px">Clé d'accès</h2>
+  <p style="margin:0;color:var(--text-2);font-size:13px">
+    La clé <code>stats</code> de la table <code>admin_secrets</code>. Elle reste dans ce navigateur.
+  </p>
+  <input id="key" type="password" autocomplete="off" placeholder="clé">
+  <button id="enter" type="button">Entrer</button>
+  <div id="err"></div>
+</div>
+
+<main id="main" hidden>
+  <div class="tiles" id="tiles"></div>
+  <div class="grid" id="charts"></div>
+</main>
+<div id="tip"></div>
+
+<script>
+(function () {
+  'use strict';
+  var API = 'https://zkrkaimrybxbdrznxhxx.supabase.co/rest/v1/rpc/ramio_stats';
+  var ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InprcmthaW1yeWJ4YmRyem54aHh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDkzMTYsImV4cCI6MjA5NjY4NTMxNn0.28Ns814SQSFXaKRR0-ZrHoX1G8Cpnhf6sNCZ6kgtAio';
+  var TZ = 'Europe/Paris';
+  var $ = function (id) { return document.getElementById(id); };
+  var key = '';
+  try { key = localStorage.getItem('ramio-stats-key') || ''; } catch (e) {}
+  var timer = null, auto = true;
+
+  // ---------- accès ----------
+  function showGate(msg) {
+    $('gate').hidden = false; $('main').hidden = true;
+    $('err').textContent = msg || '';
+  }
+  $('enter').onclick = function () {
+    key = $('key').value.trim();
+    if (!key) return;
+    try { localStorage.setItem('ramio-stats-key', key); } catch (e) {}
+    load();
+  };
+  $('key').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('enter').click(); });
+  $('logout').onclick = function () {
+    key = ''; try { localStorage.removeItem('ramio-stats-key'); } catch (e) {}
+    showGate('');
+  };
+  $('refresh').onclick = load;
+  $('auto').onclick = function () {
+    auto = !auto; $('auto').textContent = auto ? 'Auto : 60 s' : 'Auto : off';
+    schedule();
+  };
+  function schedule() {
+    clearTimeout(timer);
+    if (auto && key) timer = setTimeout(load, 60000);
+  }
+
+  // ---------- chargement ----------
+  function load() {
+    if (!key) { showGate(''); return; }
+    $('updated').textContent = 'chargement…';
+    fetch(API, {
+      method: 'POST',
+      headers: { apikey: ANON, Authorization: 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ p_key: key })
+    }).then(function (r) {
+      if (r.status === 401 || r.status === 403) throw new Error('Clé refusée.');
+      if (r.status === 404) throw new Error('Fonction ramio_stats absente : migration 75 à exécuter.');
+      if (!r.ok) throw new Error('Erreur ' + r.status);
+      return r.json();
+    }).then(function (d) {
+      $('gate').hidden = true; $('main').hidden = false;
+      render(d);
+      $('updated').textContent = 'mis à jour à ' + fmtTime(d.generated_at) + ' (heure de Paris, jours en UTC)';
+      schedule();
+    }).catch(function (e) {
+      if (/refusée/.test(e.message)) { showGate(e.message); return; }
+      $('updated').textContent = e.message;
+      schedule();
+    });
+  }
+
+  // ---------- utilitaires ----------
+  function fmtTime(iso) {
+    return new Date(iso).toLocaleTimeString('fr-FR', { timeZone: TZ, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  }
+  function fmtDateTime(iso) {
+    return new Date(iso).toLocaleString('fr-FR', { timeZone: TZ, day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+  }
+  function fmtDay(d) { return d.slice(8, 10) + '/' + d.slice(5, 7); }
+  function isoDay(date) { return date.toISOString().slice(0, 10); }
+  function lastDays(n) {
+    var out = [], t = new Date(); t.setUTCHours(0, 0, 0, 0);
+    for (var i = n - 1; i >= 0; i--) { var d = new Date(t); d.setUTCDate(t.getUTCDate() - i); out.push(isoDay(d)); }
+    return out;
+  }
+  function byDay(rows, keys, n) {
+    var idx = {}; rows.forEach(function (r) { idx[r.day] = r; });
+    return lastDays(n).map(function (d) {
+      var r = idx[d] || {}, o = { day: d };
+      keys.forEach(function (k) { o[k] = r[k] || 0; });
+      return o;
+    });
+  }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function pct(a, b) { return b ? Math.round(100 * a / b) + ' %' : '—'; }
+
+  // ---------- graphique en barres (empilées) ----------
+  function bars(rows, series) {
+    var W = 600, H = 170, padL = 28, padB = 18, padT = 8;
+    var n = rows.length, gap = 2, bw = (W - padL) / n;
+    var max = 0;
+    rows.forEach(function (r) { var s = 0; series.forEach(function (x) { s += r[x.key]; }); if (s > max) max = s; });
+    max = Math.max(max, 1);
+    var step = max <= 5 ? 1 : max <= 10 ? 2 : max <= 25 ? 5 : max <= 50 ? 10 : Math.ceil(max / 5 / 10) * 10;
+    var top = Math.ceil(max / step) * step;
+    var y = function (v) { return padT + (H - padT - padB) * (1 - v / top); };
+    var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img">';
+    for (var g = 0; g <= top; g += step) {
+      svg += '<line class="gridline" x1="' + padL + '" x2="' + W + '" y1="' + y(g) + '" y2="' + y(g) + '"/>' +
+             '<text class="axis" x="' + (padL - 4) + '" y="' + (y(g) + 3) + '" text-anchor="end">' + g + '</text>';
+    }
+    rows.forEach(function (r, i) {
+      var x = padL + i * bw + gap / 2, acc = 0, w = Math.max(bw - gap, 1);
+      var label = fmtDay(r.day) + ' — ' + series.map(function (s) { return s.label + ' ' + r[s.key]; }).join(', ');
+      svg += '<g data-tip="' + esc(label) + '">';
+      svg += '<rect x="' + x + '" y="' + padT + '" width="' + w + '" height="' + (H - padT - padB) + '" fill="transparent"/>';
+      series.forEach(function (s, si) {
+        var v = r[s.key]; if (!v) return;
+        var y1 = y(acc + v), y0 = y(acc) - (acc ? 2 : 0), h = Math.max(y0 - y1, 1);
+        var rx = si === series.length - 1 || !series.slice(si + 1).some(function (t) { return r[t.key]; }) ? 3 : 0;
+        svg += '<rect x="' + x + '" y="' + y1 + '" width="' + w + '" height="' + h + '" rx="' + rx + '" fill="' + s.color + '"/>';
+        acc += v;
+      });
+      svg += '</g>';
+      if (n <= 14 || i % 5 === 0) {
+        svg += '<text class="axis" x="' + (x + w / 2) + '" y="' + (H - 4) + '" text-anchor="middle">' + fmtDay(r.day) + '</text>';
+      }
+    });
+    return svg + '</svg>';
+  }
+  function legend(series) {
+    if (series.length < 2) return '';
+    return '<div class="legend">' + series.map(function (s) {
+      return '<span><i style="background:' + s.color + '"></i>' + esc(s.label) + '</span>';
+    }).join('') + '</div>';
+  }
+  function chartCard(title, sub, rows, series) {
+    var total = 0; rows.forEach(function (r) { series.forEach(function (s) { total += r[s.key]; }); });
+    return '<div class="card"><h2>' + esc(title) + '</h2><div class="sub">' + esc(sub) + ' · total 30 j : ' + total + '</div>' +
+           legend(series) + bars(rows, series) + '</div>';
+  }
+  function tableCard(title, sub, head, rows, cls) {
+    var html = '<div class="card' + (cls ? ' ' + cls : '') + '"><h2>' + esc(title) + '</h2><div class="sub">' + esc(sub) + '</div>';
+    if (!rows.length) return html + '<div class="empty">Rien pour l\'instant.</div></div>';
+    html += '<div class="scroll"><table><thead><tr>' + head.map(function (h) {
+      return '<th' + (h.n ? ' class="n"' : '') + '>' + esc(h.t) + '</th>';
+    }).join('') + '</tr></thead><tbody>';
+    rows.forEach(function (r) {
+      html += '<tr>' + r.map(function (c, i) {
+        return '<td' + (head[i].n ? ' class="n"' : '') + '>' + (head[i].raw ? c : esc(c)) + '</td>';
+      }).join('') + '</tr>';
+    });
+    return html + '</tbody></table></div></div>';
+  }
+
+  // ---------- rendu ----------
+  function render(d) {
+    var t = d.totals;
+    var tiles = [
+      ['Appareils', t.devices, t.devices_android + ' Android · ' + t.devices_ios + ' iPhone'],
+      ['Installs 24 h', t.installs_24h, 'premières ouvertures'],
+      ['Actifs aujourd\'hui', t.active_today, t.active_7d + ' sur 7 jours'],
+      ['En ligne', t.online_now, 'profils vus < 5 min'],
+      ['Comptes', t.accounts, t.accounts_anon + ' invités · ' + t.profiles + ' profils'],
+      ['Parties en ligne', t.games, t.games_1h + ' dans l\'heure'],
+      ['Défis résolus', t.puzzles, 'toutes difficultés'],
+      ['Amitiés', t.friendships, 'liens acceptés'],
+      ['Visites du site 24 h', t.site_visits_24h, 'pages fr + en']
+    ];
+    $('tiles').innerHTML = tiles.map(function (x) {
+      return '<div class="tile"><div class="k">' + esc(x[0]) + '</div><div class="v">' + x[1] + '</div><div class="s">' + esc(x[2]) + '</div></div>';
+    }).join('');
+
+    var S1 = getComputedStyle(document.documentElement).getPropertyValue('--s1').trim();
+    var S2 = getComputedStyle(document.documentElement).getPropertyValue('--s2').trim();
+    var S3 = getComputedStyle(document.documentElement).getPropertyValue('--s3').trim();
+    var plat = [{ key: 'android', label: 'Android', color: S1 }, { key: 'ios', label: 'iPhone', color: S2 }];
+    var html = '';
+    html += chartCard('Installations par jour', 'premières ouvertures, 30 jours', byDay(d.installs_by_day, ['android', 'ios'], 30), plat);
+    html += chartCard('Appareils actifs par jour', 'au moins une session', byDay(d.active_by_day, ['android', 'ios'], 30), plat);
+    html += chartCard('Parties en ligne par jour', 'parties terminées sur le serveur', byDay(d.games_by_day, ['games'], 30), [{ key: 'games', label: 'parties', color: S1 }]);
+    html += chartCard('Défi du jour', 'joueurs ayant rendu un temps', byDay(d.daily_by_day, ['players'], 30), [{ key: 'players', label: 'joueurs', color: S3 }]);
+    html += chartCard('Défis résolus par jour', 'parcours, toutes difficultés', byDay(d.puzzles_by_day, ['solved'], 30), [{ key: 'solved', label: 'défis', color: S3 }]);
+    html += chartCard('Site : visites et clics store', 'pages fr + en', byDay(d.site_by_day, ['visits', 'clicks'], 30),
+                      [{ key: 'visits', label: 'visites', color: S1 }, { key: 'clicks', label: 'clics store', color: S3 }]);
+
+    html += tableCard('Site : d\'où viennent les visiteurs', '14 derniers jours, par canal ?src=',
+      [{ t: 'Canal' }, { t: 'Page' }, { t: 'Visites', n: 1 }, { t: 'Play', n: 1 }, { t: 'TestFlight', n: 1 }],
+      d.site_by_src.map(function (r) { return [r.src, r.lang, r.visits, r.play, r.testflight]; }));
+
+    var steps = [['vu_connexion', 'Écran de connexion vu'], ['invite_essai', 'Essai invité'], ['compte_cree', 'Compte créé'],
+                 ['onboarding_kit', 'Kit d\'accueil choisi'], ['premier_defi', 'Premier défi'], ['premiere_ligne', 'Première ligne en ligne'],
+                 ['deuxieme_partie', 'Deuxième partie'], ['cinquieme_partie', 'Cinquième partie']];
+    var fmax = Math.max.apply(null, steps.map(function (s) { return d.funnel_7d[s[0]] || 0; }).concat([1]));
+    html += tableCard('Entonnoir (7 jours)', 'appareils distincts ayant atteint chaque étape',
+      [{ t: 'Étape' }, { t: '', raw: 1 }, { t: 'Appareils', n: 1 }],
+      steps.map(function (s) {
+        var v = d.funnel_7d[s[0]] || 0;
+        return [s[1], '<div class="bar" style="width:' + Math.round(100 * v / fmax) + '%"></div>', v];
+      }), 'funnel');
+
+    html += tableCard('Rétention par semaine d\'arrivée', 'D1 = revenu le lendemain · S1 = revenu dans les 7 jours',
+      [{ t: 'Semaine du' }, { t: 'Nouveaux', n: 1 }, { t: 'D1', n: 1 }, { t: 'S1', n: 1 }],
+      d.retention.map(function (r) { return [fmtDay(r.week), r.n, pct(r.d1, r.n_d1), pct(r.w1, r.n_w1)]; }));
+
+    var modes = Object.keys(d.games_by_mode_30d).map(function (m) { return [m, d.games_by_mode_30d[m]]; }).sort(function (a, b) { return b[1] - a[1]; });
+    html += tableCard('Parties par mode (30 jours)', 'parties distinctes', [{ t: 'Mode' }, { t: 'Parties', n: 1 }], modes);
+
+    html += tableCard('Dernières installations', 'heure de Paris', [{ t: 'Quand' }, { t: 'Plateforme' }, { t: 'Build', n: 1 }],
+      d.recent_installs.map(function (r) { return [fmtDateTime(r.at), r.platform, r.build]; }));
+    html += tableCard('Dernières parties en ligne', 'heure de Paris', [{ t: 'Fin' }, { t: 'Mode' }, { t: 'Joueurs', n: 1 }, { t: 'Minutes', n: 1 }],
+      d.recent_games.map(function (r) { return [fmtDateTime(r.at), r.mode, r.players, r.minutes]; }));
+    html += tableCard('Dernières visites du site', 'heure de Paris', [{ t: 'Quand' }, { t: 'Type' }, { t: 'Canal' }, { t: 'Page' }, { t: 'Origine' }],
+      d.recent_site.map(function (r) { return [fmtDateTime(r.at), r.kind, r.src || '(direct)', r.lang, r.ref || '']; }));
+
+    $('charts').innerHTML = html;
+  }
+
+  // ---------- infobulle ----------
+  var tip = $('tip');
+  document.addEventListener('mousemove', function (e) {
+    var g = e.target.closest && e.target.closest('g[data-tip]');
+    if (!g) { tip.style.display = 'none'; return; }
+    tip.textContent = g.getAttribute('data-tip');
+    tip.style.display = 'block';
+    tip.style.left = Math.min(e.clientX + 12, window.innerWidth - tip.offsetWidth - 8) + 'px';
+    tip.style.top = (e.clientY + 14) + 'px';
+  });
+
+  load();
+})();
+</script>
+</body>
+</html>
