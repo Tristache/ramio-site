@@ -108,3 +108,5 @@ offers a **single-round game**, ideal for a quick match.
 - [Privacy policy](privacy-policy)
 - [Delete your account](delete-account)
 - Contact: ramio.contact@gmail.com
+
+<script src="assets/mesure.js" defer></script>

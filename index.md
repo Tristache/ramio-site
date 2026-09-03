@@ -112,3 +112,5 @@ manche gagnante, idéale pour une partie rapide.
 - [Politique de confidentialité](politique-confidentialite)
 - [Supprimer son compte](suppression-compte)
 - Contact : ramio.contact@gmail.com
+
+<script src="assets/mesure.js" defer></script>
