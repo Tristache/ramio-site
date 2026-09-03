@@ -107,6 +107,7 @@
   function showGate(msg) {
     $('gate').hidden = false; $('main').hidden = true;
     $('err').textContent = msg || '';
+    $('updated').textContent = '';
   }
   $('enter').onclick = function () {
     key = $('key').value.trim();
