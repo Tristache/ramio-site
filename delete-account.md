@@ -32,3 +32,6 @@ If you can no longer open the app, send your deletion request to
 account concerned; it will be handled without undue delay.
 
 [Privacy policy](privacy-policy)
+
+<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Legal notice</a></p>
+

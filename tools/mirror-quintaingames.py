@@ -30,7 +30,7 @@ PAGES.update({
     p: f"{p}.html"
     for p in [
         "regles-rami-chinois", "politique-confidentialite", "privacy-policy",
-        "suppression-compte", "delete-account",
+        "suppression-compte", "delete-account", "mentions-legales",
     ]
 })
 

@@ -108,4 +108,6 @@ de puncte, iar cel mai puțin penalizat câștigă. Aplicația oferă și
 - [Ștergerea contului](delete-account) (în engleză)
 - Contact: contact@quintaingames.com
 
+<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Mențiuni legale</a></p>
+
 <script src="assets/mesure.js" defer></script>

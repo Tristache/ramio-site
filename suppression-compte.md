@@ -30,3 +30,6 @@ suppression à **ramio.contact@gmail.com**, de préférence depuis l'adresse
 e-mail du compte concerné ; elle sera traitée sans délai injustifié.
 
 [Politique de confidentialité](politique-confidentialite)
+
+<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Mentions légales</a></p>
+

@@ -105,4 +105,6 @@ kazanır. Uygulama ayrıca hızlı bir maç için **tek elli oyun** da sunar.
 - [Hesabını sil](delete-account) (İngilizce)
 - İletişim: contact@quintaingames.com
 
+<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Yasal bildirim</a></p>
+
 <script src="assets/mesure.js" defer></script>

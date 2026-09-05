@@ -113,4 +113,6 @@ manche gagnante, idéale pour une partie rapide.
 - [Supprimer son compte](suppression-compte)
 - Contact : ramio.contact@gmail.com
 
+<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Mentions légales</a></p>
+
 <script src="assets/mesure.js" defer></script>

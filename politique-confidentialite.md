@@ -141,3 +141,6 @@ adresse e-mail valide.
 Cette politique pourra évoluer (par exemple à l'ajout de nouvelles
 fonctionnalités). La version en vigueur est publiée à l'adresse indiquée
 sur les fiches App Store et Google Play, avec sa date de mise à jour.
+
+<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Mentions légales</a></p>
+

@@ -110,4 +110,6 @@ játszmát** is kínál, ideális egy gyors meccshez.
 - [Fiók törlése](delete-account) (angolul)
 - Kapcsolat: contact@quintaingames.com
 
+<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Jogi nyilatkozat</a></p>
+
 <script src="assets/mesure.js" defer></script>

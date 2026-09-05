@@ -110,4 +110,6 @@ lang: ar
 
 </div>
 
+<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">الإشعار القانوني</a></p>
+
 <script src="assets/mesure.js" defer></script>

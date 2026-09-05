@@ -139,3 +139,6 @@ e-mail address.
 This policy may evolve (for instance when new features are added). The
 version in force is published at the address given on the App Store and
 Google Play listings, with its update date.
+
+<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Legal notice</a></p>
+

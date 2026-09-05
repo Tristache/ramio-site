@@ -108,4 +108,6 @@ veloce.
 - [Eliminare il proprio account](delete-account) (in inglese)
 - Contatto: contact@quintaingames.com
 
+<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Note legali</a></p>
+
 <script src="assets/mesure.js" defer></script>
