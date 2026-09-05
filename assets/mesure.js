@@ -11,7 +11,10 @@
 
   var src = '';
   try { src = (new URLSearchParams(location.search).get('src') || '').slice(0, 40); } catch (e) {}
-  var lang = /\/en\/?$/.test(location.pathname) ? 'en' : 'fr';
+  // Langue = dernier segment du chemin quand c'est un code de langue du
+  // site (en, es, de, it, pt, pl, tr, ro, hu, ar), sinon fr (accueil).
+  var mLang = location.pathname.match(/\/(en|es|de|it|pt|pl|tr|ro|hu|ar)\/?$/);
+  var lang = mLang ? mLang[1] : 'fr';
   var ref = '';
   try { ref = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) {}
 

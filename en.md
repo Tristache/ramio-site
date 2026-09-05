@@ -3,7 +3,7 @@ title: Ramio — Manipulation Rummy online with friends
 description: Ramio, manipulation rummy with friends — online games, private rooms, no ads.
 ---
 
-<p align="right"><a href="./">Version française</a></p>
+<p align="right" style="font-size:0.9em;"><a href="./">Français</a> · <strong>English</strong> · <a href="es">Español</a> · <a href="de">Deutsch</a> · <a href="it">Italiano</a> · <a href="pt">Português</a> · <a href="pl">Polski</a> · <a href="tr">Türkçe</a> · <a href="ro">Română</a> · <a href="hu">Magyar</a> · <a href="ar">العربية</a></p>
 
 # Ramio
 
