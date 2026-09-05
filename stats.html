@@ -260,6 +260,7 @@
       ['Attrition 14 j', v2 ? t.churned_14d : '—', 'appareils sans session depuis 14 j'],
       ['Push activé', v2 ? t.push_users : '—', v2 ? pct(t.push_users, t.accounts) + ' des comptes' : 'migration 76'],
       ['Amitiés', t.friendships, v2 ? t.invites_30d + ' invitations · ' + t.shares_30d + ' partages sur 30 j' : 'liens acceptés'],
+      ['Parrainage', t.referrals_qualified != null ? t.referrals_qualified : '—', t.referrals_total != null ? t.referrals_total + ' filleuls · ' + t.referrals_30d + ' sur 30 j · qualifiés affichés' : 'migration 79'],
       ['Visites du site 24 h', t.site_visits_24h, 'pages fr + en']
     ];
     $('tiles').innerHTML = tiles.map(function (x) {
