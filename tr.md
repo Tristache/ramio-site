@@ -6,6 +6,12 @@ lang: tr
 
 <p align="right" style="font-size:0.9em;"><a href="./">Français</a> · <a href="en">English</a> · <a href="es">Español</a> · <a href="de">Deutsch</a> · <a href="it">Italiano</a> · <a href="pt">Português</a> · <a href="pl">Polski</a> · <strong>Türkçe</strong> · <a href="ro">Română</a> · <a href="hu">Magyar</a> · <a href="ar">العربية</a></p>
 
+<picture>
+  <source media="(max-width: 42em)" srcset="assets/ramio-bandeau-mobile.jpg">
+  <img src="assets/ramio-bandeau.jpg" alt="Çölde gün batımında bir Ramio masası: seriler, üçlüler, bir joker ve deste."
+       style="display:block;width:100%;border-radius:12px;margin:0 0 1.5em;">
+</picture>
+
 # Ramio
 
 **Ramio, kartlarla oynanan hırsız remidir: nerede olursanız olun,

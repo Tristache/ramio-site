@@ -4,6 +4,12 @@ title: Ramio — le rami voleur (aussi appelé rami chinois), en ligne entre ami
 
 <p align="right" style="font-size:0.9em;"><strong>Français</strong> · <a href="en">English</a> · <a href="es">Español</a> · <a href="de">Deutsch</a> · <a href="it">Italiano</a> · <a href="pt">Português</a> · <a href="pl">Polski</a> · <a href="tr">Türkçe</a> · <a href="ro">Română</a> · <a href="hu">Magyar</a> · <a href="ar">العربية</a></p>
 
+<picture>
+  <source media="(max-width: 42em)" srcset="assets/ramio-bandeau-mobile.jpg">
+  <img src="assets/ramio-bandeau.jpg" alt="Un tapis de Ramio au coucher du soleil dans le désert : suites, brelans, un joker et la pioche."
+       style="display:block;width:100%;border-radius:12px;margin:0 0 1.5em;">
+</picture>
+
 # Ramio
 
 **Ramio, c'est le rami voleur — aussi appelé rami chinois — à jouer entre

@@ -6,6 +6,12 @@ lang: it
 
 <p align="right" style="font-size:0.9em;"><a href="./">Français</a> · <a href="en">English</a> · <a href="es">Español</a> · <a href="de">Deutsch</a> · <strong>Italiano</strong> · <a href="pt">Português</a> · <a href="pl">Polski</a> · <a href="tr">Türkçe</a> · <a href="ro">Română</a> · <a href="hu">Magyar</a> · <a href="ar">العربية</a></p>
 
+<picture>
+  <source media="(max-width: 42em)" srcset="assets/ramio-bandeau-mobile.jpg">
+  <img src="assets/ramio-bandeau.jpg" alt="Un tavolo di Ramio al tramonto nel deserto: scale, tris, un jolly e il mazzo."
+       style="display:block;width:100%;border-radius:12px;margin:0 0 1.5em;">
+</picture>
+
 # Ramio
 
 **Ramio è il Machiavelli giocato con le carte, online con gli amici

@@ -6,6 +6,12 @@ lang: de
 
 <p align="right" style="font-size:0.9em;"><a href="./">Français</a> · <a href="en">English</a> · <a href="es">Español</a> · <strong>Deutsch</strong> · <a href="it">Italiano</a> · <a href="pt">Português</a> · <a href="pl">Polski</a> · <a href="tr">Türkçe</a> · <a href="ro">Română</a> · <a href="hu">Magyar</a> · <a href="ar">العربية</a></p>
 
+<picture>
+  <source media="(max-width: 42em)" srcset="assets/ramio-bandeau-mobile.jpg">
+  <img src="assets/ramio-bandeau.jpg" alt="Ein Ramio-Tisch bei Sonnenuntergang in der Wüste: Reihen, Drillinge, ein Joker und der Stapel."
+       style="display:block;width:100%;border-radius:12px;margin:0 0 1.5em;">
+</picture>
+
 # Ramio
 
 **Ramio ist Räuber-Rommé mit Karten, online mit Freunden, wo immer ihr

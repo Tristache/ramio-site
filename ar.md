@@ -8,6 +8,12 @@ lang: ar
 
 <div dir="rtl" style="text-align:right;" markdown="1">
 
+<picture>
+  <source media="(max-width: 42em)" srcset="assets/ramio-bandeau-mobile.jpg">
+  <img src="assets/ramio-bandeau.jpg" alt="طاولة Ramio عند غروب الشمس في الصحراء: تسلسلات، مجموعات، جوكر وكومة السحب."
+       style="display:block;width:100%;border-radius:12px;margin:0 0 1.5em;">
+</picture>
+
 # Ramio
 
 **Ramio هو رمي اللص بالورق، عبر الإنترنت مع أصدقائك أينما كنتم.** لا

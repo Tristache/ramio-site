@@ -6,6 +6,12 @@ lang: pt
 
 <p align="right" style="font-size:0.9em;"><a href="./">Français</a> · <a href="en">English</a> · <a href="es">Español</a> · <a href="de">Deutsch</a> · <a href="it">Italiano</a> · <strong>Português</strong> · <a href="pl">Polski</a> · <a href="tr">Türkçe</a> · <a href="ro">Română</a> · <a href="hu">Magyar</a> · <a href="ar">العربية</a></p>
 
+<picture>
+  <source media="(max-width: 42em)" srcset="assets/ramio-bandeau-mobile.jpg">
+  <img src="assets/ramio-bandeau.jpg" alt="Uma mesa de Ramio ao pôr do sol no deserto: sequências, trincas, um curinga e o monte."
+       style="display:block;width:100%;border-radius:12px;margin:0 0 1.5em;">
+</picture>
+
 # Ramio
 
 **Ramio é o mexe-mexe jogado com cartas, online com os amigos onde

@@ -6,6 +6,12 @@ lang: es
 
 <p align="right" style="font-size:0.9em;"><a href="./">Français</a> · <a href="en">English</a> · <strong>Español</strong> · <a href="de">Deutsch</a> · <a href="it">Italiano</a> · <a href="pt">Português</a> · <a href="pl">Polski</a> · <a href="tr">Türkçe</a> · <a href="ro">Română</a> · <a href="hu">Magyar</a> · <a href="ar">العربية</a></p>
 
+<picture>
+  <source media="(max-width: 42em)" srcset="assets/ramio-bandeau-mobile.jpg">
+  <img src="assets/ramio-bandeau.jpg" alt="Una mesa de Ramio al atardecer en el desierto: escaleras, tríos, un comodín y el mazo."
+       style="display:block;width:100%;border-radius:12px;margin:0 0 1.5em;">
+</picture>
+
 # Ramio
 
 **Ramio es el rummy ladrón jugado con cartas, en línea con tus amigos
