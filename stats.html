@@ -144,6 +144,15 @@
       if (!r.ok) throw new Error('Erreur ' + r.status);
       return r.json();
     }).then(function (d) {
+      // Comptes fondateurs (migration 84) : total public, sans clé.
+      return fetch(API.replace('ramio_stats', 'founders_count'), {
+        method: 'POST',
+        headers: { apikey: ANON, Authorization: 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+        body: '{}'
+      }).then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; })
+        .then(function (n) { if (typeof n === 'number') d.founders = n; return d; });
+    }).then(function (d) {
       $('gate').hidden = true; $('main').hidden = false;
       render(d);
       $('updated').textContent = 'mis à jour à ' + fmtTime(d.generated_at) + ' (heure de Paris, jours en UTC)';
@@ -260,6 +269,7 @@
       ['Attrition 14 j', v2 ? t.churned_14d : '—', 'appareils sans session depuis 14 j'],
       ['Push activé', v2 ? t.push_users : '—', v2 ? pct(t.push_users, t.accounts) + ' des comptes' : 'migration 76'],
       ['Amitiés', t.friendships, v2 ? t.invites_30d + ' invitations · ' + t.shares_30d + ' partages sur 30 j' : 'liens acceptés'],
+      ['Fondateurs', d.founders == null ? '—' : d.founders, d.founders == null ? 'migration 84' : 'sur 1 000 comptes, jusqu’au 8 octobre'],
       ['Parrainage', t.referrals_qualified != null ? t.referrals_qualified : '—', t.referrals_total != null ? t.referrals_total + ' filleuls · ' + t.referrals_30d + ' sur 30 j · qualifiés affichés' : 'migration 79'],
       ['Visites du site 24 h', t.site_visits_24h, 'pages fr + en']
     ];
