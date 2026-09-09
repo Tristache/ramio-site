@@ -360,14 +360,14 @@
       var co = d.cosmetics;
       var premium = { 'cap-au-nord': 800, 'art-deco': 600, 'desert-de-sable': 600, 'foret-equatoriale': 500 };
       var own = kv(co.kits_owned).map(function (x) { return [x[0] + (premium[x[0]] ? ' (premium ' + premium[x[0]] + ' jetons)' : ''), x[1]]; });
-      html += tableCard('Kits possédés', 'progressions, invités compris · un kit premium n'entre ici que par achat', [{ t: 'Kit' }, { t: 'Joueurs', n: 1 }], own);
-      html += tableCard('Achats de kits (30 jours)', 'événement achat_kit · ' + co.boutique_30d + ' appareils ont ouvert l'aperçu d'un kit premium',
+      html += tableCard('Kits possédés', 'progressions, invités compris · un kit premium n\'entre ici que par achat', [{ t: 'Kit' }, { t: 'Joueurs', n: 1 }], own);
+      html += tableCard('Achats de kits (30 jours)', 'événement achat_kit · ' + co.boutique_30d + ' appareils ont ouvert l\'aperçu d\'un kit premium',
         [{ t: 'Jour' }, { t: 'Kit' }, { t: 'Prix', n: 1 }, { t: 'Achats', n: 1 }],
         co.achats_30d.map(function (r) { return [r.day, r.kit, r.prix, r.n]; }));
       html += tableCard('Kits portés', 'vitrine des profils vus depuis 30 jours (comptes complets)', [{ t: 'Kit' }, { t: 'Profils', n: 1 }], kv(co.kits_worn));
       html += tableCard('Dos de carte portés', 'kit:variante · profils vus depuis 30 jours', [{ t: 'Dos' }, { t: 'Profils', n: 1 }], kv(co.dos_worn));
       html += tableCard('Avatars portés', 'profils vus depuis 30 jours', [{ t: 'Avatar' }, { t: 'Profils', n: 1 }], kv(co.avatars_worn));
-      html += tableCard('Cadres d'avatar portés', 'auto = suit le kit · profils vus depuis 30 jours', [{ t: 'Cadre' }, { t: 'Profils', n: 1 }], kv(co.cadres_worn));
+      html += tableCard('Cadres d\'avatar portés', 'auto = suit le kit · profils vus depuis 30 jours', [{ t: 'Cadre' }, { t: 'Profils', n: 1 }], kv(co.cadres_worn));
       var choixNoms = { choix_kit: 'Kit', choix_dos: 'Dos (kit:variante)', choix_avatar: 'Avatar', choix_cadre: 'Cadre' };
       Object.keys(choixNoms).forEach(function (k) {
         if (co.choix_30d[k]) html += tableCard('Choix : ' + choixNoms[k] + ' (30 jours)', 'appareils distincts ayant choisi, invités compris', [{ t: 'Choix' }, { t: 'Appareils', n: 1 }], kv(co.choix_30d[k]));
