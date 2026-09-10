@@ -290,9 +290,16 @@
     html += chartCard('Site : visites et clics store', 'pages fr + en', byDay(d.site_by_day, ['visits', 'clicks'], 30),
                       [{ key: 'visits', label: 'visites', color: S1 }, { key: 'clicks', label: 'clics store', color: S3 }]);
 
+    // Défi web : « Lancé » et « Résolu » comptent les parties dans le
+    // navigateur, « Vers l'app » les clics sur « Installer l'app » de
+    // l'écran de victoire (migration 87). Un canal de défi n'a aucune
+    // visite de site : on entre droit sur la page du défi.
     html += tableCard('Site : d\'où viennent les visiteurs', '14 derniers jours, par canal ?src=',
-      [{ t: 'Canal' }, { t: 'Page' }, { t: 'Visites', n: 1 }, { t: 'Play', n: 1 }, { t: 'TestFlight', n: 1 }],
-      d.site_by_src.map(function (r) { return [r.src, r.lang, r.visits, r.play, r.testflight]; }));
+      [{ t: 'Canal' }, { t: 'Page' }, { t: 'Visites', n: 1 }, { t: 'Play', n: 1 }, { t: 'TestFlight', n: 1 },
+       { t: 'Défi lancé', n: 1 }, { t: 'Résolu', n: 1 }, { t: 'Vers l\'app', n: 1 }],
+      d.site_by_src.map(function (r) {
+        return [r.src, r.lang, r.visits, r.play, r.testflight, r.debut || 0, r.reussi || 0, r.app || 0];
+      }));
 
     var steps = [['vu_connexion', 'Écran de connexion vu'], ['invite_essai', 'Essai invité'], ['compte_cree', 'Compte créé'],
                  ['onboarding_kit', 'Kit d\'accueil choisi'], ['premier_defi', 'Premier défi'], ['premiere_ligne', 'Première ligne en ligne'],
