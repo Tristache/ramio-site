@@ -112,8 +112,9 @@ offers a **single-round game**, ideal for a quick match.
 ## Privacy and contact
 
 - [Privacy policy](privacy-policy)
+- [Terms of use](terms-of-use)
 - [Delete your account](delete-account)
-- Contact: ramio.contact@gmail.com
+- Contact: contact@quintaingames.com
 
 <p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Legal notice</a></p>
 

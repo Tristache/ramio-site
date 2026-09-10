@@ -4,7 +4,7 @@ title: Politique de confidentialité
 
 # Politique de confidentialité — Ramio
 
-Dernière mise à jour : 16 juillet 2026
+Dernière mise à jour : 10 septembre 2026
 
 Cette politique décrit les données traitées par l'application mobile
 « Ramio » (jeu de rami chinois, ci-après « l'application ») et les droits
@@ -12,8 +12,13 @@ des joueurs.
 
 ## Qui est responsable des données ?
 
-L'application est éditée par Tristan Hurel.
-Contact : ramio.contact@gmail.com
+L'application est éditée sous le nom d'usage Quintain Games (voir les
+[mentions légales](mentions-legales)) ; le responsable de traitement est
+l'éditeur, Tristan Hurel.
+Contact : contact@quintaingames.com
+
+L'utilisation du jeu est par ailleurs encadrée par les
+[conditions générales d'utilisation](conditions-utilisation).
 
 ## Quelles données sont collectées ?
 
@@ -68,8 +73,35 @@ L'application collecte le strict nécessaire au fonctionnement du jeu :
   (ingestion en Union européenne) pour corriger les bogues. Il n'est pas
   rattaché à votre compte.
 
-L'application ne collecte **aucune** donnée de localisation, aucune photo,
-et ne contient **ni publicité ni traceur publicitaire**.
+L'application ne collecte **aucune** donnée de localisation et **aucune
+photo**.
+
+## Pourquoi ces données, et à quel titre ?
+
+- **Exécution du contrat** (les conditions d'utilisation) : compte,
+  pseudo, parties, amis, messages, classements, notifications de tour.
+- **Intérêt légitime** de l'éditeur : sécurité du service, lutte contre
+  la triche et les abus, modération des signalements, correction des
+  bogues, mesure d'audience anonyme pour améliorer le jeu.
+- **Consentement**, demandé dans l'application et retirable à tout
+  moment : recherche d'amis dans les contacts, notifications « push »,
+  et — à l'ouverture de la publicité — la publicité personnalisée.
+- **Obligation légale** : conservation limitée de journaux techniques.
+
+## Publicité
+
+La version actuelle de l'application **ne diffuse aucune publicité**.
+
+À la sortie publique, le jeu restera gratuit et pourra afficher de la
+publicité fournie par Google AdMob : des vidéos **facultatives**
+(regardées volontairement pour un indice, un déblocage ou un bonus) et,
+selon les cas, des encarts entre deux parties. Dans l'Espace économique
+européen, au Royaume-Uni et en Suisse, une fenêtre de consentement
+apparaîtra alors **avant toute publicité personnalisée** ; le refus reste
+possible, modifiable à tout moment dans l'application, et n'empêche pas
+de jouer. Sur iPhone, l'autorisation de suivi du système (App Tracking
+Transparency) sera demandée en plus. Cette politique sera mise à jour et
+datée à ce moment-là, avant la mise en service.
 
 ## Contacts du téléphone (fonctionnalité facultative)
 
@@ -96,6 +128,12 @@ Si vous l'utilisez :
 - Le serveur de jeu (parties en temps réel) est hébergé chez **Fly.io** ;
   l'état d'une partie en cours n'est conservé qu'en mémoire, le temps de
   la partie.
+- Certains prestataires sont établis hors de l'Union européenne
+  (Fly.io et Google Firebase, aux États-Unis) : les transferts sont
+  encadrés par les clauses contractuelles types de la Commission
+  européenne et, le cas échéant, par le cadre de protection des données
+  UE–États-Unis. Sentry (rapports de plantage) ingère en Union
+  européenne.
 
 Les échanges entre l'application et les serveurs sont chiffrés (HTTPS/WSS).
 
@@ -127,14 +165,19 @@ Vous pouvez **supprimer votre compte directement dans l'application** :
 et efface le compte, les statistiques et l'historique de parties.
 
 Pour exercer vos autres droits, ou demander la suppression sans accès à
-l'application, écrivez à ramio.contact@gmail.com. Vous pouvez aussi saisir
+l'application, écrivez à contact@quintaingames.com. Vous pouvez aussi saisir
 la CNIL (www.cnil.fr).
 
 ## Mineurs
 
-L'application est un jeu de cartes sans mise d'argent, sans achat intégré
-à ce jour et sans contenu inapproprié. La création de compte requiert une
-adresse e-mail valide.
+L'application est un jeu de cartes **sans mise d'argent** et sans
+contenu inapproprié. Elle est ouverte **à partir de 13 ans** ; en France,
+l'accord d'un titulaire de l'autorité parentale est requis en dessous de
+15 ans. Un représentant légal peut demander la suppression du compte de
+son enfant à contact@quintaingames.com. Des achats intégrés
+(jetons, kits d'ambiance, option premium) seront proposés à la sortie
+publique ; ils sont décrits dans les
+[conditions générales d'utilisation](conditions-utilisation).
 
 ## Évolutions
 
@@ -142,5 +185,12 @@ Cette politique pourra évoluer (par exemple à l'ajout de nouvelles
 fonctionnalités). La version en vigueur est publiée à l'adresse indiquée
 sur les fiches App Store et Google Play, avec sa date de mise à jour.
 
-<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Mentions légales</a></p>
+## Le site
+
+Le site quintaingames.com/ramio **ne dépose aucun cookie** et n'écrit
+rien sur votre appareil. Un compteur de fréquentation anonyme enregistre
+la page consultée, la langue et le canal d'arrivée, sans adresse IP ni
+identifiant.
+
+<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Mentions légales</a> · <a href="conditions-utilisation">Conditions d'utilisation</a></p>
 

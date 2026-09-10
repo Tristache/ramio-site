@@ -23,7 +23,9 @@ personnelle. Un compteur de fréquentation anonyme enregistre la page
 consultée, la langue et le canal d'arrivée, sans adresse IP ni
 identifiant. Les données traitées par l'application Ramio sont décrites
 dans sa [politique de confidentialité](politique-confidentialite) ; la
-[suppression d'un compte](suppression-compte) y est expliquée.
+[suppression d'un compte](suppression-compte) y est expliquée. L'usage du
+jeu est encadré par les [conditions générales
+d'utilisation](conditions-utilisation).
 
 **Propriété intellectuelle.** « Ramio » est une marque déposée à l'INPI
 (n° 5278240). Les textes, images, sons et logiciels de ce site et de
@@ -55,7 +57,8 @@ San Francisco, CA 94107, United States.
 anonymous traffic counter records the page viewed, the language and the
 referral channel, with no IP address or identifier. Data processed by the
 Ramio app is described in its [privacy policy](privacy-policy);
-[account deletion](delete-account) is explained there.
+[account deletion](delete-account) is explained there. Use of the game is
+governed by the [terms of use](terms-of-use).
 
 **Intellectual property.** "Ramio" is a trademark registered with the
 French INPI (No. 5278240). The texts, images, sounds and software of this

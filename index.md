@@ -116,8 +116,9 @@ manche gagnante, idéale pour une partie rapide.
 ## Confidentialité et contact
 
 - [Politique de confidentialité](politique-confidentialite)
+- [Conditions d'utilisation](conditions-utilisation)
 - [Supprimer son compte](suppression-compte)
-- Contact : ramio.contact@gmail.com
+- Contact : contact@quintaingames.com
 
 <p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Mentions légales</a></p>
 

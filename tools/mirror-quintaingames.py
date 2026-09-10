@@ -31,6 +31,7 @@ PAGES.update({
     for p in [
         "regles-rami-chinois", "politique-confidentialite", "privacy-policy",
         "suppression-compte", "delete-account", "mentions-legales",
+        "conditions-utilisation", "terms-of-use",
     ]
 })
 

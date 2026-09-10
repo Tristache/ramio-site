@@ -28,7 +28,7 @@ commercial purposes.
 ## Without access to the app
 
 If you can no longer open the app, send your deletion request to
-**ramio.contact@gmail.com**, preferably from the e-mail address of the
+**contact@quintaingames.com**, preferably from the e-mail address of the
 account concerned; it will be handled without undue delay.
 
 [Privacy policy](privacy-policy)

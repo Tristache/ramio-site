@@ -26,7 +26,7 @@ n'est conservée à des fins commerciales.
 ## Sans accès à l'application
 
 Si vous ne pouvez plus ouvrir l'application, envoyez votre demande de
-suppression à **ramio.contact@gmail.com**, de préférence depuis l'adresse
+suppression à **contact@quintaingames.com**, de préférence depuis l'adresse
 e-mail du compte concerné ; elle sera traitée sans délai injustifié.
 
 [Politique de confidentialité](politique-confidentialite)

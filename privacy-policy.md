@@ -6,7 +6,7 @@ title: Privacy policy
 
 # Privacy policy — Ramio
 
-Last updated: 16 July 2026
+Last updated: 10 September 2026
 
 This is an English translation of the French policy; in case of
 discrepancy, the [French version](politique-confidentialite) prevails.
@@ -17,8 +17,12 @@ rights.
 
 ## Who is responsible for the data?
 
-The app is published by Tristan Hurel.
-Contact: ramio.contact@gmail.com
+The app is published under the trade name Quintain Games (see the
+[legal notice](mentions-legales)); the data controller is the publisher,
+Tristan Hurel.
+Contact: contact@quintaingames.com
+
+Use of the game is also governed by the [terms of use](terms-of-use).
 
 ## What data is collected?
 
@@ -70,8 +74,33 @@ The app collects the strict minimum needed for the game to work:
   is sent to our provider **Sentry** (ingested in the European Union) to
   fix bugs. It is not linked to your account.
 
-The app collects **no** location data, no photos, and contains
-**no advertising and no advertising tracker**.
+The app collects **no** location data and **no photos**.
+
+## Why this data, and on what legal basis?
+
+- **Performance of the contract** (the terms of use): account, nickname,
+  games, friends, messages, rankings, turn notifications.
+- **Legitimate interest** of the publisher: security of the service,
+  fighting cheating and abuse, moderating reports, fixing bugs, anonymous
+  audience measurement to improve the game.
+- **Consent**, asked for in the app and withdrawable at any time: finding
+  friends among your contacts, "push" notifications, and — once
+  advertising is switched on — personalised advertising.
+- **Legal obligation**: limited retention of technical logs.
+
+## Advertising
+
+The current version of the app **shows no advertising**.
+
+At public release the game will remain free and may show advertising
+served by Google AdMob: **optional** videos (watched deliberately for a
+hint, an unlock or a bonus) and, in some cases, ads between two games. In
+the European Economic Area, the United Kingdom and Switzerland, a consent
+window will then appear **before any personalised advertising**; you may
+refuse, change your mind at any time in the app, and still play. On
+iPhone the system tracking permission (App Tracking Transparency) will
+also be requested. This policy will be updated and dated at that point,
+before any of it goes live.
 
 ## Phone contacts (optional feature)
 
@@ -96,6 +125,11 @@ If you use it:
   provider), in a data centre located in the European Union.
 - The game server (real-time games) is hosted at **Fly.io**; the state of
   a game in progress is kept in memory only, for the duration of the game.
+- Some providers are established outside the European Union (Fly.io and
+  Google Firebase, in the United States): those transfers rely on the
+  European Commission's standard contractual clauses and, where
+  applicable, on the EU–US Data Privacy Framework. Sentry (crash reports)
+  ingests in the European Union.
 
 Exchanges between the app and the servers are encrypted (HTTPS/WSS).
 
@@ -125,14 +159,18 @@ screen, "Delete my account" button (see the
 erases the account, the statistics and the game history.
 
 To exercise your other rights, or to request deletion without access to
-the app, write to ramio.contact@gmail.com. You may also lodge a complaint
+the app, write to contact@quintaingames.com. You may also lodge a complaint
 with the French data protection authority, the CNIL (www.cnil.fr).
 
 ## Minors
 
-The app is a card game with no money at stake, no in-app purchase to
-date and no inappropriate content. Creating an account requires a valid
-e-mail address.
+The app is a card game **with no money at stake** and no inappropriate
+content. It is open **from 13 years old**; in France, the permission of a
+person with parental authority is required below 15. A legal guardian may
+request the deletion of their child's account at
+contact@quintaingames.com. In-app purchases (tokens, theme kits, premium
+option) will be offered at public release; they are described in the
+[terms of use](terms-of-use).
 
 ## Changes
 
@@ -140,5 +178,12 @@ This policy may evolve (for instance when new features are added). The
 version in force is published at the address given on the App Store and
 Google Play listings, with its update date.
 
-<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Legal notice</a></p>
+## The website
+
+The quintaingames.com/ramio website **sets no cookies** and writes
+nothing on your device. An anonymous traffic counter records the page
+viewed, the language and the referral channel, with no IP address or
+identifier.
+
+<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Legal notice</a> · <a href="terms-of-use">Terms of use</a></p>
 

@@ -162,7 +162,7 @@ défis à résoudre façon problèmes d'échecs. Les règles de cette page y son
 arbitrées automatiquement — impossible de se tromper, impossible de
 tricher. Sans publicité, sur Android et bientôt sur iOS.
 
-Contact : ramio.contact@gmail.com
+Contact : contact@quintaingames.com
 
 <p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Mentions légales</a></p>
 
