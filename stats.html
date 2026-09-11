@@ -320,6 +320,17 @@
     html += tableCard('Rétention par semaine d\'arrivée', 'D1 = revenu le lendemain · S1 = revenu dans les 7 jours',
       [{ t: 'Semaine du' }, { t: 'Nouveaux', n: 1 }, { t: 'D1', n: 1 }, { t: 'S1', n: 1 }],
       d.retention.map(function (r) { return [fmtDay(r.week), r.n, pct(r.d1, r.n_d1), pct(r.w1, r.n_w1)]; }));
+    // Migration 89 : la même chose sur les HUMAINS (invité, compte ou jeu)
+    // et les JOUEURS (au moins un événement de jeu) ; D1/S1 = a REJOUÉ.
+    if (d.retention_joueurs) {
+      html += tableCard('Rétention des joueurs par semaine d\'arrivée', 'humains = invité, compte ou jeu · joueurs = au moins une partie ou un défi · D1/S1 = ont rejoué le lendemain / dans les 7 jours',
+        [{ t: 'Semaine du' }, { t: 'Humains', n: 1 }, { t: 'Joueurs', n: 1 }, { t: 'D1 joueurs', n: 1 }, { t: 'S1 joueurs', n: 1 }],
+        d.retention_joueurs.map(function (r) {
+          return [fmtDay(r.week), r.humains, r.joueurs,
+                  pct(r.d1, r.n_d1) + ' (' + r.d1 + '/' + r.n_d1 + ')',
+                  pct(r.w1, r.n_w1) + ' (' + r.w1 + '/' + r.n_w1 + ')'];
+        }));
+    }
 
     var modes = Object.keys(d.games_by_mode_30d).map(function (m) { return [m, d.games_by_mode_30d[m]]; }).sort(function (a, b) { return b[1] - a[1]; });
     html += tableCard('Parties par mode (30 jours)', 'parties distinctes', [{ t: 'Mode' }, { t: 'Parties', n: 1 }], modes);
