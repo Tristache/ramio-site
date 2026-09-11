@@ -259,7 +259,12 @@
     var tiles = [
       ['Appareils', t.devices, t.devices_android + ' Android · ' + t.devices_ios + ' iPhone'],
       ['Personnes engagées', v2 ? t.engaged : '—', v2 ? pct(t.engaged, t.devices) + ' des appareils · robots exclus' : 'migration 76'],
-      ['Installs 24 h', t.installs_24h, v2 ? t.engaged_24h + ' engagées' : 'premières ouvertures'],
+      // Migration 88 : la tuile affiche les HUMAINS (installs moins les
+      // robots des stores) ; le brut et les robots passent en sous-titre.
+      t.installs_24h_humains != null
+        ? ['Installs 24 h (sans robots)', t.installs_24h_humains,
+           t.installs_24h + ' brutes · ' + t.robots_24h + ' robots · ' + t.engaged_24h + ' joueurs']
+        : ['Installs 24 h', t.installs_24h, v2 ? t.engaged_24h + ' engagées' : 'premières ouvertures'],
       ['Actifs aujourd\'hui', t.active_today, t.active_7d + ' sur 7 jours'],
       ['Session médiane 7 j', v2 ? fmtDur(t.session_median_s_7d) : '—', v2 ? 'p90 ' + fmtDur(t.session_p90_s_7d) + ' · ' + t.sessions_7d + ' sessions' : 'migration 76'],
       ['En ligne', t.online_now, 'profils vus < 5 min'],
@@ -320,7 +325,11 @@
     html += tableCard('Parties par mode (30 jours)', 'parties distinctes', [{ t: 'Mode' }, { t: 'Parties', n: 1 }], modes);
 
     html += tableCard('Dernières installations', 'heure de Paris', [{ t: 'Quand' }, { t: 'Plateforme' }, { t: 'Build', n: 1 }, { t: 'Engagé' }],
-      d.recent_installs.map(function (r) { return [fmtDateTime(r.at), r.platform, r.build, r.engaged == null ? '' : (r.engaged ? 'oui' : 'non')]; }));
+      d.recent_installs.map(function (r) {
+        // Migration 88 : robot du store signalé dans la colonne « engagée ».
+        var e = r.robot ? 'robot' : (r.engaged == null ? '' : (r.engaged ? 'oui' : 'non'));
+        return [fmtDateTime(r.at), r.platform + (r.country ? ' ' + r.country : ''), r.build, e];
+      }));
     html += tableCard('Dernières parties en ligne', 'heure de Paris', [{ t: 'Fin' }, { t: 'Mode' }, { t: 'Joueurs', n: 1 }, { t: 'Minutes', n: 1 }, { t: 'Motif' }],
       d.recent_games.map(function (r) { return [fmtDateTime(r.at), r.mode, r.players, r.minutes, r.reason || '']; }));
     html += tableCard('Dernières visites du site', 'heure de Paris', [{ t: 'Quand' }, { t: 'Type' }, { t: 'Canal' }, { t: 'Page' }, { t: 'Origine' }],
@@ -328,7 +337,8 @@
 
     if (v2) {
       html += chartCard('Personnes engagées par jour d\'arrivée', 'appareils ayant joué, sans les robots Play',
-        byDay(d.installs_by_day, ['engaged'], 30), [{ key: 'engaged', label: 'engagées', color: S3 }]);
+        byDay(d.installs_by_day, ['humans', 'engaged'], 30),
+        [{ key: 'humans', label: 'sans robots', color: S2 }, { key: 'engaged', label: 'joueurs', color: S3 }]);
       html += chartCard('Durée médiane de session', 'secondes, par jour', byDay(d.session_by_day, ['median_s'], 30),
         [{ key: 'median_s', label: 'médiane (s)', color: S1 }]);
 
