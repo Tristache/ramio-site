@@ -1,63 +1,9 @@
 ---
-title: Ramio — le rami voleur (aussi appelé rami chinois), en ligne entre amis
+layout: accueil
+lang: fr
+title: "Ramio — le rami voleur en ligne, en famille ou entre amis"
+description: "Ramio, le rami voleur en application : parties en ligne entre amis, salons privés, 670 casse-têtes. Gratuit."
 ---
-
-<p align="right" style="font-size:0.9em;"><strong>Français</strong> · <a href="en">English</a> · <a href="es">Español</a> · <a href="de">Deutsch</a> · <a href="it">Italiano</a> · <a href="pt">Português</a> · <a href="pl">Polski</a> · <a href="tr">Türkçe</a> · <a href="ro">Română</a> · <a href="hu">Magyar</a> · <a href="ar">العربية</a></p>
-
-<picture>
-  <source media="(max-width: 42em)" srcset="assets/ramio-bandeau-mobile.jpg">
-  <img src="assets/ramio-bandeau.jpg" alt="Un tapis de Ramio au coucher du soleil dans le désert : suites, brelans, un joker et la pioche."
-       style="display:block;width:100%;border-radius:12px;margin:0 0 1.5em;">
-</picture>
-
-# Ramio
-
-**Ramio, c'est le rami voleur — aussi appelé rami chinois — à jouer entre
-amis où que vous soyez.** Vous ne posez pas seulement vos cartes : vous
-démontez et recomposez celles qui sont déjà sur la table pour y glisser les
-vôtres.
-
-<p align="center">
-  <img src="assets/ramio-reorganisation-fr.gif"
-       alt="Le joker quitte un brelan de valets pour prolonger une suite de cœur, puis le valet de trèfle de la main vient réparer le brelan : la pose est validée."
-       width="300" style="border-radius:12px;max-width:100%;">
-</p>
-
-## Essayer Ramio
-
-L'application est en **bêta ouverte**, gratuite et sans publicité.
-
-<p align="center" style="margin:1.5em 0;">
-  <a href="https://play.google.com/store/apps/details?id=com.ramio"
-     style="display:inline-block;margin:6px 8px;padding:14px 28px;border-radius:10px;
-            background:#2f6f62;color:#fff;font-weight:600;text-decoration:none;">
-    Android — installer depuis Google Play
-  </a>
-  <a href="https://testflight.apple.com/join/X8tt9MQw"
-     style="display:inline-block;margin:6px 8px;padding:14px 28px;border-radius:10px;
-            background:#2f6f62;color:#fff;font-weight:600;text-decoration:none;">
-    iPhone — rejoindre la bêta TestFlight
-  </a>
-</p>
-
-<p align="center" style="font-size:0.9em;color:#666;">
-  Sur iPhone, la bêta passe par l'application TestFlight d'Apple.
-</p>
-
-<p align="center">
-  <img src="assets/fr-partie-art-deco.png" alt="Une partie en cours, ambiance Art déco" width="170" style="border-radius:12px;max-width:23%;">
-  <img src="assets/fr-partie-en-ligne.png" alt="Une partie en ligne contre Maya : son avatar, ses cartes et le compteur en haut, votre main en bas" width="170" style="border-radius:12px;max-width:23%;">
-  <img src="assets/fr-salon-prive.png" alt="Un salon privé entre amis, avec son code à partager" width="170" style="border-radius:12px;max-width:23%;">
-  <img src="assets/fr-kits-forge.png" alt="Les ambiances : tapis, dos de cartes et avatars au choix" width="170" style="border-radius:12px;max-width:23%;">
-</p>
-
-## Les règles du rami voleur (rami chinois)
-
-Le rami voleur — ou rami chinois — se joue de 2 à 4 joueurs, avec deux
-jeux de 52 cartes, avec ou sans jokers. L'essentiel est résumé
-ci-dessous ; le guide complet, avec le détail des points et les
-différences avec le rami classique et le Rummikub, est sur la page
-[Règles du rami chinois](regles-rami-chinois).
 
 ### Le but du jeu
 
@@ -99,27 +45,3 @@ Les pénalités s'additionnent de manche en manche ; la partie se termine
 dès qu'un joueur atteint 100 points, et le joueur le moins pénalisé
 gagne. L'application propose aussi une **partie simple** : une seule
 manche gagnante, idéale pour une partie rapide.
-
-## L'application Ramio
-
-- Salons privés entre amis (code à 6 caractères) ou parties publiques
-- Solo contre l'ordinateur, **même sans connexion**, à quatre niveaux
-- Plus de 300 défis de recomposition, et un défi du jour commun à tous
-- Duels de rapidité : le même défi pour tout le monde, le plus rapide gagne
-- Avec ou sans jokers, partie aux points ou partie simple
-- Amis, messagerie, classement Elo, statistiques et historique
-- Une vingtaine d'ambiances : tapis, dos de cartes et avatars au choix
-- Disponible en onze langues
-- Reconnexion automatique en cas de coupure
-- Aucune publicité, règles arbitrées par le serveur : impossible de tricher
-
-## Confidentialité et contact
-
-- [Politique de confidentialité](politique-confidentialite)
-- [Conditions d'utilisation](conditions-utilisation)
-- [Supprimer son compte](suppression-compte)
-- Contact : contact@quintaingames.com
-
-<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Mentions légales</a></p>
-
-<script src="assets/mesure.js" defer></script>

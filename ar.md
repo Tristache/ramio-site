@@ -1,65 +1,9 @@
 ---
-title: Ramio — رمي اللص عبر الإنترنت مع الأصدقاء
-description: Ramio، رمي اللص مع الأصدقاء — مباريات عبر الإنترنت، غرف خاصة، بدون إعلانات.
+layout: accueil
 lang: ar
+title: "Ramio — رمي اللص عبر الإنترنت مع الأصدقاء"
+description: "Ramio، رمي اللص مع الأصدقاء — مباريات عبر الإنترنت، غرف خاصة، مجاناً."
 ---
-
-<p align="right" style="font-size:0.9em;"><a href="./">Français</a> · <a href="en">English</a> · <a href="es">Español</a> · <a href="de">Deutsch</a> · <a href="it">Italiano</a> · <a href="pt">Português</a> · <a href="pl">Polski</a> · <a href="tr">Türkçe</a> · <a href="ro">Română</a> · <a href="hu">Magyar</a> · <strong>العربية</strong></p>
-
-<div dir="rtl" style="text-align:right;" markdown="1">
-
-<picture>
-  <source media="(max-width: 42em)" srcset="assets/ramio-bandeau-mobile.jpg">
-  <img src="assets/ramio-bandeau.jpg" alt="طاولة Ramio عند غروب الشمس في الصحراء: تسلسلات، مجموعات، جوكر وكومة السحب."
-       style="display:block;width:100%;border-radius:12px;margin:0 0 1.5em;">
-</picture>
-
-# Ramio
-
-**Ramio هو رمي اللص بالورق، عبر الإنترنت مع أصدقائك أينما كنتم.** لا
-تكتفي بوضع أوراقك: بل تفكّك ما هو موجود على المائدة وتعيد تركيبه لتُدخل
-أوراقك فيه.
-
-<p align="center">
-  <img src="assets/ramio-reorganisation-en.gif"
-       alt="يترك الجوكر ثلاثية من الشوالات ليطيل سلسلة قلوب، ثم يصلح شوال السباتي من اليد الثلاثية، ويتم تأكيد اللعبة."
-       width="300" style="border-radius:12px;max-width:100%;">
-</p>
-
-## جرّب Ramio
-
-التطبيق في **نسخة تجريبية مفتوحة**، مجاني وبدون إعلانات.
-
-<p align="center" style="margin:1.5em 0;">
-  <a href="https://play.google.com/store/apps/details?id=com.ramio"
-     style="display:inline-block;margin:6px 8px;padding:14px 28px;border-radius:10px;
-            background:#2f6f62;color:#fff;font-weight:600;text-decoration:none;">
-    Android — حمّله من Google Play
-  </a>
-  <a href="https://testflight.apple.com/join/X8tt9MQw"
-     style="display:inline-block;margin:6px 8px;padding:14px 28px;border-radius:10px;
-            background:#2f6f62;color:#fff;font-weight:600;text-decoration:none;">
-    iPhone — انضم إلى النسخة التجريبية عبر TestFlight
-  </a>
-</p>
-
-<p align="center" style="font-size:0.9em;color:#666;">
-  على iPhone تصل النسخة التجريبية عبر تطبيق TestFlight من Apple.
-</p>
-
-<p align="center">
-  <img src="assets/en-game-art-deco.png" alt="مباراة جارية، طقم آرت ديكو" width="170" style="border-radius:12px;max-width:23%;">
-  <img src="assets/en-online-game.png" alt="مباراة عبر الإنترنت ضد مايا: صورتها الرمزية وأوراقها والعدّاد في الأعلى، ويدك في الأسفل" width="170" style="border-radius:12px;max-width:23%;">
-  <img src="assets/en-private-room.png" alt="غرفة خاصة مع الأصدقاء، مع رمزها القابل للمشاركة" width="170" style="border-radius:12px;max-width:23%;">
-  <img src="assets/en-kits-forge.png" alt="أطقم: جوخ المائدة وظهور الأوراق وصور رمزية للاختيار" width="170" style="border-radius:12px;max-width:23%;">
-</p>
-
-## قواعد رمي اللص
-
-يُلعب رمي اللص من 2 إلى 4 لاعبين بمجموعتَي ورق من 52 ورقة، مع الجوكر أو
-بدونه. للّعبة أسماء كثيرة: Manipulation Rummy بالإنجليزية، Räuber-Rommé
-في ألمانيا، Machiavelli في إيطاليا، Mexe-Mexe في البرازيل، rami voleur
-أو rami chinois في فرنسا. الأساسيات:
 
 ### الهدف
 
@@ -94,28 +38,3 @@ lang: ar
 جولة إلى أخرى؛ تنتهي المباراة حين يبلغ لاعب 100 نقطة، ويفوز الأقل
 عقوبةً. يقدّم التطبيق أيضًا **مباراة من جولة واحدة**، مثالية للّعب
 السريع.
-
-## تطبيق Ramio
-
-- غرف خاصة مع الأصدقاء (رمز من 6 أحرف) أو مباريات عامة
-- اللعب منفردًا ضد الحاسوب، **حتى دون اتصال**، بأربعة مستويات
-- أكثر من 300 أحجية إعادة ترتيب وتحدٍّ يومي مشترك للجميع
-- مبارزات سرعة: الأحجية نفسها للجميع، والأسرع يفوز
-- مع الجوكر أو بدونه، مباراة بالنقاط أو من جولة واحدة
-- أصدقاء ومراسلة وترتيب Elo وإحصاءات وسجلّ
-- نحو عشرين طقمًا: جوخ المائدة وظهور الأوراق وصور رمزية
-- متاح بإحدى عشرة لغة
-- إعادة اتصال تلقائية إذا انقطع الاتصال
-- لا إعلانات، والقواعد يطبّقها الخادم: الغش مستحيل
-
-## الخصوصية والتواصل
-
-- [سياسة الخصوصية](privacy-policy) (بالإنجليزية)
-- [حذف حسابك](delete-account) (بالإنجليزية)
-- التواصل: contact@quintaingames.com
-
-</div>
-
-<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">الإشعار القانوني</a></p>
-
-<script src="assets/mesure.js" defer></script>

@@ -1,8 +1,13 @@
 # Configuration GitHub Pages (Jekyll) du mini-site public.
 title: Ramio
-description: Ramio, le rami voleur entre amis — parties en ligne, salons privés, sans pub.
+description: Ramio, le rami voleur entre amis — parties en ligne, salons privés, gratuit.
 lang: fr
 theme: jekyll-theme-cayman
+# Page d'accueil (_layouts/accueil.html) : à la sortie du 8 octobre, passer
+# ramio_sortie à true et renseigner appstore_url — le badge App Store
+# remplace alors le bouton TestFlight dans les onze langues.
+ramio_sortie: false
+appstore_url: ""
 # On ne publie que les pages du site, pas les documents internes du projet.
 exclude:
   - deploiement-serveur.md

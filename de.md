@@ -1,63 +1,9 @@
 ---
-title: Ramio — Räuber-Rommé online mit Freunden
-description: Ramio, Räuber-Rommé mit Freunden — Online-Partien, private Räume, werbefrei.
+layout: accueil
 lang: de
+title: "Ramio — Räuber-Rommé online mit Freunden"
+description: "Ramio, Räuber-Rommé mit Freunden — Online-Partien, private Räume, kostenlos."
 ---
-
-<p align="right" style="font-size:0.9em;"><a href="./">Français</a> · <a href="en">English</a> · <a href="es">Español</a> · <strong>Deutsch</strong> · <a href="it">Italiano</a> · <a href="pt">Português</a> · <a href="pl">Polski</a> · <a href="tr">Türkçe</a> · <a href="ro">Română</a> · <a href="hu">Magyar</a> · <a href="ar">العربية</a></p>
-
-<picture>
-  <source media="(max-width: 42em)" srcset="assets/ramio-bandeau-mobile.jpg">
-  <img src="assets/ramio-bandeau.jpg" alt="Ein Ramio-Tisch bei Sonnenuntergang in der Wüste: Reihen, Drillinge, ein Joker und der Stapel."
-       style="display:block;width:100%;border-radius:12px;margin:0 0 1.5em;">
-</picture>
-
-# Ramio
-
-**Ramio ist Räuber-Rommé mit Karten, online mit Freunden, wo immer ihr
-seid.** Du legst nicht nur deine Karten ab: Du nimmst auseinander und
-baust neu, was schon auf dem Tisch liegt, damit deine Karten passen.
-
-<p align="center">
-  <img src="assets/ramio-reorganisation-en.gif"
-       alt="Der Joker verlässt einen Buben-Drilling, um eine Herz-Reihe zu verlängern; dann repariert der Kreuz-Bube aus der Hand den Drilling, und der Zug wird bestätigt."
-       width="300" style="border-radius:12px;max-width:100%;">
-</p>
-
-## Ramio ausprobieren
-
-Die App ist in **offener Beta**, kostenlos und ohne Werbung.
-
-<p align="center" style="margin:1.5em 0;">
-  <a href="https://play.google.com/store/apps/details?id=com.ramio"
-     style="display:inline-block;margin:6px 8px;padding:14px 28px;border-radius:10px;
-            background:#2f6f62;color:#fff;font-weight:600;text-decoration:none;">
-    Android — bei Google Play laden
-  </a>
-  <a href="https://testflight.apple.com/join/X8tt9MQw"
-     style="display:inline-block;margin:6px 8px;padding:14px 28px;border-radius:10px;
-            background:#2f6f62;color:#fff;font-weight:600;text-decoration:none;">
-    iPhone — der TestFlight-Beta beitreten
-  </a>
-</p>
-
-<p align="center" style="font-size:0.9em;color:#666;">
-  Auf dem iPhone kommt die Beta über Apples App TestFlight.
-</p>
-
-<p align="center">
-  <img src="assets/en-game-art-deco.png" alt="Eine laufende Partie, Thema Art déco" width="170" style="border-radius:12px;max-width:23%;">
-  <img src="assets/en-online-game.png" alt="Eine Online-Partie gegen Maya: ihr Avatar, ihre Karten und der Zähler oben, deine Hand unten" width="170" style="border-radius:12px;max-width:23%;">
-  <img src="assets/en-private-room.png" alt="Ein privater Raum mit Freunden, mit seinem teilbaren Code" width="170" style="border-radius:12px;max-width:23%;">
-  <img src="assets/en-kits-forge.png" alt="Themen: Tischfilze, Kartenrücken und Avatare zur Auswahl" width="170" style="border-radius:12px;max-width:23%;">
-</p>
-
-## Die Regeln des Räuber-Rommé
-
-Räuber-Rommé spielen 2 bis 4 Spieler mit zwei Kartenspielen zu 52
-Blatt, mit oder ohne Joker. Das Spiel hat viele Namen: Manipulation
-Rummy im Englischen, Machiavelli in Italien, Mexe-Mexe in Brasilien,
-rami voleur oder rami chinois in Frankreich. Das Wesentliche:
 
 ### Das Ziel
 
@@ -97,26 +43,3 @@ eigenen Hand. Die Minuspunkte summieren sich Runde für Runde; die Partie
 endet, sobald ein Spieler 100 Punkte erreicht, und der mit den wenigsten
 Punkten gewinnt. Die App bietet außerdem die **Partie über eine Runde**,
 ideal für zwischendurch.
-
-## Die Ramio-App
-
-- Private Räume mit Freunden (6-stelliger Code) oder öffentliche Partien
-- Solo gegen den Computer, **auch offline**, in vier Stufen
-- Über 300 Umbau-Rätsel und ein Tagesrätsel für alle
-- Schnelligkeitsduelle: dasselbe Rätsel für alle, der Schnellste gewinnt
-- Mit oder ohne Joker, Punktepartie oder eine Runde
-- Freunde, Nachrichten, Elo-Rangliste, Statistiken und Verlauf
-- Rund zwanzig Themen: Tischfilze, Kartenrücken und Avatare
-- In elf Sprachen verfügbar
-- Automatische Wiederverbindung bei Verbindungsabbruch
-- Keine Werbung, Regeln vom Server durchgesetzt: Schummeln ist unmöglich
-
-## Datenschutz und Kontakt
-
-- [Datenschutzerklärung](privacy-policy) (auf Englisch)
-- [Konto löschen](delete-account) (auf Englisch)
-- Kontakt: contact@quintaingames.com
-
-<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Impressum</a></p>
-
-<script src="assets/mesure.js" defer></script>

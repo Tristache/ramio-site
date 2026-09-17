@@ -1,0 +1,166 @@
+{%- comment -%}
+  Page d'accueil de Ramio, une par langue (index.md, en.md, es.md...).
+  Textes : _data/accueil.yml, clé = page.lang. Corps Markdown de la page =
+  les règles (titres ###). Bascule de sortie : ramio_sortie et
+  appstore_url dans _config.yml (badge App Store à la place de TestFlight).
+{%- endcomment -%}
+{%- assign lang = page.lang | default: "fr" -%}
+{%- assign t = site.data.accueil[lang] -%}
+{%- assign img = "en" -%}
+{%- if lang == "fr" -%}{%- assign img = "fr" -%}{%- endif -%}
+{%- capture defi -%}https://quintaingames.com/ramio/defi/?defi=1dbcleh&amp;couleurs=4&amp;lang={{ lang }}&amp;src=page-ramio{%- endcapture -%}
+{%- capture boutiques -%}
+          <a class="badge" href="https://play.google.com/store/apps/details?id=com.ramio"><img src="assets/badge-play-{{ lang }}.png" alt="{{ t.alt_play }}" width="163" height="48"></a>
+          {%- if site.ramio_sortie %}
+          <a class="badge" href="{{ site.appstore_url }}"><img src="assets/badge-appstore-{{ lang }}.svg" alt="{{ t.alt_appstore }}" height="48"></a>
+          {%- else %}
+          <a class="bouton second" href="https://testflight.apple.com/join/X8tt9MQw">{{ t.iphone_beta }}</a>
+          {%- endif %}
+{%- endcapture -%}
+<!DOCTYPE html>
+<html lang="{{ lang }}"{% if lang == "ar" %} dir="rtl"{% endif %}>
+  <head>
+    <meta charset="UTF-8">
+{% seo %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#F3F1EA">
+    <link rel="icon" type="image/png" href="assets/ramio-icone-192.png">
+    <link rel="preload" href="assets/jost.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/ramio.css?v={{ site.github.build_revision }}">
+  </head>
+  <body>
+    <div class="page">
+
+      <header class="entete">
+        <a class="marque" href="https://quintaingames.com/">
+          <img src="assets/ramio-icone-192.png" alt="" width="40" height="40">
+          <div><b>Ramio</b><span>{{ t.par }}</span></div>
+        </a>
+        <nav class="menu" aria-label="{{ t.nav }}">
+          <a href="#jeu">{{ t.jeu }}</a>
+          <a href="#regles">{{ t.nav_regles }}</a>
+          <select class="langue" id="langue" aria-label="{{ t.langue }}" onchange="location.href = this.value">
+            <option value="./"{% if lang == "fr" %} selected{% endif %}>Français</option>
+            <option value="en"{% if lang == "en" %} selected{% endif %}>English</option>
+            <option value="es"{% if lang == "es" %} selected{% endif %}>Español</option>
+            <option value="de"{% if lang == "de" %} selected{% endif %}>Deutsch</option>
+            <option value="it"{% if lang == "it" %} selected{% endif %}>Italiano</option>
+            <option value="pt"{% if lang == "pt" %} selected{% endif %}>Português</option>
+            <option value="pl"{% if lang == "pl" %} selected{% endif %}>Polski</option>
+            <option value="tr"{% if lang == "tr" %} selected{% endif %}>Türkçe</option>
+            <option value="ro"{% if lang == "ro" %} selected{% endif %}>Română</option>
+            <option value="hu"{% if lang == "hu" %} selected{% endif %}>Magyar</option>
+            <option value="ar"{% if lang == "ar" %} selected{% endif %}>العربية</option>
+          </select>
+        </nav>
+      </header>
+
+      <section class="haut">
+        <div>
+          <p class="surtitre">Ramio</p>
+          <h1>{{ t.h1 }}</h1>
+          <p class="pitch">{{ t.pitch }}</p>
+          <div class="actions">
+            <a class="bouton" href="{{ defi }}">{{ t.essayer }}</a>
+{{ boutiques }}
+          </div>
+          <p class="sortie">{% if site.ramio_sortie %}{{ t.gratuit_sortie }}{% else %}{{ t.gratuit_beta }}{% endif %}</p>
+        </div>
+        <div>
+          <div class="telephone"><img src="assets/ramio-reorganisation-{{ img }}.gif" alt="{{ t.alt_gif }}" width="420" height="898"></div>
+          <p class="legende">{{ t.legende_gif }}</p>
+        </div>
+      </section>
+
+      <section class="reperes" aria-label="{{ t.chiffres }}">
+        <div><b>670</b>{{ t.r_defis }}</div>
+        <div><b>{{ t.r_joueurs_n }}</b>{{ t.r_joueurs }}</div>
+        <div><b>11</b>{{ t.r_langues }}</div>
+        <div><b>0</b>{{ t.r_reseau }}</div>
+      </section>
+
+      <section class="bloc" id="jeu">
+        <div class="titre"><h2>{{ t.jeu }}</h2></div>
+        <div class="atouts">
+          <article class="atout">
+            <div class="vue"><img src="assets/page-salon-{{ img }}.webp" alt="{{ t.a1_alt }}" width="480" height="853" loading="lazy"></div>
+            <div>
+              <h3>{{ t.a1_t }}</h3>
+              <p>{{ t.a1_p }}</p>
+              <ul>{% for l in t.a1_l %}<li>{{ l }}</li>{% endfor %}</ul>
+            </div>
+          </article>
+          <article class="atout">
+            <div class="vue"><img src="assets/page-defi-{{ img }}.webp" alt="{{ t.a2_alt }}" width="480" height="853" loading="lazy"></div>
+            <div>
+              <h3>{{ t.a2_t }}</h3>
+              <p>{{ t.a2_p }}</p>
+              <ul>{% for l in t.a2_l %}<li>{{ l }}</li>{% endfor %}</ul>
+            </div>
+          </article>
+          <article class="atout">
+            <div class="vue"><img src="assets/page-kits-{{ img }}.webp" alt="{{ t.a3_alt }}" width="480" height="853" loading="lazy"></div>
+            <div>
+              <h3>{{ t.a3_t }}</h3>
+              <p>{{ t.a3_p }}</p>
+            </div>
+          </article>
+        </div>
+        <article class="grande">
+          <div class="vue"><img src="assets/page-table-quatre.webp" alt="{{ t.a4_alt }}" width="1280" height="720" loading="lazy"></div>
+          <div>
+            <h3>{{ t.a4_t }}</h3>
+            <p>{{ t.a4_p }}</p>
+            <ul>{% for l in t.a4_l %}<li>{{ l }}</li>{% endfor %}</ul>
+          </div>
+        </article>
+      </section>
+
+      <section class="bloc">
+        <div class="titre">
+          <p class="surtitre">{{ t.e_sur }}</p>
+          <h2>{{ t.e_h2 }}</h2>
+        </div>
+        <div class="etapes">
+          <div class="etape"><h3>{{ t.e1_t }}</h3><p>{{ t.e1_p }}</p></div>
+          <div class="etape"><h3>{{ t.e2_t }}</h3><p>{{ t.e2_p }}</p></div>
+          <div class="etape"><h3>{{ t.e3_t }}</h3><p>{{ t.e3_p }}</p></div>
+        </div>
+      </section>
+
+      <section class="final">
+        <div>
+          <h2>{{ t.f_h2 }}</h2>
+          <p>{{ t.f_p }}</p>
+          <div class="actions">
+{{ boutiques }}
+          </div>
+        </div>
+      </section>
+
+      <section class="bloc" id="regles">
+        <div class="titre">
+          <p class="surtitre">{{ t.reg_sur }}</p>
+          <h2>{{ t.reg_h2 }}</h2>
+          <p>{{ t.reg_intro }}</p>
+        </div>
+        <div class="regles">
+{{ content }}
+        </div>
+      </section>
+
+      <footer class="pied">
+        <span>Quintain Games · {{ t.pays }} · contact@quintaingames.com</span>
+        <span><a href="{{ t.h_conf }}">{{ t.p_conf }}</a> · <a href="{{ t.h_cond }}">{{ t.p_cond }}</a> · <a href="{{ t.h_suppr }}">{{ t.p_suppr }}</a> · <a href="mentions-legales">{{ t.p_mentions }}</a></span>
+      </footer>
+    </div>
+
+    <div class="flottant">
+      <a class="bouton" href="{{ defi }}">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="#08111f"/></svg>
+        {{ t.flottant }}
+      </a>
+    </div>
+    <script src="assets/mesure.js" defer></script>
+  </body>
+</html>

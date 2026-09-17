@@ -1,0 +1,123 @@
+/* Page d'accueil de Ramio (gabarit _layouts/accueil.html) : fond ivoire,
+   police Jost hébergée ici (aucun appel à Google Fonts). */
+@font-face { font-family: "Jost"; src: url("jost.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+
+:root { --fond: #F3F1EA; --fond2: #E9E5D8; --ligne: #D3CCBA; --encre: #12233A; --texte: #34455E; --gris: #5E6D83; --laiton: #F2A03D; --laiton-fonce: #9A5A0C; --sable: #8A5A17; --nuit: #0F1D31; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--fond); color: var(--encre); font-family: "Jost", "Century Gothic", "Segoe UI", system-ui, sans-serif; font-size: 17px; line-height: 1.5; }
+h1, h2, h3 { font-weight: 500; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: var(--laiton-fonce); }
+a:focus-visible, select:focus-visible { outline: 2px solid var(--laiton-fonce); outline-offset: 2px; }
+img { max-width: 100%; }
+
+.page { padding-inline: 20px; max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 64px; }
+.page > *, .bloc > * { min-width: 0; }
+
+.entete { display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; padding-block: 18px 0; }
+.marque { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--encre); }
+.marque img { width: 40px; height: 40px; border-radius: 10px; }
+.marque b { font-size: 1.35em; font-weight: 600; }
+.marque span { display: block; font-size: .78em; color: var(--gris); line-height: 1.1; }
+.menu { display: flex; align-items: center; gap: 6px 20px; flex-wrap: wrap; font-size: .95em; }
+.menu a { color: var(--texte); text-decoration: none; }
+.menu a:hover { color: var(--encre); text-decoration: underline; }
+select.langue { font: inherit; font-size: .9em; color: var(--encre); background: var(--fond2); border: 1px solid var(--ligne); border-radius: 999px; padding: 5px 10px; }
+
+.haut { display: grid; grid-template-columns: 1.25fr .75fr; gap: 40px; align-items: center; margin-top: -28px; }
+.surtitre { font-size: .78em; letter-spacing: .14em; text-transform: uppercase; color: var(--sable); font-weight: 600; }
+.haut h1 { font-size: clamp(1.6em, 3.4vw, 2.15em); line-height: 1.15; margin: 8px 0 14px; max-width: 17em; }
+.pitch { color: var(--texte); font-size: 1.1em; max-width: 46ch; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 24px; }
+.bouton { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 10px; background: var(--laiton); color: #08111f; font-weight: 600; text-decoration: none; }
+.bouton:hover { filter: brightness(1.08); }
+.bouton.second { background: transparent; color: var(--encre); border: 1.5px solid var(--gris); }
+.badge { display: inline-flex; border-radius: 8px; }
+.badge img { display: block; height: 48px; width: auto; }
+.sortie { margin-top: 14px; color: var(--gris); font-size: .92em; }
+.telephone { margin-inline: auto; width: min(100%, 270px); border-radius: 30px; padding: 8px; background: #050a12; border: 1px solid var(--ligne); box-shadow: 0 24px 60px rgba(18, 35, 58, .3); }
+.telephone img { display: block; width: 100%; height: auto; border-radius: 23px; }
+.legende { text-align: center; color: var(--gris); font-size: .85em; margin-top: 10px; }
+
+.reperes { display: grid; grid-template-columns: repeat(4, 1fr); border-block: 1px solid var(--ligne); margin-top: -24px; }
+.reperes div { padding: 18px 12px; text-align: center; color: var(--gris); font-size: .92em; }
+.reperes div + div { border-inline-start: 1px solid var(--ligne); }
+.reperes b { display: block; font-size: 1.9em; font-weight: 500; color: var(--encre); line-height: 1.1; font-variant-numeric: tabular-nums; }
+
+.bloc { display: flex; flex-direction: column; gap: 28px; }
+.titre { max-width: 40em; }
+.titre h2 { font-size: clamp(1.5em, 3.4vw, 2.1em); margin-top: 6px; line-height: 1.15; }
+.titre p { color: var(--texte); margin-top: 10px; }
+
+.atouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 36px; }
+.atout { display: flex; flex-direction: column; gap: 18px; }
+.atout .vue { width: 170px; }
+.grande { display: grid; grid-template-columns: 1.5fr 1fr; gap: 36px; align-items: center; }
+.grande h3 { font-size: 1.5em; line-height: 1.2; }
+.atout h3 { font-size: 1.3em; line-height: 1.2; }
+.grande p, .atout p { color: var(--texte); margin-top: 10px; max-width: 48ch; }
+.grande ul, .atout ul { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; color: var(--texte); }
+.grande li, .atout li { padding-inline-start: 18px; position: relative; }
+.grande li::before, .atout li::before { content: ""; position: absolute; inset-inline-start: 0; top: .72em; width: 8px; height: 2px; background: var(--laiton); }
+.vue img { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--ligne); }
+
+.etapes { display: grid; grid-template-columns: repeat(3, 1fr); counter-reset: etape; border-top: 1px solid var(--ligne); }
+.etape { counter-increment: etape; padding: 22px 24px 4px 0; }
+.etape + .etape { padding-inline-start: 24px; border-inline-start: 1px solid var(--ligne); }
+.etape::before { content: counter(etape); font-size: 2.4em; font-weight: 500; color: var(--laiton-fonce); line-height: 1; }
+.etape h3 { font-size: 1.2em; margin-top: 8px; }
+.etape p { color: var(--texte); margin-top: 6px; font-size: .97em; }
+code { font-family: ui-monospace, Consolas, monospace; letter-spacing: .14em; color: var(--sable); }
+
+.final { border-radius: 18px; overflow: hidden; border: 1px solid var(--ligne); background: #6b3f21 url("ramio-bandeau.jpg") center / cover no-repeat; color: #F3F1EA; }
+.final > div { padding: 150px 30px 30px; background: linear-gradient(180deg, rgba(15, 29, 49, 0) 0%, rgba(15, 29, 49, .93) 58%); }
+.final h2 { font-size: clamp(1.6em, 4vw, 2.4em); }
+.final p { color: #C9D2DF; margin-top: 6px; }
+.final .bouton.second { color: #F3F1EA; border-color: #8FA0B6; }
+
+/* Règles : le corps Markdown de chaque page de langue. */
+.regles { color: var(--texte); font-size: .95em; }
+.regles h3 { font-size: 1.15em; color: var(--sable); margin: 0 0 8px; break-after: avoid; }
+.regles h3:not(:first-child) { margin-top: 22px; }
+/* Trois colonnes, une par section, seulement quand la largeur le permet
+   (un saut de colonne forcé déborde sur écran étroit). */
+@media (min-width: 880px) {
+  .regles { columns: 3; column-gap: 32px; }
+  .regles h3:not(:first-child) { break-before: column; margin-top: 0; }
+}
+.regles p { margin: 0 0 8px; }
+.regles ul, .regles ol { margin: 8px 0 0; padding-inline-start: 20px; }
+.regles li { margin-bottom: 6px; break-inside: avoid; }
+
+.pied { border-top: 1px solid var(--ligne); padding-block: 18px 90px; color: var(--gris); font-size: .9em; display: flex; justify-content: space-between; gap: 10px 24px; flex-wrap: wrap; }
+.pied a { color: var(--gris); }
+
+.flottant { position: sticky; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: flex; justify-content: flex-end; padding-inline: 20px; margin-top: -70px; pointer-events: none; }
+.flottant a { pointer-events: auto; box-shadow: 0 10px 30px rgba(18, 35, 58, .35); border-radius: 999px; }
+.flottant svg { width: 18px; height: 18px; }
+
+/* Arabe : pas d'interlettrage (il casse les ligatures), flèche retournée. */
+[dir="rtl"] .surtitre { letter-spacing: 0; font-size: .9em; }
+[dir="rtl"] .flottant svg { transform: scaleX(-1); }
+
+@media (max-width: 700px) {
+  .page { gap: 48px; padding-inline: 16px; }
+  .menu a { display: none; }
+  .haut { grid-template-columns: 1fr; gap: 28px; margin-top: -20px; }
+  .telephone { width: min(100%, 230px); }
+  .reperes { grid-template-columns: repeat(2, 1fr); margin-top: -12px; }
+  .reperes div:nth-child(3) { border-inline-start: 0; }
+  .reperes div:nth-child(n+3) { border-top: 1px solid var(--ligne); }
+  .atouts { grid-template-columns: 1fr; gap: 36px; }
+  .atout { display: grid; grid-template-columns: 112px 1fr; gap: 16px; align-items: start; }
+  .atout .vue { width: auto; }
+  .grande { grid-template-columns: 1fr; gap: 20px; }
+  .etapes { grid-template-columns: 1fr; }
+  .etape, .etape + .etape { padding: 18px 0 6px; border-inline-start: 0; }
+  .etape + .etape { border-top: 1px solid var(--ligne); }
+  .final > div { padding: 110px 18px 22px; }
+  .flottant { justify-content: center; padding-inline: 16px; }
+  .flottant a { width: 100%; justify-content: center; }
+}

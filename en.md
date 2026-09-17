@@ -1,64 +1,9 @@
 ---
-title: Ramio — Manipulation Rummy online with friends
-description: Ramio, manipulation rummy with friends — online games, private rooms, no ads.
+layout: accueil
+lang: en
+title: "Ramio — Manipulation Rummy online with friends"
+description: "Ramio, manipulation rummy with friends — online games, private rooms, free."
 ---
-
-<p align="right" style="font-size:0.9em;"><a href="./">Français</a> · <strong>English</strong> · <a href="es">Español</a> · <a href="de">Deutsch</a> · <a href="it">Italiano</a> · <a href="pt">Português</a> · <a href="pl">Polski</a> · <a href="tr">Türkçe</a> · <a href="ro">Română</a> · <a href="hu">Magyar</a> · <a href="ar">العربية</a></p>
-
-<picture>
-  <source media="(max-width: 42em)" srcset="assets/ramio-bandeau-mobile.jpg">
-  <img src="assets/ramio-bandeau.jpg" alt="A Ramio table at sunset in the desert: runs, sets, a joker and the draw pile."
-       style="display:block;width:100%;border-radius:12px;margin:0 0 1.5em;">
-</picture>
-
-# Ramio
-
-**Ramio is Manipulation Rummy played with cards, online with friends
-wherever you are.** You don't just lay
-down your cards: you take apart and rebuild what is already on the
-table to fit yours in.
-
-<p align="center">
-  <img src="assets/ramio-reorganisation-en.gif"
-       alt="The joker leaves a set of jacks to extend a run of hearts, then the jack of clubs from the hand repairs the set: the play is confirmed."
-       width="300" style="border-radius:12px;max-width:100%;">
-</p>
-
-## Try Ramio
-
-The app is in **open beta**, free and without ads.
-
-<p align="center" style="margin:1.5em 0;">
-  <a href="https://play.google.com/store/apps/details?id=com.ramio"
-     style="display:inline-block;margin:6px 8px;padding:14px 28px;border-radius:10px;
-            background:#2f6f62;color:#fff;font-weight:600;text-decoration:none;">
-    Android — get it on Google Play
-  </a>
-  <a href="https://testflight.apple.com/join/X8tt9MQw"
-     style="display:inline-block;margin:6px 8px;padding:14px 28px;border-radius:10px;
-            background:#2f6f62;color:#fff;font-weight:600;text-decoration:none;">
-    iPhone — join the TestFlight beta
-  </a>
-</p>
-
-<p align="center" style="font-size:0.9em;color:#666;">
-  On iPhone, the beta is delivered through Apple's TestFlight app.
-</p>
-
-<p align="center">
-  <img src="assets/en-game-art-deco.png" alt="A game in progress, Art Deco theme" width="170" style="border-radius:12px;max-width:23%;">
-  <img src="assets/en-online-game.png" alt="An online game against Maya: her avatar, her cards and the counter at the top, your hand at the bottom" width="170" style="border-radius:12px;max-width:23%;">
-  <img src="assets/en-private-room.png" alt="A private room with friends, with its shareable code" width="170" style="border-radius:12px;max-width:23%;">
-  <img src="assets/en-kits-forge.png" alt="Themes: table felts, card backs and avatars to choose from" width="170" style="border-radius:12px;max-width:23%;">
-</p>
-
-## The rules of Manipulation Rummy
-
-Manipulation Rummy is played by 2 to 4 players with two 52-card decks,
-with or without jokers. The game is known under many names: [Robbers'
-rummy](https://en.wikipedia.org/wiki/Robbers%27_rummy) in English, Räuber-Rommé in Germany, Machiavelli in Italy,
-Mexe-Mexe in Brazil, rami voleur or rami chinois in France. The
-essentials are below.
 
 ### The goal
 
@@ -95,27 +40,3 @@ stops and every player counts the cards left in their own hand.
 Penalties add up from round to round; the game ends as soon as a player
 reaches 100 points, and the least penalized player wins. The app also
 offers a **single-round game**, ideal for a quick match.
-
-## The Ramio app
-
-- Private rooms with friends (6-character code) or public games
-- Solo against the computer, **even offline**, with four levels
-- More than 300 rearrangement puzzles, and a daily challenge shared by all
-- Speed duels: the same puzzle for everyone, fastest wins
-- With or without jokers, points game or single-round game
-- Friends, messaging, Elo ranking, statistics and history
-- Around twenty themes: table felts, card backs and avatars
-- Available in eleven languages
-- Automatic reconnection if your connection drops
-- No ads, rules enforced by the server: cheating is impossible
-
-## Privacy and contact
-
-- [Privacy policy](privacy-policy)
-- [Terms of use](terms-of-use)
-- [Delete your account](delete-account)
-- Contact: contact@quintaingames.com
-
-<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Legal notice</a></p>
-
-<script src="assets/mesure.js" defer></script>
