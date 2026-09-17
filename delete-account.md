@@ -1,5 +1,6 @@
 ---
 title: Delete your Ramio account
+lang: en
 ---
 
 <p align="right"><a href="suppression-compte">Version française</a></p>

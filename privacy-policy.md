@@ -1,5 +1,6 @@
 ---
 title: Privacy policy
+lang: en
 ---
 
 <p align="right"><a href="politique-confidentialite">Version française</a></p>

@@ -94,6 +94,23 @@ code { font-family: ui-monospace, Consolas, monospace; letter-spacing: .14em; co
 .pied { border-top: 1px solid var(--ligne); padding-block: 18px 90px; color: var(--gris); font-size: .9em; display: flex; justify-content: space-between; gap: 10px 24px; flex-wrap: wrap; }
 .pied a { color: var(--gris); }
 
+.pied.court { padding-bottom: 28px; }
+
+/* Pages de texte (_layouts/default.html) : règles, politiques, mentions. */
+.article { max-width: 46em; color: var(--texte); margin-top: -24px; }
+.article h1 { font-size: clamp(1.7em, 4vw, 2.3em); line-height: 1.15; color: var(--encre); margin: 0 0 18px; }
+.article h2 { font-size: 1.45em; line-height: 1.2; color: var(--encre); margin: 36px 0 10px; }
+.article h3 { font-size: 1.15em; color: var(--sable); margin: 26px 0 8px; }
+.article p { margin: 0 0 12px; }
+.article ul, .article ol { margin: 0 0 14px; padding-inline-start: 22px; }
+.article li { margin-bottom: 6px; }
+.article strong { color: var(--encre); }
+.article table { display: block; overflow-x: auto; border-collapse: collapse; margin: 0 0 16px; font-size: .95em; }
+.article th, .article td { text-align: start; padding: 8px 12px; border: 1px solid var(--ligne); vertical-align: top; }
+.article th { background: var(--fond2); color: var(--encre); font-weight: 600; }
+.article hr { border: 0; border-top: 1px solid var(--ligne); margin: 28px 0; }
+.article img { border-radius: 12px; height: auto; }
+
 .flottant { position: sticky; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: flex; justify-content: flex-end; padding-inline: 20px; margin-top: -70px; pointer-events: none; }
 .flottant a { pointer-events: auto; box-shadow: 0 10px 30px rgba(18, 35, 58, .35); border-radius: 999px; }
 .flottant svg { width: 18px; height: 18px; }

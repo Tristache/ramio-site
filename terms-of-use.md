@@ -1,5 +1,6 @@
 ---
 title: Terms of use
+lang: en
 ---
 
 <p align="right" style="font-size:0.9em;"><a href="conditions-utilisation">Version française</a></p>

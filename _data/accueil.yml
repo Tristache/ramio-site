@@ -68,7 +68,7 @@ fr:
   p_cond: "Conditions"
   p_suppr: "Supprimer son compte"
   p_mentions: "Mentions légales"
-  flottant: "Essayer un casse-tête"
+  flottant: "Jouer le casse-tête du jour"
 
 en:
   par: "by Quintain Games"
@@ -136,7 +136,7 @@ en:
   p_cond: "Terms"
   p_suppr: "Delete your account"
   p_mentions: "Legal notice"
-  flottant: "Try a puzzle"
+  flottant: "Play today's puzzle"
 
 es:
   par: "de Quintain Games"
@@ -204,7 +204,7 @@ es:
   p_cond: "Condiciones"
   p_suppr: "Eliminar la cuenta"
   p_mentions: "Aviso legal"
-  flottant: "Probar un rompecabezas"
+  flottant: "Jugar el rompecabezas del día"
 
 de:
   par: "von Quintain Games"
@@ -272,7 +272,7 @@ de:
   p_cond: "Nutzungsbedingungen"
   p_suppr: "Konto löschen"
   p_mentions: "Impressum"
-  flottant: "Ein Rätsel ausprobieren"
+  flottant: "Das Rätsel des Tages spielen"
 
 it:
   par: "di Quintain Games"
@@ -340,7 +340,7 @@ it:
   p_cond: "Condizioni"
   p_suppr: "Elimina l'account"
   p_mentions: "Note legali"
-  flottant: "Prova un rompicapo"
+  flottant: "Gioca il rompicapo del giorno"
 
 pt:
   par: "da Quintain Games"
@@ -408,7 +408,7 @@ pt:
   p_cond: "Termos"
   p_suppr: "Excluir a conta"
   p_mentions: "Aviso legal"
-  flottant: "Experimentar um quebra-cabeça"
+  flottant: "Jogar o quebra-cabeça do dia"
 
 pl:
   par: "od Quintain Games"
@@ -476,7 +476,7 @@ pl:
   p_cond: "Regulamin"
   p_suppr: "Usuń konto"
   p_mentions: "Nota prawna"
-  flottant: "Wypróbuj łamigłówkę"
+  flottant: "Zagraj w łamigłówkę dnia"
 
 tr:
   par: "Quintain Games'ten"
@@ -544,7 +544,7 @@ tr:
   p_cond: "Koşullar"
   p_suppr: "Hesabı sil"
   p_mentions: "Yasal bilgiler"
-  flottant: "Bir bulmaca dene"
+  flottant: "Günün bulmacasını oyna"
 
 ro:
   par: "de la Quintain Games"
@@ -612,7 +612,7 @@ ro:
   p_cond: "Condiții"
   p_suppr: "Șterge contul"
   p_mentions: "Mențiuni legale"
-  flottant: "Încearcă un puzzle"
+  flottant: "Joacă puzzle-ul zilei"
 
 hu:
   par: "a Quintain Games játéka"
@@ -680,7 +680,7 @@ hu:
   p_cond: "Feltételek"
   p_suppr: "Fiók törlése"
   p_mentions: "Jogi nyilatkozat"
-  flottant: "Próbálj ki egy fejtörőt"
+  flottant: "Játszd a nap fejtörőjét"
 
 ar:
   par: "من Quintain Games"
@@ -748,4 +748,4 @@ ar:
   p_cond: "الشروط"
   p_suppr: "حذف الحساب"
   p_mentions: "إشعار قانوني"
-  flottant: "جرّب لغزاً"
+  flottant: "العب لغز اليوم"

@@ -8,7 +8,8 @@
 {%- assign t = site.data.accueil[lang] -%}
 {%- assign img = "en" -%}
 {%- if lang == "fr" -%}{%- assign img = "fr" -%}{%- endif -%}
-{%- capture defi -%}https://quintaingames.com/ramio/defi/?defi=1dbcleh&amp;couleurs=4&amp;lang={{ lang }}&amp;src=page-ramio{%- endcapture -%}
+{%- comment -%} defi=jour : casse-tête du jour du site (webDailyPuzzleId côté app), jamais le défi classé. {%- endcomment -%}
+{%- capture defi -%}https://quintaingames.com/ramio/defi/?defi=jour&amp;couleurs=4&amp;lang={{ lang }}&amp;src=page-ramio{%- endcapture -%}
 {%- capture boutiques -%}
           <a class="badge" href="https://play.google.com/store/apps/details?id=com.ramio"><img src="assets/badge-play-{{ lang }}.png" alt="{{ t.alt_play }}" width="163" height="48"></a>
           {%- if site.ramio_sortie %}
