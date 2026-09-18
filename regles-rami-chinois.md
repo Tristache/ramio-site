@@ -11,7 +11,7 @@ description: >-
 
 Le rami chinois — aussi appelé **rami voleur** — est un jeu de cartes de
 la famille du rami, qui se joue de
-**2 à 4 joueurs** avec **deux jeux de 52 cartes** (et, au choix, 4 jokers).
+**2 à 4 joueurs** avec **deux jeux de 52 cartes** (et, au choix, 2 jokers).
 Sa grande particularité : **on ne se défausse jamais**, et une fois sa
 première pose faite, chacun peut **réorganiser librement toute la table**
 pour caser ses cartes — comme au Rummikub, mais avec de vraies cartes.
@@ -24,7 +24,7 @@ sur cette page.
 ## Le matériel
 
 - **Deux jeux de 52 cartes** mélangés ensemble, soit 104 cartes.
-- En option, **4 jokers** (108 cartes). Le jeu est plus tactique sans
+- En option, **2 jokers** (106 cartes). Le jeu est plus tactique sans
   jokers, plus spectaculaire avec.
 - De quoi noter les points si vous jouez une partie en plusieurs manches.
 
@@ -160,7 +160,7 @@ donc aussi l'application du rami voleur.
 amis, parties publiques, mode solo contre l'ordinateur (même hors ligne),
 défis à résoudre façon problèmes d'échecs. Les règles de cette page y sont
 arbitrées automatiquement — impossible de se tromper, impossible de
-tricher. Sans publicité, sur Android et bientôt sur iOS.
+tricher. Gratuit, sur Android et bientôt sur iOS.
 
 Contact : contact@quintaingames.com
 
