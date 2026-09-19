@@ -8,6 +8,13 @@ theme: jekyll-theme-cayman
 # remplace alors le bouton TestFlight dans les onze langues.
 ramio_sortie: false
 appstore_url: ""
+# Vignette des liens partagés (og:image, 1200 x 630) : une vraie partie à
+# quatre, cartes en 4 couleurs. Le miroir la réécrit vers quintaingames.com.
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/ramio-partie-og.jpg
 # On ne publie que les pages du site, pas les documents internes du projet.
 exclude:
   - deploiement-serveur.md
