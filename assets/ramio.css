@@ -38,7 +38,7 @@ select.langue { font: inherit; font-size: .9em; color: var(--encre); background:
 .badge img { display: block; height: 48px; width: auto; }
 .sortie { margin-top: 14px; color: var(--gris); font-size: .92em; }
 .telephone { margin-inline: auto; width: min(100%, 270px); border-radius: 30px; padding: 8px; background: #050a12; border: 1px solid var(--ligne); box-shadow: 0 24px 60px rgba(18, 35, 58, .3); }
-.telephone img { display: block; width: 100%; height: auto; border-radius: 23px; }
+.telephone img, .telephone video { display: block; width: 100%; height: auto; border-radius: 23px; }
 .legende { text-align: center; color: var(--gris); font-size: .85em; margin-top: 10px; }
 
 .reperes { display: grid; grid-template-columns: repeat(4, 1fr); border-block: 1px solid var(--ligne); margin-top: -24px; }
