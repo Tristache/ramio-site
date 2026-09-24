@@ -37,6 +37,8 @@ select.langue { font: inherit; font-size: .9em; color: var(--encre); background:
 .badge { display: inline-flex; border-radius: 8px; }
 .badge img { display: block; height: 48px; width: auto; }
 .sortie { margin-top: 14px; color: var(--gris); font-size: .92em; }
+.essai { margin-top: 6px; font-size: .92em; }
+.essai a { color: var(--gris); }
 .telephone { margin-inline: auto; width: min(100%, 270px); border-radius: 30px; padding: 8px; background: #050a12; border: 1px solid var(--ligne); box-shadow: 0 24px 60px rgba(18, 35, 58, .3); }
 .telephone img, .telephone video { display: block; width: 100%; height: auto; border-radius: 23px; }
 .legende { text-align: center; color: var(--gris); font-size: .85em; margin-top: 10px; }
@@ -111,13 +113,8 @@ code { font-family: ui-monospace, Consolas, monospace; letter-spacing: .14em; co
 .article hr { border: 0; border-top: 1px solid var(--ligne); margin: 28px 0; }
 .article img { border-radius: 12px; height: auto; }
 
-.flottant { position: sticky; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: flex; justify-content: flex-end; padding-inline: 20px; margin-top: -70px; pointer-events: none; }
-.flottant a { pointer-events: auto; box-shadow: 0 10px 30px rgba(18, 35, 58, .35); border-radius: 999px; }
-.flottant svg { width: 18px; height: 18px; }
-
-/* Arabe : pas d'interlettrage (il casse les ligatures), flèche retournée. */
+/* Arabe : pas d'interlettrage (il casse les ligatures). */
 [dir="rtl"] .surtitre { letter-spacing: 0; font-size: .9em; }
-[dir="rtl"] .flottant svg { transform: scaleX(-1); }
 
 @media (max-width: 700px) {
   .page { gap: 48px; padding-inline: 16px; }
@@ -135,6 +132,4 @@ code { font-family: ui-monospace, Consolas, monospace; letter-spacing: .14em; co
   .etape, .etape + .etape { padding: 18px 0 6px; border-inline-start: 0; }
   .etape + .etape { border-top: 1px solid var(--ligne); }
   .final > div { padding: 110px 18px 22px; }
-  .flottant { justify-content: center; padding-inline: 16px; }
-  .flottant a { width: 100%; justify-content: center; }
 }

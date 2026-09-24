@@ -63,10 +63,10 @@
           <h1>{{ t.h1 }}</h1>
           <p class="pitch">{{ t.pitch }}</p>
           <div class="actions">
-            <a class="bouton" href="{{ defi }}">{{ t.essayer }}</a>
 {{ boutiques }}
           </div>
           <p class="sortie">{% if site.ramio_sortie %}{{ t.gratuit_sortie }}{% else %}{{ t.gratuit_beta }}{% endif %}</p>
+          <p class="essai"><a href="{{ defi }}">{{ t.essayer }}</a></p>
         </div>
         <div>
           <div class="telephone"><video src="assets/ramio-reorganisation-{{ img }}.mp4" poster="assets/ramio-reorganisation-{{ img }}.jpg" width="420" height="898" autoplay muted loop playsinline aria-label="{{ t.alt_gif }}"></video></div>
@@ -155,13 +155,6 @@
         <span>Quintain Games · {{ t.pays }} · contact@quintaingames.com</span>
         <span><a href="{{ t.h_conf }}">{{ t.p_conf }}</a> · <a href="{{ t.h_cond }}">{{ t.p_cond }}</a> · <a href="{{ t.h_suppr }}">{{ t.p_suppr }}</a> · <a href="mentions-legales">{{ t.p_mentions }}</a></span>
       </footer>
-    </div>
-
-    <div class="flottant">
-      <a class="bouton" href="{{ defi }}">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" fill="#08111f"/></svg>
-        {{ t.flottant }}
-      </a>
     </div>
     <script src="assets/mesure.js" defer></script>
   </body>
