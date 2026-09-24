@@ -1,8 +1,8 @@
 {%- comment -%}
   Page d'accueil de Ramio, une par langue (index.md, en.md, es.md...).
   Textes : _data/accueil.yml, clé = page.lang. Corps Markdown de la page =
-  les règles (titres ###). Bascule de sortie : ramio_sortie et
-  appstore_url dans _config.yml (badge App Store à la place de TestFlight).
+  les règles (titres ###). Bascules dans _config.yml : appstore_url
+  (badge App Store, TestFlight en second) et ramio_sortie (sans TestFlight).
 {%- endcomment -%}
 {%- assign lang = page.lang | default: "fr" -%}
 {%- assign t = site.data.accueil[lang] -%}
@@ -12,11 +12,12 @@
 {%- capture defi -%}https://quintaingames.com/ramio/defi/?defi=jour&amp;couleurs=4&amp;lang={{ lang }}&amp;src=page-ramio{%- endcapture -%}
 {%- capture boutiques -%}
           <a class="badge" href="https://play.google.com/store/apps/details?id=com.ramio"><img src="assets/badge-play-{{ lang }}.png" alt="{{ t.alt_play }}" width="163" height="48"></a>
-          {%- if site.ramio_sortie %}
+          {%- if site.appstore_url != "" %}
           <a class="badge" href="{{ site.appstore_url }}"><img src="assets/badge-appstore-{{ lang }}.svg" alt="{{ t.alt_appstore }}" height="48"></a>
-          {%- else %}
-          <a class="bouton second" href="https://testflight.apple.com/join/X8tt9MQw">{{ t.iphone_beta }}</a>
           {%- endif %}
+          {%- unless site.ramio_sortie %}
+          <a class="bouton second" href="https://testflight.apple.com/join/X8tt9MQw">{{ t.iphone_beta }}</a>
+          {%- endunless %}
 {%- endcapture -%}
 <!DOCTYPE html>
 <html lang="{{ lang }}"{% if lang == "ar" %} dir="rtl"{% endif %}>

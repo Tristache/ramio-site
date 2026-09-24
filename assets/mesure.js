@@ -8,6 +8,7 @@
   var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InprcmthaW1yeWJ4YmRyem54aHh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDkzMTYsImV4cCI6MjA5NjY4NTMxNn0.28Ns814SQSFXaKRR0-ZrHoX1G8Cpnhf6sNCZ6kgtAio';
   var PLAY = 'https://play.google.com/store/apps/details?id=com.ramio';
   var TESTFLIGHT = 'https://testflight.apple.com/join/';
+  var APPSTORE = 'https://apps.apple.com/';
 
   var src = '';
   try { src = (new URLSearchParams(location.search).get('src') || '').slice(0, 40); } catch (e) {}
@@ -41,6 +42,9 @@
         a.addEventListener('click', function () { log('play'); });
       } else if (a.href.indexOf(TESTFLIGHT) === 0) {
         a.addEventListener('click', function () { log('testflight'); });
+      } else if (a.href.indexOf(APPSTORE) === 0) {
+        // Genre « appstore » accepté depuis la migration 97.
+        a.addEventListener('click', function () { log('appstore'); });
       }
     }
     log('visit');
