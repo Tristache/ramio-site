@@ -29,7 +29,6 @@ fr:
   a1_l:
     - "Avec ou sans jokers, partie aux points ou partie simple"
     - "Reconnexion automatique en cas de coupure"
-    - "Règles arbitrées par le serveur : impossible de tricher"
   a1_alt: "Un salon privé entre amis, avec son code à partager"
   a2_t: "670 casse-têtes quand personne n'est là"
   a2_p: "Une table déjà posée, quelques cartes en main : trouvez comment tout recomposer. Un défi du jour commun à tous les joueurs, et des duels de rapidité sur le même casse-tête."
@@ -97,7 +96,6 @@ en:
   a1_l:
     - "With or without jokers, points game or single round"
     - "Automatic reconnection if your connection drops"
-    - "Rules enforced by the server: cheating is impossible"
   a1_alt: "A private room with friends, with its shareable code"
   a2_t: "670 puzzles for when nobody is around"
   a2_p: "A table already laid out, a few cards in hand: find how to rebuild it all. A daily challenge shared by every player, and speed duels on the same puzzle."
@@ -165,7 +163,6 @@ es:
   a1_l:
     - "Con o sin comodines, partida a puntos o partida simple"
     - "Reconexión automática si se corta la conexión"
-    - "Reglas arbitradas por el servidor: imposible hacer trampas"
   a1_alt: "Una sala privada entre amigos, con su código para compartir"
   a2_t: "670 rompecabezas para cuando no hay nadie"
   a2_p: "Una mesa ya montada y unas pocas cartas en la mano: descubre cómo recomponerlo todo. Un reto diario común a todos los jugadores y duelos de velocidad sobre el mismo rompecabezas."
@@ -233,7 +230,6 @@ de:
   a1_l:
     - "Mit oder ohne Joker, Punktepartie oder einfache Partie"
     - "Automatische Wiederverbindung bei Verbindungsabbruch"
-    - "Der Server überwacht die Regeln: Schummeln unmöglich"
   a1_alt: "Ein privater Raum unter Freunden, mit seinem Code zum Teilen"
   a2_t: "670 Rätsel, wenn gerade niemand da ist"
   a2_p: "Ein fertig ausgelegter Tisch, ein paar Karten auf der Hand: Finde heraus, wie sich alles neu ordnen lässt. Eine tägliche Herausforderung für alle Spieler und Tempo-Duelle am selben Rätsel."
@@ -301,7 +297,6 @@ it:
   a1_l:
     - "Con o senza jolly, partita a punti o partita semplice"
     - "Riconnessione automatica se cade la linea"
-    - "Regole arbitrate dal server: impossibile barare"
   a1_alt: "Una stanza privata tra amici, con il codice da condividere"
   a2_t: "670 rompicapi per quando non c'è nessuno"
   a2_p: "Un tavolo già calato, qualche carta in mano: trova come ricomporre tutto. Una sfida del giorno uguale per tutti i giocatori e duelli di velocità sullo stesso rompicapo."
@@ -369,7 +364,6 @@ pt:
   a1_l:
     - "Com ou sem coringas, partida por pontos ou partida simples"
     - "Reconexão automática se a conexão cair"
-    - "Regras arbitradas pelo servidor: impossível trapacear"
   a1_alt: "Uma sala privada entre amigos, com o código para compartilhar"
   a2_t: "670 quebra-cabeças para quando não há ninguém"
   a2_p: "Uma mesa já montada, algumas cartas na mão: descubra como recompor tudo. Um desafio do dia igual para todos os jogadores e duelos de velocidade no mesmo quebra-cabeça."
@@ -437,7 +431,6 @@ pl:
   a1_l:
     - "Z jokerami lub bez, gra na punkty lub gra prosta"
     - "Automatyczne ponowne połączenie po zerwaniu sieci"
-    - "Zasad pilnuje serwer: nie da się oszukiwać"
   a1_alt: "Prywatny pokój ze znajomymi, z kodem do udostępnienia"
   a2_t: "670 łamigłówek, gdy nikogo nie ma"
   a2_p: "Stół już wyłożony, kilka kart w ręce: znajdź sposób, by ułożyć wszystko na nowo. Wyzwanie dnia wspólne dla wszystkich graczy i pojedynki na czas na tej samej łamigłówce."
@@ -505,7 +498,6 @@ tr:
   a1_l:
     - "Jokerli ya da jokersiz, puanlı oyun ya da tek el"
     - "Bağlantı koparsa otomatik yeniden bağlanma"
-    - "Kuralları sunucu denetler: hile yapmak imkânsız"
   a1_alt: "Arkadaşlarla özel bir oda ve paylaşılacak kodu"
   a2_t: "Kimse yokken 670 bulmaca"
   a2_p: "Masa zaten dizili, elinde birkaç kart var: her şeyi nasıl yeniden kuracağını bul. Tüm oyuncular için ortak günün bulmacası ve aynı bulmacada hız düelloları."
@@ -573,7 +565,6 @@ ro:
   a1_l:
     - "Cu sau fără jokeri, partidă pe puncte sau partidă simplă"
     - "Reconectare automată dacă pică conexiunea"
-    - "Regulile sunt arbitrate de server: imposibil de trișat"
   a1_alt: "O cameră privată între prieteni, cu codul ei de distribuit"
   a2_t: "670 de puzzle-uri pentru când nu e nimeni"
   a2_p: "O masă deja etalată, câteva cărți în mână: găsește cum să refaci totul. O provocare a zilei comună tuturor jucătorilor și dueluri de viteză pe același puzzle."
@@ -641,7 +632,6 @@ hu:
   a1_l:
     - "Jokerrel vagy anélkül, pontozásos vagy egyszerű játszma"
     - "Automatikus újracsatlakozás, ha megszakad a kapcsolat"
-    - "A szabályokat a szerver felügyeli: csalni lehetetlen"
   a1_alt: "Privát szoba barátokkal, megosztható kóddal"
   a2_t: "670 fejtörő arra az időre, amikor senki sem ér rá"
   a2_p: "Egy már kirakott asztal, néhány lap a kézben: találd ki, hogyan rendezhető át minden. Mindenki számára közös napi kihívás, és gyorsasági párbajok ugyanazon a fejtörőn."
@@ -709,7 +699,6 @@ ar:
   a1_l:
     - "بالجوكر أو بدونه، مباراة بالنقاط أو مباراة بسيطة"
     - "إعادة اتصال تلقائية عند انقطاع الشبكة"
-    - "الخادم يحكّم القواعد: الغش مستحيل"
   a1_alt: "غرفة خاصة بين الأصدقاء مع رمزها للمشاركة"
   a2_t: "670 لغزاً حين لا يكون أحد متاحاً"
   a2_p: "طاولة مرتبة مسبقاً وبضع أوراق في يدك: اكتشف كيف تعيد تركيب كل شيء. تحدٍّ يومي مشترك بين جميع اللاعبين، ومبارزات سرعة على اللغز نفسه."
