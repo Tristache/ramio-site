@@ -32,8 +32,11 @@ PAGES.update({
         "regles-rami-chinois", "politique-confidentialite", "privacy-policy",
         "suppression-compte", "delete-account", "mentions-legales",
         "conditions-utilisation", "terms-of-use",
+        "halloween-2026",  # page non référencée pour les éditeurs des stores
     ]
 })
+# Dossiers de médias recopiés tels quels (un dossier par page qui en a).
+DOSSIERS = ["halloween-2026-media"]
 
 
 def get(url: str) -> bytes:
@@ -55,8 +58,13 @@ def adapte(html: str) -> str:
 
 
 def main() -> int:
+    # Avec des noms de pages en arguments (ex. `halloween-2026`), seules ces
+    # pages et leurs dossiers de médias sont recopiés : rien d'autre ne bouge.
+    seules = set(sys.argv[1:])
     os.makedirs(os.path.join(DST, "assets", "css"), exist_ok=True)
     for chemin, sortie in PAGES.items():
+        if seules and chemin not in seules:
+            continue
         try:
             html = get(BASE + chemin).decode("utf-8")
         except Exception as e:  # page pas encore rendue : on le dit, on continue
@@ -64,6 +72,13 @@ def main() -> int:
             continue
         open(os.path.join(DST, sortie), "w", encoding="utf-8").write(adapte(html))
         print(f"  {sortie}: {len(html)} car.")
+    for d in DOSSIERS:
+        if seules and not any(d.startswith(p) for p in seules):
+            continue
+        shutil.copytree(os.path.join(SRC, d), os.path.join(DST, d), dirs_exist_ok=True)
+    if seules:
+        print("miroir partiel écrit dans", DST)
+        return 0
     open(os.path.join(DST, "assets", "css", "style.css"), "wb").write(get(BASE + "assets/css/style.css"))
     for f in os.listdir(os.path.join(SRC, "assets")):
         shutil.copy(os.path.join(SRC, "assets", f), os.path.join(DST, "assets", f))
