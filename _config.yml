@@ -7,7 +7,7 @@ theme: jekyll-theme-cayman
 # badge App Store (précommande depuis le 23/09) suivi du bouton TestFlight ;
 # à la sortie du 8 octobre, ramio_sortie à true retire le bouton TestFlight
 # dans les onze langues.
-ramio_sortie: false
+ramio_sortie: true
 appstore_url: "https://apps.apple.com/app/id6788317282"
 # Vignette des liens partagés (og:image, 1200 x 630) : une vraie partie à
 # quatre, cartes en 4 couleurs. Le miroir la réécrit vers quintaingames.com.
