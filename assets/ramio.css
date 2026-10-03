@@ -95,6 +95,8 @@ code { font-family: ui-monospace, Consolas, monospace; letter-spacing: .14em; co
 
 .pied { border-top: 1px solid var(--ligne); padding-block: 18px 90px; color: var(--gris); font-size: .9em; display: flex; justify-content: space-between; gap: 10px 24px; flex-wrap: wrap; }
 .pied a { color: var(--gris); }
+.langues-liens { color: var(--gris); font-size: .85em; padding-block: 0 14px; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.langues-liens a { color: var(--gris); }
 
 .pied.court { padding-bottom: 28px; }
 

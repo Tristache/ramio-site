@@ -36,6 +36,10 @@
      (tristache.github.io/ramio-site) ne doit pas concurrencer le site dans Google. {%- endcomment -%}
 {%- capture seo -%}{% seo %}{%- endcapture -%}
 {{ seo | replace: 'https://tristache.github.io/ramio-site/', 'https://quintaingames.com/ramio/' }}
+{%- comment -%} Pages de langue déclarées à Google (hreflang), anglais par défaut. {%- endcomment %}
+{% assign langues = "fr,en,es,de,it,pt,pl,tr,ro,hu,ar" | split: "," -%}
+{% for l in langues %}    <link rel="alternate" hreflang="{{ l }}" href="https://quintaingames.com/ramio/{% unless l == 'fr' %}{{ l }}.html{% endunless %}">
+{% endfor %}    <link rel="alternate" hreflang="x-default" href="https://quintaingames.com/ramio/en.html">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#F3F1EA">
     <link rel="icon" type="image/png" href="assets/ramio-icone-192.png">
@@ -163,6 +167,11 @@
         </div>
       </section>
 
+      {%- comment -%} Liens classiques entre les langues : le menu déroulant n'est pas suivi par Google. {%- endcomment %}
+      <nav class="langues-liens" aria-label="{{ t.langue }}">
+        {% assign noms = "Français,English,Español,Deutsch,Italiano,Português,Polski,Türkçe,Română,Magyar,العربية" | split: "," -%}
+        {% for l in langues %}<a href="{% if l == 'fr' %}./{% else %}{{ l }}{% endif %}" hreflang="{{ l }}" lang="{{ l }}">{{ noms[forloop.index0] }}</a> {% endfor %}
+      </nav>
       <footer class="pied">
         <span>Quintain Games · {{ t.pays }} · contact@quintaingames.com</span>
         <span><a href="{{ t.h_conf }}">{{ t.p_conf }}</a> · <a href="{{ t.h_cond }}">{{ t.p_cond }}</a> · <a href="{{ t.h_suppr }}">{{ t.p_suppr }}</a> · <a href="mentions-legales">{{ t.p_mentions }}</a></span>
