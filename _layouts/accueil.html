@@ -32,7 +32,10 @@
 <html lang="{{ lang }}"{% if lang == "ar" %} dir="rtl"{% endif %}>
   <head>
     <meta charset="UTF-8">
-{% seo %}
+{%- comment -%} Adresse de référence = quintaingames.com/ramio : l'ancien hôte
+     (tristache.github.io/ramio-site) ne doit pas concurrencer le site dans Google. {%- endcomment -%}
+{%- capture seo -%}{% seo %}{%- endcapture -%}
+{{ seo | replace: 'https://tristache.github.io/ramio-site/', 'https://quintaingames.com/ramio/' }}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#F3F1EA">
     <link rel="icon" type="image/png" href="assets/ramio-icone-192.png">

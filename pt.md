@@ -42,3 +42,5 @@ sobraram na própria mão. As penalidades se acumulam de rodada em rodada;
 a partida termina assim que um jogador chega a 100 pontos, e vence o
 menos penalizado. O app também oferece a **partida de uma rodada só**,
 ideal para uma disputa rápida.
+
+Saiba mais: [mexe-mexe online](https://quintaingames.com/ramio/mexe-mexe/).

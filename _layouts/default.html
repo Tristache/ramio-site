@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8">
 
-{% seo %}
+{%- comment -%} Adresse de référence = quintaingames.com/ramio : l'ancien hôte
+     (tristache.github.io/ramio-site) ne doit pas concurrencer le site dans Google. {%- endcomment -%}
+{%- capture seo -%}{% seo %}{%- endcapture -%}
+{{ seo | replace: 'https://tristache.github.io/ramio-site/', 'https://quintaingames.com/ramio/' }}
     <!-- Pages de texte (règles, politiques, mentions) : même habillage que
          l'accueil (_layouts/accueil.html), polices hébergées sur le site. -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,5 +35,6 @@
         <span><a href="{{ accueil }}">Ramio</a> · <a href="mentions-legales">{% if page.lang == "en" %}Legal notice{% else %}Mentions légales{% endif %}</a></span>
       </footer>
     </div>
+    {% if page.mesure %}<script src="assets/mesure.js" defer></script>{% endif %}
   </body>
 </html>

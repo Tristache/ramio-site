@@ -1,15 +1,16 @@
 ---
-title: Les règles du rami chinois — le guide complet
+title: Les règles du rami voleur (rami chinois) — le guide complet
+mesure: true
 description: >-
-  Règles complètes du rami chinois, aussi appelé rami voleur : 13 cartes,
+  Règles complètes du rami voleur, aussi appelé rami chinois : 13 cartes,
   pas de défausse, tierce franche, réorganisation libre de la table. Le
   guide de référence, avec le décompte des points et les différences avec
   le rami classique et le Rummikub.
 ---
 
-# Les règles du rami chinois
+# Les règles du rami voleur
 
-Le rami chinois — aussi appelé **rami voleur** — est un jeu de cartes de
+Le rami voleur — aussi appelé **rami chinois** — est un jeu de cartes de
 la famille du rami, qui se joue de
 **2 à 4 joueurs** avec **deux jeux de 52 cartes** (et, au choix, 2 jokers).
 Sa grande particularité : **on ne se défausse jamais**, et une fois sa
@@ -161,6 +162,8 @@ amis, parties publiques, mode solo contre l'ordinateur (même hors ligne),
 défis à résoudre façon problèmes d'échecs. Les règles de cette page y sont
 arbitrées automatiquement — impossible de se tromper, impossible de
 tricher. Gratuit, sur Android et bientôt sur iOS.
+
+Installer Ramio : [Google Play](https://play.google.com/store/apps/details?id=com.ramio) · [App Store](https://apps.apple.com/fr/app/id6788317282)
 
 Contact : contact@quintaingames.com
 

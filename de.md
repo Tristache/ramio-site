@@ -43,3 +43,5 @@ eigenen Hand. Die Minuspunkte summieren sich Runde für Runde; die Partie
 endet, sobald ein Spieler 100 Punkte erreicht, und der mit den wenigsten
 Punkten gewinnt. Die App bietet außerdem die **Partie über eine Runde**,
 ideal für zwischendurch.
+
+Mehr dazu: [Räuber-Rommé online spielen](https://quintaingames.com/ramio/raeuber-romme/).
