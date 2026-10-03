@@ -161,7 +161,7 @@ donc aussi l'application du rami voleur.
 amis, parties publiques, mode solo contre l'ordinateur (même hors ligne),
 défis à résoudre façon problèmes d'échecs. Les règles de cette page y sont
 arbitrées automatiquement — impossible de se tromper, impossible de
-tricher. Gratuit, sur Android et bientôt sur iOS.
+tricher. Gratuit, sur Android et iPhone.
 
 Installer Ramio : [Google Play](https://play.google.com/store/apps/details?id=com.ramio) · [App Store](https://apps.apple.com/fr/app/id6788317282)
 
