@@ -64,6 +64,33 @@
   #err { color: var(--bad); font-size: 13px; min-height: 1.2em; }
   .funnel .bar { height: 18px; background: var(--s1); border-radius: 0 4px 4px 0; }
   .funnel td:first-child { width: 42%; }
+  /* Journal des joueurs (migration 101) */
+  .journal { margin-top: 14px; }
+  .journal .filtres, .parties .filtres { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+  .journal .filtres button[aria-pressed="true"], .parties .filtres button[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .journal details { border-top: 1px solid var(--line); }
+  .journal summary { cursor: pointer; list-style: none; padding: 8px 2px; display: flex; flex-wrap: wrap; gap: 2px 8px; align-items: baseline; }
+  .journal summary::-webkit-details-marker { display: none; }
+  .journal summary::before { content: '\25B8'; color: var(--muted); }
+  .journal details[open] > summary::before { content: '\25BE'; }
+  .journal .meta { color: var(--text-2); font-size: 12px; }
+  .journal .badge, .parties .badge { font-size: 11px; padding: 0 6px; border-radius: 6px; background: var(--line); color: var(--text-2); }
+  .journal .corps { padding: 0 2px 8px 14px; }
+  .journal .jour { margin: 6px 0 10px; padding-left: 10px; border-left: 2px solid var(--line); }
+  .journal .jour h3 { font-size: 13px; margin: 0 0 2px; }
+  .journal .resume { font-size: 12px; color: var(--text-2); }
+  .journal ul { list-style: none; margin: 4px 0 0; padding: 0; font-size: 13px; }
+  .journal li { padding: 1px 0 1px 3.6em; text-indent: -3.6em; }
+  .journal li .h { display: inline-block; min-width: 3.6em; text-indent: 0; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .journal .ok, .parties .ok { color: var(--s3); }
+  .journal .ko, .parties .ko { color: var(--bad); }
+  .journal .plus { margin-top: 10px; }
+  /* Parties et joueurs (migration 114) */
+  .parties { margin-bottom: 18px; }
+  .parties > h2 { font-size: 16px; margin: 0 0 2px; }
+  .parties > .sub { font-size: 12px; color: var(--text-2); margin-bottom: 10px; }
+  .parties .large { grid-column: 1 / -1; }
+  .parties .large td:nth-child(3) { white-space: normal; }
 </style>
 </head>
 <body>
@@ -88,7 +115,9 @@
 
 <main id="main" hidden>
   <div class="tiles" id="tiles"></div>
+  <section class="parties" id="parties" hidden></section>
   <div class="grid" id="charts"></div>
+  <section class="card journal" id="journal" hidden></section>
 </main>
 <div id="tip"></div>
 
@@ -113,6 +142,7 @@
     key = $('key').value.trim();
     if (!key) return;
     try { localStorage.setItem('ramio-stats-key', key); } catch (e) {}
+    journal.charge = 0; parties.charge = 0;
     load();
   };
   $('key').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('enter').click(); });
@@ -120,7 +150,7 @@
     key = ''; try { localStorage.removeItem('ramio-stats-key'); } catch (e) {}
     showGate('');
   };
-  $('refresh').onclick = load;
+  $('refresh').onclick = function () { journal.charge = 0; parties.charge = 0; load(); };
   $('auto').onclick = function () {
     auto = !auto; $('auto').textContent = auto ? 'Auto : 60 s' : 'Auto : off';
     schedule();
@@ -134,6 +164,8 @@
   function load() {
     if (!key) { showGate(''); return; }
     $('updated').textContent = 'chargement…';
+    loadJournal();
+    loadParties();
     fetch(API, {
       method: 'POST',
       headers: { apikey: ANON, Authorization: 'Bearer ' + ANON, 'Content-Type': 'application/json' },
@@ -194,7 +226,8 @@
   }
 
   // ---------- graphique en barres (empilées) ----------
-  function bars(rows, series) {
+  function bars(rows, series, lab) {
+    lab = lab || function (r) { return fmtDay(r.day); };
     var W = 600, H = 170, padL = 28, padB = 18, padT = 8;
     var n = rows.length, gap = 2, bw = (W - padL) / n;
     var max = 0;
@@ -210,7 +243,7 @@
     }
     rows.forEach(function (r, i) {
       var x = padL + i * bw + gap / 2, acc = 0, w = Math.max(bw - gap, 1);
-      var label = fmtDay(r.day) + ' — ' + series.map(function (s) { return s.label + ' ' + r[s.key]; }).join(', ');
+      var label = lab(r) + ' — ' + series.map(function (s) { return s.label + ' ' + r[s.key]; }).join(', ');
       svg += '<g data-tip="' + esc(label) + '">';
       svg += '<rect x="' + x + '" y="' + padT + '" width="' + w + '" height="' + (H - padT - padB) + '" fill="transparent"/>';
       series.forEach(function (s, si) {
@@ -222,7 +255,7 @@
       });
       svg += '</g>';
       if (n <= 14 || i % 5 === 0) {
-        svg += '<text class="axis" x="' + (x + w / 2) + '" y="' + (H - 4) + '" text-anchor="middle">' + fmtDay(r.day) + '</text>';
+        svg += '<text class="axis" x="' + (x + w / 2) + '" y="' + (H - 4) + '" text-anchor="middle">' + lab(r) + '</text>';
       }
     });
     return svg + '</svg>';
@@ -425,6 +458,300 @@
 
     $('charts').innerHTML = html;
   }
+
+  // ---------- parties et joueurs (migration 114) ----------
+  // Chargé à part (RPC ramio_parties), au plus toutes les 5 minutes.
+  // Un joueur = { n: nom, i: invité, e: équipe }.
+  var parties = { data: null, charge: 0, filtre: 'toutes', tri: '7', limite: 30 };
+  var MODES_P = { public: 'publique', prive: 'entre amis', async: 'en différé', solo: 'Ordi' };
+  var FINS = { abandon: 'abandon', afk: 'absence' };
+
+  function loadParties() {
+    if (!key || Date.now() - parties.charge < 300000) return;
+    parties.charge = Date.now();
+    fetch(API.replace('ramio_stats', 'ramio_parties'), {
+      method: 'POST',
+      headers: { apikey: ANON, Authorization: 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ p_key: key })
+    }).then(function (r) {
+      if (r.status === 404) return { absent: true };
+      if (!r.ok) throw new Error('erreur ' + r.status);
+      return r.json();
+    }).then(function (d) { parties.data = d; renderParties(); })
+      .catch(function (e) { parties.data = { erreur: e.message }; parties.charge = 0; renderParties(); });
+  }
+
+  function nomHtml(t) {
+    return esc(t.n) + (t.i ? ' <span class="badge">invité</span>' : '') + (t.e ? ' <span class="badge">' + esc(t.e) + '</span>' : '');
+  }
+  function boutons(attr, actif, liste) {
+    return '<div class="filtres">' + liste.map(function (b) {
+      return '<button type="button" data-' + attr + '="' + b[0] + '" aria-pressed="' + (actif === b[0]) + '">' + esc(b[1]) + '</button>';
+    }).join('') + '</div>';
+  }
+  // Carte de tableau avec une rangée de boutons sous le sous-titre.
+  function carteP(titre, sub, btn, head, rows, cls) {
+    var t = tableCard(titre, sub, head, rows, cls);
+    var i = t.indexOf('</div>', t.indexOf('class="sub"')) + 6;
+    return t.slice(0, i) + btn + t.slice(i);
+  }
+  function joueursHtml(p) {
+    var j = p.joueurs.map(function (x) {
+      var s = nomHtml(x) + ' (' + x.s + ')' + (x.r === 'a' ? ' <span class="ko">parti</span>' : '');
+      return x.r === 'g' ? '<b>' + s + '</b>' : s;
+    });
+    if (p.ordis) j.push(p.ordis > 1 ? p.ordis + ' Ordis' : 'Ordi');
+    return j.join(' · ');
+  }
+  function heuresCard(titre, sub, rows, series) {
+    return '<div class="card"><h2>' + esc(titre) + '</h2><div class="sub">' + esc(sub) + '</div>' + legend(series) +
+           bars(rows, series, function (r) { return r.h + ' h'; }) + '</div>';
+  }
+
+  function renderParties() {
+    var el = $('parties'), d = parties.data;
+    if (!d) return;
+    el.hidden = false;
+    var html = '<h2>Parties et joueurs</h2>';
+    if (d.absent || d.erreur) {
+      el.innerHTML = html + '<div class="empty">' + (d.absent ? 'Disponible après la migration 114.' :
+        'Indisponible pour l\'instant (' + esc(d.erreur) + ').') + '</div>';
+      return;
+    }
+    var r = d.resume, css = getComputedStyle(document.documentElement);
+    var S1 = css.getPropertyValue('--s1').trim(), S2 = css.getPropertyValue('--s2').trim(), S3 = css.getPropertyValue('--s3').trim();
+    html += '<div class="sub">Dernières 24 heures comparées aux 24 heures d\'avant ; parties terminées sur le serveur, comptes et invités ; heure de Paris. ' +
+            'Le solo hors ligne n\'est connu que par appareil : compté, jamais nommé.</div>';
+    var tiles = [
+      ['Parties 24 h', r.parties, r.parties_prec + ' la veille · ' + r.ecourtees + ' écourtées'],
+      ['Entre joueurs', r.entre_humains, r.entre_humains_prec + ' la veille · ' + (r.parties - r.entre_humains) + ' contre l\'Ordi'],
+      ['Joueurs en partie', r.joueurs, r.joueurs_prec + ' la veille'],
+      ['Actifs, tous jeux', r.actifs, r.actifs_prec + ' la veille · partie, défi ou duel terminé'],
+      ['Temps de partie', duree(r.minutes * 60000), duree(r.minutes_prec * 60000) + ' la veille'],
+      ['Défis résolus 24 h', r.defis, r.defis_prec + ' la veille · ' + r.defis_joueurs + ' joueurs'],
+      ['Défi du jour 24 h', r.jour, r.jour_prec + ' la veille'],
+      ['Solo hors ligne 24 h', r.solo_hors_ligne, plur(r.solo_appareils, 'appareil')]
+    ];
+    html += '<div class="tiles">' + tiles.map(function (x) {
+      return '<div class="tile"><div class="k">' + esc(x[0]) + '</div><div class="v">' + x[1] + '</div><div class="s">' + esc(x[2]) + '</div></div>';
+    }).join('') + '</div><div class="grid">';
+
+    // Parties des dernières 24 heures.
+    var liste = d.parties.filter(function (p) {
+      return parties.filtre === 'toutes' || (parties.filtre === 'humains') === (p.joueurs.length >= 2);
+    });
+    html += carteP('Parties des dernières 24 heures', 'vainqueur en gras · entre parenthèses, les pénalités (0 en partie simple) · ' +
+        kv(r.modes, MODES_P).map(function (x) { return x[1] + ' ' + x[0]; }).join(', '),
+      boutons('pf', parties.filtre, [['toutes', 'Toutes (' + d.parties.length + ')'], ['humains', 'Entre joueurs (' + r.entre_humains + ')'],
+                                     ['ordi', 'Contre l\'Ordi (' + (d.parties.length - r.entre_humains) + ')']]),
+      [{ t: 'Début' }, { t: 'Mode' }, { t: 'Joueurs', raw: 1 }, { t: 'Durée', n: 1 }, { t: 'Manches', n: 1 }, { t: 'Fin' }],
+      liste.map(function (p) {
+        var debut = new Date(new Date(p.fin).getTime() - (p.ms || 0)).toISOString();
+        return [fmtDateTime(debut), MODES_P[p.mode] || p.mode || '?', joueursHtml(p), duree(p.ms), p.manches == null ? '' : p.manches,
+                p.raison ? FINS[p.raison] || p.raison : ''];
+      }), 'large');
+
+    // Assiduité : jours de Paris avec au moins une chose terminée.
+    var t7 = parties.tri === '7', nj = t7 ? 7 : 30;
+    var ass = d.assidus.filter(function (a) { return !t7 || a.j7; }).sort(function (a, b) {
+      return t7 ? b.j7 - a.j7 || (b.p7 + b.d7) - (a.p7 + a.d7) : b.j30 - a.j30 || (b.p30 + b.d30) - (a.p30 + a.d30);
+    });
+    var reste = ass.length - parties.limite;
+    html += carteP('Joueurs les plus assidus', 'tous types de jeu : parties, défis, défi du jour, duels · jours de Paris, aujourd\'hui compris · série = jours d\'affilée en cours',
+      boutons('pt', parties.tri, [['7', '7 jours'], ['30', '30 jours']]) +
+        (reste > 0 ? '<button type="button" data-pp="1">Afficher ' + Math.min(30, reste) + ' de plus (' + reste + ' restants)</button>' : ''),
+      [{ t: '#', n: 1 }, { t: 'Joueur', raw: 1 }, { t: 'Jours actifs', n: 1 }, { t: 'Série', n: 1 }, { t: 'Parties', n: 1 },
+       { t: 'Gagnées (30 j)', n: 1 }, { t: 'Défis', n: 1 }, { t: 'Temps', n: 1 }, { t: 'Elo', n: 1 }, { t: 'Dernière activité' }],
+      ass.slice(0, parties.limite).map(function (a, i) {
+        return [i + 1, nomHtml(a), (t7 ? a.j7 : a.j30) + '/' + nj, a.serie ? a.serie + ' j' : '', t7 ? a.p7 : a.p30,
+                a.p30 ? a.v30 + ' (' + pct(a.v30, a.p30) + ')' : '', t7 ? a.d7 : a.d30, duree((t7 ? a.min7 : a.min30) * 60000),
+                a.elo == null ? '' : a.elo, fmtDateTime(a.derniere)];
+      }), 'large');
+
+    html += tableCard('Qui joue avec qui (30 jours)', 'paires de joueurs d\'une même partie · victoires de chacun',
+      [{ t: 'Joueurs', raw: 1 }, { t: 'Parties', n: 1 }, { t: 'Victoires', n: 1 }, { t: 'Dont 24 h', n: 1 }, { t: 'Dernière' }],
+      d.paires.map(function (p) { return [nomHtml(p.a) + ' – ' + nomHtml(p.b), p.n, p.va + ' – ' + p.vb, p.n24 || '', fmtDateTime(p.derniere)]; }));
+
+    html += heuresCard('Heures de jeu (7 jours)', 'parties par heure de début',
+      d.heures.map(function (h) { return { h: h.h, hum: h.hh7, ordi: h.n7 - h.hh7 }; }),
+      [{ key: 'hum', label: 'entre joueurs', color: S1 }, { key: 'ordi', label: 'contre l\'Ordi', color: S3 }]);
+    html += heuresCard('File publique par heure (7 jours)', 'passages en file par heure d\'entrée',
+      d.heures.map(function (h) { return { h: h.h, servi: h.f7 - h.s7, seul: h.s7 }; }),
+      [{ key: 'servi', label: 'servis (adversaire ou Ordi)', color: S1 }, { key: 'seul', label: 'repartis sans jouer', color: S2 }]);
+
+    var f = d.file;
+    html += tableCard('Repartis de la file sans jouer (24 heures)',
+      f.passages + ' passages : ' + f.appariee + ' appariés, ' + f.ordi + ' avec l\'Ordi, ' + f.depart + ' départs · attente médiane avant un adversaire : ' +
+        (f.attente_ms == null ? '—' : duree(f.attente_ms)),
+      [{ t: 'Joueur', raw: 1 }, { t: 'Départs', n: 1 }, { t: 'Attente max', n: 1 }, { t: 'A joué dans la journée' }, { t: 'Dernier départ' }],
+      f.seuls.map(function (s) { return [nomHtml(s), s.n_fois, duree(s.ms), s.a_joue ? 'oui' : 'non', fmtDateTime(s.derniere)]; }));
+
+    var nv = d.nouveaux;
+    html += tableCard('Nouveaux joueurs (24 heures)', nv.comptes + ' comptes créés, dont ' + plur(nv.invites, 'invité') + ' · ' + nv.ont_joue + ' ont terminé quelque chose',
+      [{ t: 'Joueur', raw: 1 }, { t: 'Arrivée' }, { t: 'Parties', n: 1 }, { t: 'Défis', n: 1 }, { t: 'Temps', n: 1 }],
+      nv.liste.map(function (n) { return [nomHtml(n), fmtDateTime(n.inscrit), n.p, n.d, duree(n.min * 60000)]; }));
+
+    html += tableCard('Réguliers perdus de vue', 'au moins 3 jours actifs sur les deux dernières semaines, rien depuis 3 jours',
+      [{ t: 'Joueur', raw: 1 }, { t: 'Jours actifs', n: 1 }, { t: 'Dernier jour' }, { t: 'Parties (30 j)', n: 1 }, { t: 'Défis (30 j)', n: 1 }],
+      d.sommeil.map(function (s) { return [nomHtml(s), s.jours, fmtDay(s.dernier), s.p30, s.d30]; }));
+
+    el.innerHTML = html + '</div>';
+  }
+  $('parties').addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('button');
+    if (!b) return;
+    if (b.dataset.pf) parties.filtre = b.dataset.pf;
+    else if (b.dataset.pt) { parties.tri = b.dataset.pt; parties.limite = 30; }
+    else if (b.dataset.pp) parties.limite += 30;
+    else return;
+    renderParties();
+  });
+
+  // ---------- journal des joueurs (migration 101) ----------
+  // Chargé à part (RPC ramio_journal), au plus toutes les 5 minutes :
+  // tant que la fonction n'existe pas, un message discret, jamais d'erreur.
+  var journal = { data: null, filtre: 'tous', limite: 60, ouverts: {}, index: {}, charge: 0 };
+  var MODES = { public: 'publique', prive: 'privée', async: 'en différé', duel: 'duel', solo: 'contre l\'Ordi (en attendant)' };
+  var RES = { gagne: 'gagnée', perdu: 'perdue', abandon: 'abandonnée' };
+  var ISSUES = { appariee: 'appariée', ordi: 'Ordi', depart: 'départ', coupure: 'coupure' };
+  var ECRANS = { defis: 'défis', amis: 'amis', perso: 'personnalisation', progression: 'progression', regles: 'règles',
+                 profil: 'profil', classement: 'classement', boutique: 'boutique', prototypes: 'prototypes' };
+  var JALONS = { invite_essai: 'Essai invité', compte_cree: 'Compte créé', onboarding_kit: 'Kit d\'accueil choisi',
+                 compte_propose: 'Compte proposé', compte_reporte: 'Compte reporté', notif_ouverte: 'Notification ouverte',
+                 achat_kit: 'Achat de kit', maj_acceptee: 'Mise à jour acceptée', avis_demande: 'Avis demandé',
+                 partage_invite: 'Invitation partagée', partage_jour: 'Défi du jour partagé',
+                 parrainage_lien: 'Lien de parrainage partagé', parrainage_gagne: 'Parrainage enregistré' };
+
+  function loadJournal() {
+    if (!key || Date.now() - journal.charge < 300000) return;
+    journal.charge = Date.now();
+    fetch(API.replace('ramio_stats', 'ramio_journal'), {
+      method: 'POST',
+      headers: { apikey: ANON, Authorization: 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ p_key: key, p_days: 7 })
+    }).then(function (r) {
+      if (r.status === 404) return { absent: true };
+      if (!r.ok) throw new Error('erreur ' + r.status);
+      return r.json();
+    }).then(function (d) { journal.data = d; renderJournal(); })
+      .catch(function (e) { journal.data = { erreur: e.message }; journal.charge = 0; renderJournal(); });
+  }
+
+  function plur(n, mot) { return n + ' ' + mot + (n > 1 ? 's' : ''); }
+  function duree(ms) {
+    if (ms == null) return '?';
+    var s = Math.round(ms / 1000);
+    if (s < 90) return s + ' s';
+    var m = Math.round(s / 60);
+    return m < 90 ? m + ' min' : Math.floor(m / 60) + ' h ' + String(m % 60).padStart(2, '0');
+  }
+  function jourLong(d) {
+    return new Date(d + 'T12:00:00Z').toLocaleDateString('fr-FR', { weekday: 'short', day: '2-digit', month: '2-digit', timeZone: 'UTC' });
+  }
+  function resultat(r) {
+    if (!r) return '';
+    return ' · <span class="' + (r === 'gagne' ? 'ok' : r === 'abandon' ? 'ko' : '') + '">' + (RES[r] || esc(r)) + '</span>';
+  }
+  function itemHtml(i) {
+    var t;
+    if (i.k === 'partie') {
+      t = 'Partie ' + esc(MODES[i.mode] || i.mode || '?') + (i.ms != null ? ' · ' + duree(i.ms) : '') + resultat(i.res) +
+          (i.adv && i.mode !== 'solo' ? ' · contre ' + esc(i.adv) : '') + (i.fin ? ' · fin : ' + esc(i.fin) : '');
+    } else if (i.k === 'solo') {
+      t = 'Solo hors ligne' + (i.nb ? ' contre ' + plur(+i.nb, 'Ordi') : '') + (i.niv ? ' niveau ' + esc(i.niv) : '') +
+          resultat(i.res) + (i.pts != null ? ' · ' + i.pts + ' pts' : '') + (i.ms != null ? ' après ' + duree(i.ms) : '');
+    } else if (i.k === 'file') {
+      t = 'File publique · ' + duree(i.ms) + ' → ' + (ISSUES[i.issue] || 'en cours') +
+          (i.offre ? ' · Ordi proposé' + (i.refus ? ', refusé' : '') : '');
+    } else {
+      t = esc(JALONS[i.e] || i.e) + (i.l ? ' (' + esc(i.l) + ')' : '');
+    }
+    return '<li><span class="h"' + (i.ap ? ' title="heure d\'envoi, approximative"' : '') + '>' +
+           (i.ap ? '~' : '') + esc(i.h) + '</span>' + t + '</li>';
+  }
+  function resumeJour(j) {
+    var p = [], df = j.defis;
+    if (j.sessions) p.push(plur(j.sessions, 'session') + (j.duree_ms ? ' (' + duree(j.duree_ms) + ')' : ''));
+    if (df) {
+      p.push('Défis : ' + (df.reussi || 0) + ' réussis / ' + (df.debut || 0) + ' lancés' +
+             (df.abandon ? ', ' + plur(df.abandon, 'abandon') : '') + (df.indices ? ', ' + plur(df.indices, 'indice') : '') +
+             (df.temps ? ', ' + df.temps + ' au temps' : ''));
+    }
+    if (j.defis_ok) p.push('Défis réussis (compte) : ' + j.defis_ok + (j.etoiles ? ', ' + plur(j.etoiles, 'étoile') : ''));
+    var jour = j.jour_ms || j.jour_ms_srv;
+    if (jour) p.push('Défi du jour réussi en ' + duree(jour));
+    else if (j.jour_debut) p.push('Défi du jour tenté');
+    if (j.ecrans) p.push('Écrans : ' + j.ecrans.map(function (e) { return esc(ECRANS[e] || e); }).join(', '));
+    if (j.calendrier) p.push('Calendrier : case ' + j.calendrier);
+    return p.join(' · ');
+  }
+  function resumeJoueur(p, nbJours) {
+    var meta = [p.type === 'appareil' ? 'appareil' : p.invite ? 'invité' : 'compte', p.pays, p.plateforme,
+                p.build ? 'build ' + p.build : '', p.appareils ? p.appareils + ' appareils' : '',
+                p.installe ? 'installé le ' + fmtDay(p.installe) : '', p.inscrit ? 'inscrit le ' + fmtDay(p.inscrit) : '',
+                (p.jours_actifs || 0) + '/' + nbJours + ' j', p.derniere ? 'dernière activité ' + fmtDateTime(p.derniere) : '']
+      .filter(Boolean).map(esc).join(' · ');
+    return '<b>' + esc(p.nom) + '</b>' + (p.equipe ? '<span class="badge">' + esc(p.equipe) + '</span>' : '') +
+           '<span class="meta">' + meta + '</span>';
+  }
+  function corpsJoueur(p) {
+    var html = p.tronque ? '<div class="resume">' + p.tronque + ' éléments plus anciens masqués.</div>' : '';
+    (p.jours || []).forEach(function (j) {
+      var r = resumeJour(j);
+      html += '<div class="jour"><h3>' + esc(jourLong(j.d)) + '</h3>' + (r ? '<div class="resume">' + r + '</div>' : '') +
+              (j.items && j.items.length ? '<ul>' + j.items.map(itemHtml).join('') + '</ul>' : '') + '</div>';
+    });
+    return html || '<div class="empty">Vu dans l\'app, aucune activité enregistrée.</div>';
+  }
+  function renderJournal() {
+    var el = $('journal'), d = journal.data;
+    if (!d) return;
+    el.hidden = false;
+    var html = '<h2>Journal des joueurs (' + (d.jours || 7) + ' jours)</h2>';
+    if (d.absent || d.erreur) {
+      el.innerHTML = html + '<div class="empty">' + (d.absent ? 'Disponible après la migration 101.' :
+        'Indisponible pour l\'instant (' + esc(d.erreur) + ').') + '</div>';
+      return;
+    }
+    var tous = d.joueurs || [], nb = { tous: tous.length, compte: 0, appareil: 0 };
+    tous.forEach(function (p) { nb[p.type]++; });
+    var liste = journal.filtre === 'tous' ? tous : tous.filter(function (p) { return p.type === journal.filtre; });
+    html += '<div class="sub">Par dernière activité, heure de Paris ; parties placées à leur début ; « ~ » = heure d\'envoi (approximative). ' +
+            (d.rattachement ? 'Appareils rattachés fondus dans leur compte.' :
+             'Rattachement appareil-compte désactivé : un même joueur peut apparaître comme compte ET comme appareil.') + '</div>';
+    html += '<div class="filtres">' + [['tous', 'Tous'], ['compte', 'Comptes'], ['appareil', 'Appareils']].map(function (f) {
+      return '<button type="button" data-filtre="' + f[0] + '" aria-pressed="' + (journal.filtre === f[0]) + '">' + f[1] + ' (' + nb[f[0]] + ')</button>';
+    }).join('') + '</div>';
+    journal.index = {};
+    liste.slice(0, journal.limite).forEach(function (p) {
+      var k = p.type + ':' + p.id, open = !!journal.ouverts[k];
+      journal.index[k] = p;
+      html += '<details data-k="' + esc(k) + '"' + (open ? ' open' : '') + '><summary>' + resumeJoueur(p, d.jours || 7) +
+              '</summary><div class="corps">' + (open ? corpsJoueur(p) : '') + '</div></details>';
+    });
+    var reste = liste.length - journal.limite;
+    if (reste > 0) html += '<button type="button" class="plus" data-plus="1">Afficher ' + Math.min(60, reste) + ' de plus (' + reste + ' restants)</button>';
+    el.innerHTML = html;
+  }
+  $('journal').addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('button');
+    if (!b) return;
+    if (b.dataset.filtre) { journal.filtre = b.dataset.filtre; journal.limite = 60; }
+    else if (b.dataset.plus) journal.limite += 60;
+    else return;
+    renderJournal();
+  });
+  // « toggle » ne remonte pas : écoute en phase de capture. Le détail
+  // d'un joueur n'est construit qu'à la première ouverture.
+  $('journal').addEventListener('toggle', function (e) {
+    var det = e.target, k = det.dataset && det.dataset.k;
+    if (!k) return;
+    if (det.open) {
+      journal.ouverts[k] = true;
+      var corps = det.querySelector('.corps');
+      if (!corps.innerHTML && journal.index[k]) corps.innerHTML = corpsJoueur(journal.index[k]);
+    } else delete journal.ouverts[k];
+  }, true);
 
   // ---------- infobulle ----------
   var tip = $('tip');
