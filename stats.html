@@ -92,6 +92,14 @@
   .parties .large { grid-column: 1 / -1; }
   .parties .large td:nth-child(3) { white-space: normal; }
   #jetons .large td:nth-child(4) { white-space: normal; }
+  /* Onglets : un thème à la fois */
+  .onglets { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 0;
+             margin-bottom: 14px; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .onglets button[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: var(--text); font-weight: 600; }
+  @media (min-width: 760px) { .parties .moyen { grid-column: span 2; } }
+  .groupe { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--text-2); margin: 4px 0 8px; }
+  .grid { margin-bottom: 18px; }
+  .journal { margin-top: 0; }
 </style>
 </head>
 <body>
@@ -115,13 +123,44 @@
 </div>
 
 <main id="main" hidden>
-  <div class="tiles" id="tiles"></div>
-  <section class="parties" id="parties" hidden></section>
-  <section class="parties" id="jetons" hidden></section>
-  <section class="parties" id="retention" hidden></section>
-  <section class="parties" id="defis" hidden></section>
-  <div class="grid" id="charts"></div>
-  <section class="card journal" id="journal" hidden></section>
+  <nav class="onglets" id="onglets"></nav>
+  <div id="o-essentiel">
+    <div id="t-essentiel"></div>
+    <div class="parties" id="ess-retention"></div>
+    <h3 class="groupe">Trente derniers jours</h3>
+    <div class="grid" id="g-essentiel"></div>
+  </div>
+  <div id="o-acquisition" hidden>
+    <div id="t-acquisition"></div>
+    <div class="grid" id="g-acquisition"></div>
+  </div>
+  <div id="o-parties" hidden>
+    <section class="parties" id="parties" hidden></section>
+    <div id="t-parties"></div>
+    <div class="grid" id="g-parties"></div>
+  </div>
+  <div id="o-retention" hidden>
+    <section class="parties" id="retention" hidden></section>
+    <div id="t-retention"></div>
+    <div class="grid" id="g-retention"></div>
+  </div>
+  <div id="o-defis" hidden>
+    <section class="parties" id="defis" hidden></section>
+    <h3 class="groupe">Vue d'ensemble des défis</h3>
+    <div class="grid" id="g-defis"></div>
+  </div>
+  <div id="o-jetons" hidden>
+    <section class="parties" id="jetons" hidden></section>
+    <h3 class="groupe">Soldes et cosmétiques</h3>
+    <div class="grid" id="g-jetons"></div>
+  </div>
+  <div id="o-usage" hidden>
+    <div id="t-usage"></div>
+    <div class="grid" id="g-usage"></div>
+  </div>
+  <div id="o-journal" hidden>
+    <section class="card journal" id="journal" hidden></section>
+  </div>
 </main>
 <div id="tip"></div>
 
@@ -296,50 +335,55 @@
   function render(d) {
     var t = d.totals;
     var v2 = t.engaged != null;   // migration 76 passée ?
-    var tiles = [
-      ['Appareils', t.devices, t.devices_android + ' Android · ' + t.devices_ios + ' iPhone'],
-      ['Personnes engagées', v2 ? t.engaged : '—', v2 ? pct(t.engaged, t.devices) + ' des appareils · robots exclus' : 'migration 76'],
+    var T = {
+      appareils: ['Appareils', t.devices, t.devices_android + ' Android · ' + t.devices_ios + ' iPhone'],
+      engages: ['Personnes engagées', v2 ? t.engaged : '—', v2 ? pct(t.engaged, t.devices) + ' des appareils · robots exclus' : 'migration 76'],
       // Migration 88 : la tuile affiche les HUMAINS (installs moins les
       // robots des stores) ; le brut et les robots passent en sous-titre.
-      t.installs_24h_humains != null
+      installs: t.installs_24h_humains != null
         ? ['Installs 24 h (sans robots)', t.installs_24h_humains,
            t.installs_24h + ' brutes · ' + t.robots_24h + ' robots · ' + t.engaged_24h + ' joueurs']
         : ['Installs 24 h', t.installs_24h, v2 ? t.engaged_24h + ' engagées' : 'premières ouvertures'],
-      ['Actifs aujourd\'hui', t.active_today, t.active_7d + ' sur 7 jours'],
-      ['Session médiane 7 j', v2 ? fmtDur(t.session_median_s_7d) : '—', v2 ? 'p90 ' + fmtDur(t.session_p90_s_7d) + ' · ' + t.sessions_7d + ' sessions' : 'migration 76'],
-      ['En ligne', t.online_now, 'profils vus < 5 min'],
-      ['Comptes', t.accounts, t.accounts_anon + ' invités · ' + t.profiles + ' profils'],
-      ['Parties en ligne', t.games, t.games_1h + ' dans l\'heure'],
-      ['Défis résolus', t.puzzles, 'toutes difficultés'],
-      ['Attrition 14 j', v2 ? t.churned_14d : '—', 'appareils sans session depuis 14 j'],
-      ['Push activé', v2 ? t.push_users : '—', v2 ? pct(t.push_users, t.accounts) + ' des comptes' : 'migration 76'],
-      ['Amitiés', t.friendships, v2 ? t.invites_30d + ' invitations · ' + t.shares_30d + ' partages sur 30 j' : 'liens acceptés'],
-      ['Fondateurs', d.founders == null ? '—' : d.founders, d.founders == null ? 'migration 84' : 'sur 1 000 numéros · premium à vie pour les arrivées jusqu’au 15 octobre inclus'],
-      ['Parrainage', t.referrals_qualified != null ? t.referrals_qualified : '—', t.referrals_total != null ? t.referrals_total + ' filleuls · ' + t.referrals_30d + ' sur 30 j · qualifiés affichés' : 'migration 79'],
-      ['Visites du site 24 h', t.site_visits_24h, 'pages fr + en']
-    ];
-    $('tiles').innerHTML = tiles.map(function (x) {
-      return '<div class="tile"><div class="k">' + esc(x[0]) + '</div><div class="v">' + x[1] + '</div><div class="s">' + esc(x[2]) + '</div></div>';
-    }).join('');
+      actifs: ['Actifs aujourd\'hui', t.active_today, t.active_7d + ' sur 7 jours'],
+      session: ['Session médiane 7 j', v2 ? fmtDur(t.session_median_s_7d) : '—', v2 ? 'p90 ' + fmtDur(t.session_p90_s_7d) + ' · ' + t.sessions_7d + ' sessions' : 'migration 76'],
+      enLigne: ['En ligne', t.online_now, 'profils vus < 5 min'],
+      comptes: ['Comptes', t.accounts, t.accounts_anon + ' invités · ' + t.profiles + ' profils'],
+      parties: ['Parties en ligne', t.games, t.games_1h + ' dans l\'heure'],
+      defis: ['Défis résolus', t.puzzles, 'toutes difficultés'],
+      attrition: ['Attrition 14 j', v2 ? t.churned_14d : '—', 'appareils sans session depuis 14 j'],
+      push: ['Push activé', v2 ? t.push_users : '—', v2 ? pct(t.push_users, t.accounts) + ' des comptes' : 'migration 76'],
+      amities: ['Amitiés', t.friendships, v2 ? t.invites_30d + ' invitations · ' + t.shares_30d + ' partages sur 30 j' : 'liens acceptés'],
+      fondateurs: ['Fondateurs', d.founders == null ? '—' : d.founders, d.founders == null ? 'migration 84' : 'sur 1 000 numéros · premium à vie pour les arrivées jusqu’au 15 octobre inclus'],
+      parrainage: ['Parrainage', t.referrals_qualified != null ? t.referrals_qualified : '—', t.referrals_total != null ? t.referrals_total + ' filleuls · ' + t.referrals_30d + ' sur 30 j · qualifiés affichés' : 'migration 79'],
+      site: ['Visites du site 24 h', t.site_visits_24h, 'pages fr + en']
+    };
+    // Tuiles de chaque onglet, par groupes titrés.
+    $('t-essentiel').innerHTML = tuiles('Maintenant', [T.enLigne, T.actifs, T.installs, T.parties, T.site]) +
+                                 tuiles('Depuis le début', [T.appareils, T.engages, T.comptes, T.fondateurs, T.defis]);
+    $('t-acquisition').innerHTML = tuiles('Arrivées', [T.installs, T.appareils, T.engages, T.comptes, T.parrainage, T.site]);
+    $('t-parties').innerHTML = tuiles('Liens entre joueurs', [T.amities, T.parrainage]);
+    $('t-retention').innerHTML = tuiles('Appareils, joueurs ou non', [T.attrition, T.session]);
+    $('t-usage').innerHTML = tuiles('Usage', [T.session, T.push, T.enLigne]);
 
     var S1 = getComputedStyle(document.documentElement).getPropertyValue('--s1').trim();
     var S2 = getComputedStyle(document.documentElement).getPropertyValue('--s2').trim();
     var S3 = getComputedStyle(document.documentElement).getPropertyValue('--s3').trim();
     var plat = [{ key: 'android', label: 'Android', color: S1 }, { key: 'ios', label: 'iPhone', color: S2 }];
-    var html = '';
-    html += chartCard('Installations par jour', 'premières ouvertures, 30 jours', byDay(d.installs_by_day, ['android', 'ios'], 30), plat);
-    html += chartCard('Appareils actifs par jour', 'au moins une session', byDay(d.active_by_day, ['android', 'ios'], 30), plat);
-    html += chartCard('Parties en ligne par jour', 'parties terminées sur le serveur', byDay(d.games_by_day, ['games'], 30), [{ key: 'games', label: 'parties', color: S1 }]);
-    html += chartCard('Défi du jour', 'joueurs ayant rendu un temps', byDay(d.daily_by_day, ['players'], 30), [{ key: 'players', label: 'joueurs', color: S3 }]);
-    html += chartCard('Défis résolus par jour', 'parcours, toutes difficultés', byDay(d.puzzles_by_day, ['solved'], 30), [{ key: 'solved', label: 'défis', color: S3 }]);
-    html += chartCard('Site : visites et clics store', 'pages fr + en', byDay(d.site_by_day, ['visits', 'clicks'], 30),
+    // Cartes de chaque onglet.
+    var B = { essentiel: '', acquisition: '', parties: '', retention: '', defis: '', jetons: '', usage: '' };
+    B.essentiel += chartCard('Installations par jour', 'premières ouvertures, 30 jours', byDay(d.installs_by_day, ['android', 'ios'], 30), plat);
+    B.essentiel += chartCard('Appareils actifs par jour', 'au moins une session', byDay(d.active_by_day, ['android', 'ios'], 30), plat);
+    B.essentiel += chartCard('Parties en ligne par jour', 'parties terminées sur le serveur', byDay(d.games_by_day, ['games'], 30), [{ key: 'games', label: 'parties', color: S1 }]);
+    B.defis += chartCard('Défi du jour', 'joueurs ayant rendu un temps', byDay(d.daily_by_day, ['players'], 30), [{ key: 'players', label: 'joueurs', color: S3 }]);
+    B.defis += chartCard('Défis résolus par jour', 'parcours, toutes difficultés', byDay(d.puzzles_by_day, ['solved'], 30), [{ key: 'solved', label: 'défis', color: S3 }]);
+    B.acquisition += chartCard('Site : visites et clics store', 'pages fr + en', byDay(d.site_by_day, ['visits', 'clicks'], 30),
                       [{ key: 'visits', label: 'visites', color: S1 }, { key: 'clicks', label: 'clics store', color: S3 }]);
 
     // Défi web : « Lancé » et « Résolu » comptent les parties dans le
     // navigateur, « Vers l'app » les clics sur « Installer l'app » de
     // l'écran de victoire (migration 87). Un canal de défi n'a aucune
     // visite de site : on entre droit sur la page du défi.
-    html += tableCard('Site : d\'où viennent les visiteurs', '14 derniers jours, par canal ?src=',
+    B.acquisition += tableCard('Site : d\'où viennent les visiteurs', '14 derniers jours, par canal ?src=',
       [{ t: 'Canal' }, { t: 'Page' }, { t: 'Visites', n: 1 }, { t: 'Play', n: 1 }, { t: 'TestFlight', n: 1 },
        { t: 'Défi lancé', n: 1 }, { t: 'Résolu', n: 1 }, { t: 'Vers l\'app', n: 1 }],
       d.site_by_src.map(function (r) {
@@ -350,62 +394,51 @@
                  ['onboarding_kit', 'Kit d\'accueil choisi'], ['premier_defi', 'Premier défi'], ['premiere_ligne', 'Première ligne en ligne'],
                  ['deuxieme_partie', 'Deuxième partie'], ['cinquieme_partie', 'Cinquième partie']];
     var fmax = Math.max.apply(null, steps.map(function (s) { return d.funnel_7d[s[0]] || 0; }).concat([1]));
-    html += tableCard('Entonnoir (7 jours)', 'appareils distincts ayant atteint chaque étape',
+    B.acquisition += tableCard('Entonnoir (7 jours)', 'appareils distincts ayant atteint chaque étape',
       [{ t: 'Étape' }, { t: '', raw: 1 }, { t: 'Appareils', n: 1 }],
       steps.map(function (s) {
         var v = d.funnel_7d[s[0]] || 0;
         return [s[1], '<div class="bar" style="width:' + Math.round(100 * v / fmax) + '%"></div>', v];
       }), 'funnel');
 
-    html += tableCard('Rétention par semaine d\'arrivée', 'D1 = revenu le lendemain · S1 = revenu dans les 7 jours',
+    // La rétention des JOUEURS (a rejoué) a sa section, ramio_retention ;
+    // ici, tous les appareils, joueurs ou non (a rouvert l'app).
+    B.retention += tableCard('Retour dans l\'app par semaine d\'installation', 'tous les appareils, joueurs ou non · D1 = a rouvert l\'app le lendemain · S1 = dans les 7 jours',
       [{ t: 'Semaine du' }, { t: 'Nouveaux', n: 1 }, { t: 'D1', n: 1 }, { t: 'S1', n: 1 }],
       d.retention.map(function (r) { return [fmtDay(r.week), r.n, pct(r.d1, r.n_d1), pct(r.w1, r.n_w1)]; }));
-    // Migration 89 : la même chose sur les HUMAINS (invité, compte ou jeu)
-    // et les JOUEURS (au moins un événement de jeu) ; D1/S1 = a REJOUÉ.
-    if (d.retention_joueurs) {
-      html += tableCard('Rétention des joueurs par semaine d\'arrivée', 'humains = invité, compte ou jeu · joueurs = au moins une partie ou un défi · D1/S1 = ont rejoué le lendemain / dans les 7 jours',
-        [{ t: 'Semaine du' }, { t: 'Humains', n: 1 }, { t: 'Joueurs', n: 1 }, { t: 'D1 joueurs', n: 1 }, { t: 'S1 joueurs', n: 1 }],
-        d.retention_joueurs.map(function (r) {
-          return [fmtDay(r.week), r.humains, r.joueurs,
-                  pct(r.d1, r.n_d1) + ' (' + r.d1 + '/' + r.n_d1 + ')',
-                  pct(r.w1, r.n_w1) + ' (' + r.w1 + '/' + r.n_w1 + ')'];
-        }));
-    }
 
     var modes = Object.keys(d.games_by_mode_30d).map(function (m) { return [m, d.games_by_mode_30d[m]]; }).sort(function (a, b) { return b[1] - a[1]; });
-    html += tableCard('Parties par mode (30 jours)', 'parties distinctes', [{ t: 'Mode' }, { t: 'Parties', n: 1 }], modes);
+    B.parties += tableCard('Parties par mode (30 jours)', 'parties distinctes', [{ t: 'Mode' }, { t: 'Parties', n: 1 }], modes);
 
-    html += tableCard('Dernières installations', 'heure de Paris', [{ t: 'Quand' }, { t: 'Plateforme' }, { t: 'Build', n: 1 }, { t: 'Engagé' }],
+    B.acquisition += tableCard('Dernières installations', 'heure de Paris', [{ t: 'Quand' }, { t: 'Plateforme' }, { t: 'Build', n: 1 }, { t: 'Engagé' }],
       d.recent_installs.map(function (r) {
         // Migration 88 : robot du store signalé dans la colonne « engagée ».
         var e = r.robot ? 'robot' : (r.engaged == null ? '' : (r.engaged ? 'oui' : 'non'));
         return [fmtDateTime(r.at), r.platform + (r.country ? ' ' + r.country : ''), r.build, e];
       }));
-    html += tableCard('Dernières parties en ligne', 'heure de Paris', [{ t: 'Fin' }, { t: 'Mode' }, { t: 'Joueurs', n: 1 }, { t: 'Minutes', n: 1 }, { t: 'Motif' }],
-      d.recent_games.map(function (r) { return [fmtDateTime(r.at), r.mode, r.players, r.minutes, r.reason || '']; }));
-    html += tableCard('Dernières visites du site', 'heure de Paris', [{ t: 'Quand' }, { t: 'Type' }, { t: 'Canal' }, { t: 'Page' }, { t: 'Origine' }],
+    B.acquisition += tableCard('Dernières visites du site', 'heure de Paris', [{ t: 'Quand' }, { t: 'Type' }, { t: 'Canal' }, { t: 'Page' }, { t: 'Origine' }],
       d.recent_site.map(function (r) { return [fmtDateTime(r.at), r.kind, r.src || '(direct)', r.lang, r.ref || '']; }));
 
     if (v2) {
-      html += chartCard('Personnes engagées par jour d\'arrivée', 'appareils ayant joué, sans les robots Play',
+      B.acquisition += chartCard('Personnes engagées par jour d\'arrivée', 'appareils ayant joué, sans les robots Play',
         byDay(d.installs_by_day, ['humans', 'engaged'], 30),
         [{ key: 'humans', label: 'sans robots', color: S2 }, { key: 'engaged', label: 'joueurs', color: S3 }]);
-      html += chartCard('Durée médiane de session', 'secondes, par jour', byDay(d.session_by_day, ['median_s'], 30),
+      B.usage += chartCard('Durée médiane de session', 'secondes, par jour', byDay(d.session_by_day, ['median_s'], 30),
         [{ key: 'median_s', label: 'médiane (s)', color: S1 }]);
 
-      html += tableCard('Défis par niveau (30 jours)', 'débuts, réussites, abandons, temps médian, étoiles · indices utilisés : ' + d.hints_30d,
+      B.defis += tableCard('Défis par niveau (30 jours)', 'débuts, réussites, abandons, temps médian, étoiles · indices utilisés : ' + d.hints_30d,
         [{ t: 'Niveau' }, { t: 'Débuts', n: 1 }, { t: 'Réussis', n: 1 }, { t: 'Abandons', n: 1 }, { t: 'Abandon', n: 1 }, { t: 'Médiane', n: 1 }, { t: 'Étoiles', n: 1 }],
         d.puzzles_by_level_30d.map(function (r) {
           return [r.level, r.starts, r.wins, r.abandons, pct(r.abandons, r.starts), fmtDur(r.median_s), r.stars == null ? '—' : r.stars];
         }));
 
       var dj = d.daily_30d, as = dj.assiduite_7j;
-      html += tableCard('Défi du jour (30 jours)', dj.players + ' joueurs · réussite ' + pct(dj.wins, dj.starts) + ' (' + dj.wins + '/' + dj.starts + ' lancements)',
+      B.defis += tableCard('Défi du jour (30 jours)', dj.players + ' joueurs · réussite ' + pct(dj.wins, dj.starts) + ' (' + dj.wins + '/' + dj.starts + ' lancements)',
         [{ t: 'Assiduité sur les 7 derniers jours' }, { t: 'Joueurs', n: 1 }],
         [['7 jours sur 7', as.tous_les_jours], ['4 à 6 jours', as.quatre_a_six], ['1 à 3 jours', as.un_a_trois]]);
 
       var gq = d.games_quality_30d;
-      html += tableCard('Qualité des parties en ligne (30 jours)', gq.games + ' parties · ' + gq.avg_minutes + ' min en moyenne · ' + gq.avg_rounds + ' manches',
+      B.parties += tableCard('Qualité des parties en ligne (30 jours)', gq.games + ' parties · ' + gq.avg_minutes + ' min en moyenne · ' + gq.avg_rounds + ' manches',
         [{ t: 'Mesure' }, { t: 'Valeur', n: 1 }],
         [['Départs anticipés (lignes joueur)', gq.left_early + ' / ' + gq.rows + ' (' + pct(gq.left_early, gq.rows) + ')'],
          ['Temps épuisés', gq.timeouts],
@@ -419,52 +452,81 @@
 
       var screenNames = { ecran_defis: 'Défis', ecran_perso: 'Personnalisation', ecran_classement: 'Classement', ecran_profil: 'Profil',
                           ecran_progression: 'Progression', ecran_amis: 'Amis', ecran_regles: 'Règles', ecran_prototypes: 'Prototypes' };
-      html += tableCard('Écrans ouverts (30 jours)', 'appareils distincts', [{ t: 'Écran' }, { t: 'Appareils', n: 1 }], kv(d.screens_30d, screenNames));
+      B.usage += tableCard('Écrans ouverts (30 jours)', 'appareils distincts', [{ t: 'Écran' }, { t: 'Appareils', n: 1 }], kv(d.screens_30d, screenNames));
 
-      html += tableCard('Builds actives (7 jours)', 'mises à jour proposées : ' + d.updates_30d.proposed + ' · acceptées : ' + d.updates_30d.accepted + ' (30 j)',
+      B.usage += tableCard('Builds actives (7 jours)', 'mises à jour proposées : ' + d.updates_30d.proposed + ' · acceptées : ' + d.updates_30d.accepted + ' (30 j)',
         [{ t: 'Build' }, { t: 'Appareils', n: 1 }], d.builds_7d.map(function (r) { return [r.build, r.devices]; }));
 
       var ec = d.economy;
-      html += tableCard('Économie', ec.players + ' progressions',
+      B.jetons += tableCard('Économie', ec.players + ' progressions',
         [{ t: 'Mesure' }, { t: 'Valeur', n: 1 }],
         [['Jetons en circulation', ec.jetons_total], ['Jetons médians par joueur', Math.round(ec.jetons_median)],
          ['Cosmétiques possédés (moyenne)', ec.cosmetics_avg], ['Joueurs avec au moins un kit', ec.with_kit],
          ['Indices utilisés (30 j)', d.hints_30d]]);
 
-      html += tableCard('Invitations (30 jours)', 'par genre · ' + d.totals.invites_total + ' depuis le début',
+      B.parties += tableCard('Invitations (30 jours)', 'par genre · ' + d.totals.invites_total + ' depuis le début',
         [{ t: 'Genre' }, { t: 'Envoyées', n: 1 }], kv(d.social_30d, { rami: 'partie directe', puzzle: 'duel', async: 'en différé' }));
     }
     if (d.cosmetics) {   // migration 83 (release 70)
       var co = d.cosmetics;
       var premium = { 'cap-au-nord': 800, 'art-deco': 600, 'desert-de-sable': 600, 'foret-equatoriale': 500 };
       var own = kv(co.kits_owned).map(function (x) { return [x[0] + (premium[x[0]] ? ' (premium ' + premium[x[0]] + ' jetons)' : ''), x[1]]; });
-      html += tableCard('Kits possédés', 'progressions, invités compris · un kit premium n\'entre ici que par achat', [{ t: 'Kit' }, { t: 'Joueurs', n: 1 }], own);
-      html += tableCard('Achats de kits (30 jours)', 'événement achat_kit · ' + co.boutique_30d + ' appareils ont ouvert l\'aperçu d\'un kit premium',
+      B.jetons += tableCard('Kits possédés', 'progressions, invités compris · un kit premium n\'entre ici que par achat', [{ t: 'Kit' }, { t: 'Joueurs', n: 1 }], own);
+      B.jetons += tableCard('Achats de kits (30 jours)', 'événement achat_kit · ' + co.boutique_30d + ' appareils ont ouvert l\'aperçu d\'un kit premium',
         [{ t: 'Jour' }, { t: 'Kit' }, { t: 'Prix', n: 1 }, { t: 'Achats', n: 1 }],
         co.achats_30d.map(function (r) { return [r.day, r.kit, r.prix, r.n]; }));
-      html += tableCard('Kits portés', 'vitrine des profils vus depuis 30 jours (comptes complets)', [{ t: 'Kit' }, { t: 'Profils', n: 1 }], kv(co.kits_worn));
-      html += tableCard('Dos de carte portés', 'kit:variante · profils vus depuis 30 jours', [{ t: 'Dos' }, { t: 'Profils', n: 1 }], kv(co.dos_worn));
-      html += tableCard('Avatars portés', 'profils vus depuis 30 jours', [{ t: 'Avatar' }, { t: 'Profils', n: 1 }], kv(co.avatars_worn));
-      html += tableCard('Cadres d\'avatar portés', 'auto = suit le kit · profils vus depuis 30 jours', [{ t: 'Cadre' }, { t: 'Profils', n: 1 }], kv(co.cadres_worn));
+      B.jetons += tableCard('Kits portés', 'vitrine des profils vus depuis 30 jours (comptes complets)', [{ t: 'Kit' }, { t: 'Profils', n: 1 }], kv(co.kits_worn));
+      B.jetons += tableCard('Dos de carte portés', 'kit:variante · profils vus depuis 30 jours', [{ t: 'Dos' }, { t: 'Profils', n: 1 }], kv(co.dos_worn));
+      B.jetons += tableCard('Avatars portés', 'profils vus depuis 30 jours', [{ t: 'Avatar' }, { t: 'Profils', n: 1 }], kv(co.avatars_worn));
+      B.jetons += tableCard('Cadres d\'avatar portés', 'auto = suit le kit · profils vus depuis 30 jours', [{ t: 'Cadre' }, { t: 'Profils', n: 1 }], kv(co.cadres_worn));
       var choixNoms = { choix_kit: 'Kit', choix_dos: 'Dos (kit:variante)', choix_avatar: 'Avatar', choix_cadre: 'Cadre' };
       Object.keys(choixNoms).forEach(function (k) {
-        if (co.choix_30d[k]) html += tableCard('Choix : ' + choixNoms[k] + ' (30 jours)', 'appareils distincts ayant choisi, invités compris', [{ t: 'Choix' }, { t: 'Appareils', n: 1 }], kv(co.choix_30d[k]));
+        if (co.choix_30d[k]) B.jetons += tableCard('Choix : ' + choixNoms[k] + ' (30 jours)', 'appareils distincts ayant choisi, invités compris', [{ t: 'Choix' }, { t: 'Appareils', n: 1 }], kv(co.choix_30d[k]));
       });
     }
     if (d.locales) {   // migration 77 (release 66)
-      html += tableCard('Langues des appareils', 'réglage de l\'appareil · « ? » = build antérieure à la 66',
+      B.acquisition += tableCard('Langues des appareils', 'réglage de l\'appareil · « ? » = build antérieure à la 66',
         [{ t: 'Langue' }, { t: 'Appareils', n: 1 }, { t: 'Engagés', n: 1 }],
         d.locales.map(function (r) { return [r.locale, r.devices, r.engaged]; }));
-      html += tableCard('Pays des appareils', 'réglage de l\'appareil, pas une géolocalisation',
+      B.acquisition += tableCard('Pays des appareils', 'réglage de l\'appareil, pas une géolocalisation',
         [{ t: 'Pays' }, { t: 'Appareils', n: 1 }, { t: 'Engagés', n: 1 }],
         d.countries.map(function (r) { return [r.country, r.devices, r.engaged]; }));
-      html += tableCard('Sources d\'installation Android (30 jours)', 'référent Google Play (utm_source) · iPhone n\'en a pas',
+      B.acquisition += tableCard('Sources d\'installation Android (30 jours)', 'référent Google Play (utm_source) · iPhone n\'en a pas',
         [{ t: 'Source' }, { t: 'Installs', n: 1 }, { t: 'Engagés', n: 1 }],
         d.referrers_30d.map(function (r) { return [r.source, r.devices, r.engaged]; }));
     }
 
-    $('charts').innerHTML = html;
+    Object.keys(B).forEach(function (o) { $('g-' + o).innerHTML = B[o]; });
   }
+  function tuiles(titre, liste) {
+    return '<h3 class="groupe">' + esc(titre) + '</h3><div class="tiles">' + liste.map(function (x) {
+      return '<div class="tile"><div class="k">' + esc(x[0]) + '</div><div class="v">' + x[1] + '</div><div class="s">' + esc(x[2]) + '</div></div>';
+    }).join('') + '</div>';
+  }
+
+  // ---------- onglets ----------
+  // Un thème par onglet ; le dernier ouvert est retenu dans ce navigateur.
+  var ONGLETS = [['essentiel', 'L\'essentiel'], ['acquisition', 'Acquisition'], ['parties', 'Parties et joueurs'], ['retention', 'Rétention'],
+                 ['defis', 'Défis'], ['jetons', 'Jetons et cosmétiques'], ['usage', 'Usage de l\'app'], ['journal', 'Journal des joueurs']];
+  var onglet = 'essentiel';
+  try { onglet = localStorage.getItem('ramio-stats-onglet') || onglet; } catch (e) {}
+  $('onglets').innerHTML = ONGLETS.map(function (o) {
+    return '<button type="button" id="b-' + o[0] + '" data-o="' + o[0] + '">' + esc(o[1]) + '</button>';
+  }).join('');
+  function montrer(o) {
+    if (!ONGLETS.some(function (x) { return x[0] === o; })) o = 'essentiel';
+    onglet = o;
+    try { localStorage.setItem('ramio-stats-onglet', o); } catch (e) {}
+    ONGLETS.forEach(function (x) {
+      $('o-' + x[0]).hidden = x[0] !== o;
+      $('b-' + x[0]).setAttribute('aria-pressed', x[0] === o);
+    });
+  }
+  $('onglets').addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('button');
+    if (b && b.dataset.o) { montrer(b.dataset.o); window.scrollTo(0, 0); }
+  });
+  montrer(onglet);
 
   // ---------- parties et joueurs (migration 114) ----------
   // Chargé à part (RPC ramio_parties), au plus toutes les 5 minutes.
@@ -666,10 +728,10 @@
 
     html += tableCard('Dépenses par motif', 'ce que les joueurs achètent avec leurs jetons',
       [{ t: 'Motif' }, { t: 'Dépenses', n: 1 }, { t: 'Joueurs', n: 1 }, { t: 'Jetons', n: 1 }],
-      d.depenses.map(function (r) { return [motif(r.quoi), r.n, r.joueurs, r.total]; }));
+      d.depenses.map(function (r) { return [motif(r.quoi), r.n, r.joueurs, r.total]; }), 'moyen');
     html += tableCard('Gains par source', 'd\'où viennent les jetons',
       [{ t: 'Source' }, { t: 'Versements', n: 1 }, { t: 'Joueurs', n: 1 }, { t: 'Jetons', n: 1 }],
-      d.gains.map(function (r) { return [SOURCES[r.quoi] || r.quoi, r.n, r.joueurs, r.total]; }));
+      d.gains.map(function (r) { return [SOURCES[r.quoi] || r.quoi, r.n, r.joueurs, r.total]; }), 'moyen');
 
     var reste = d.joueurs.length - jetons.limite;
     html += carteP('Qui dépense, et pour quoi', 'du plus dépensier au moins dépensier · entre parenthèses, le nombre de fois',
@@ -684,13 +746,13 @@
     if (d.insuffisants) {
       html += tableCard('Achats manqués faute de jetons', 'le joueur a voulu acheter, il lui manquait des jetons · par appareil, build 85 et suivantes',
         [{ t: 'Motif' }, { t: 'Fois', n: 1 }, { t: 'Appareils', n: 1 }, { t: 'Manque médian', n: 1 }],
-        d.insuffisants.map(function (r) { return [motif(r.quoi), r.n, r.appareils, r.manque == null ? '' : Math.round(r.manque)]; }));
+        d.insuffisants.map(function (r) { return [motif(r.quoi), r.n, r.appareils, r.manque == null ? '' : Math.round(r.manque)]; }), 'moyen');
       var a = d.analyse;
       html += tableCard('Analyse de partie : de la partie au paiement', 'appareils distincts sur 30 jours, build 85 et suivantes',
         [{ t: 'Étape' }, { t: 'Appareils', n: 1 }, { t: 'De l\'étape d\'avant', n: 1 }],
         [['Ont terminé une partie', a.parties, ''], ['Ont ouvert l\'analyse (bilan gratuit)', a.ouverte, pct(a.ouverte, a.parties)],
          ['Ont demandé le détail payant', a.demande, pct(a.demande, a.ouverte)], ['L\'ont payé', a.paye, pct(a.paye, a.demande)],
-         ['N\'avaient pas assez de jetons', a.insuffisant, pct(a.insuffisant, a.demande)]]);
+         ['N\'avaient pas assez de jetons', a.insuffisant, pct(a.insuffisant, a.demande)]], 'moyen');
     }
 
     el.innerHTML = html + '</div>';
@@ -752,6 +814,8 @@
       ['Encore là après J7', pct(g.d7p, g.n_d7), g.d7p + '/' + g.n_d7],
       ['Encore là après J30', pct(g.d30p, g.n_d30), g.d30p + '/' + g.n_d30]
     ];
+    // Rappel des trois taux dans « L'essentiel ».
+    $('ess-retention').innerHTML = tuiles('Rétention des joueurs (détail dans l\'onglet Rétention)', tiles.slice(0, 3));
     html += '<div class="tiles">' + tiles.map(function (x) {
       return '<div class="tile"><div class="k">' + esc(x[0]) + '</div><div class="v">' + x[1] + '</div><div class="s">' + esc(x[2]) + '</div></div>';
     }).join('') + '</div><div class="grid">';
@@ -778,7 +842,7 @@
     var s = d.series;
     html += tableCard('Séries du défi du jour rompues', 'séries d\'au moins 3 jours, rompues depuis 8 à 90 jours · retour dans la semaine qui suit le jour manqué',
       [{ t: 'Longueur (jours)' }, { t: 'Séries', n: 1 }, { t: 'A refait un défi du jour', n: 1 }, { t: 'A rejoué à quelque chose', n: 1 }],
-      s.rompues.map(function (r) { return [r.tranche, r.n_series, part(r.retour_defi, r.n_series), part(r.retour_jeu, r.n_series)]; }));
+      s.rompues.map(function (r) { return [r.tranche, r.n_series, part(r.retour_defi, r.n_series), part(r.retour_jeu, r.n_series)]; }), 'moyen');
     var ordre = ['1 ou 2', '3 à 6', '7 à 13', '14 et plus'];
     var rat = kv(s.rattrapages, { gel_offert: 'gel offert', gel_achete: 'gel acheté', gel_flamme: 'gel de la flamme' });
     html += tableCard('Séries du défi du jour en cours', 'joueurs ayant réussi le défi aujourd\'hui ou hier · jours rattrapés au calendrier (30 j) : ' +
@@ -848,7 +912,7 @@
         l.forEach(function (x) { lances += x.lances || 0; abandons += x.abandons || 0; });
         return [p, l.length, chrono(mediane(l.map(function (x) { return x.ref; }))), chrono(mediane(l.map(function (x) { return x.med; }))),
                 fois(mediane(l.map(rapport))), pct(abandons, lances)];
-      }));
+      }), 'moyen');
 
     html += tableCard('Défi du jour', 'un défi par ligne, du plus récent au plus ancien · première réussite de chaque appareil',
       [{ t: 'Jour' }, { t: 'Défi' }, { t: 'Palier', n: 1 }, { t: 'Lancés', n: 1 }, { t: 'Réussis', n: 1 }, { t: 'Référence', n: 1 }, { t: 'Médiane', n: 1 },
