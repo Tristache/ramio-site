@@ -91,6 +91,7 @@
   .parties > .sub { font-size: 12px; color: var(--text-2); margin-bottom: 10px; }
   .parties .large { grid-column: 1 / -1; }
   .parties .large td:nth-child(3) { white-space: normal; }
+  #jetons .large td:nth-child(4) { white-space: normal; }
 </style>
 </head>
 <body>
@@ -116,6 +117,9 @@
 <main id="main" hidden>
   <div class="tiles" id="tiles"></div>
   <section class="parties" id="parties" hidden></section>
+  <section class="parties" id="jetons" hidden></section>
+  <section class="parties" id="retention" hidden></section>
+  <section class="parties" id="defis" hidden></section>
   <div class="grid" id="charts"></div>
   <section class="card journal" id="journal" hidden></section>
 </main>
@@ -142,7 +146,7 @@
     key = $('key').value.trim();
     if (!key) return;
     try { localStorage.setItem('ramio-stats-key', key); } catch (e) {}
-    journal.charge = 0; parties.charge = 0;
+    journal.charge = 0; parties.charge = 0; jetons.charge = 0; retention.charge = 0; defis.charge = 0;
     load();
   };
   $('key').addEventListener('keydown', function (e) { if (e.key === 'Enter') $('enter').click(); });
@@ -150,7 +154,7 @@
     key = ''; try { localStorage.removeItem('ramio-stats-key'); } catch (e) {}
     showGate('');
   };
-  $('refresh').onclick = function () { journal.charge = 0; parties.charge = 0; load(); };
+  $('refresh').onclick = function () { journal.charge = 0; parties.charge = 0; jetons.charge = 0; retention.charge = 0; defis.charge = 0; load(); };
   $('auto').onclick = function () {
     auto = !auto; $('auto').textContent = auto ? 'Auto : 60 s' : 'Auto : off';
     schedule();
@@ -166,6 +170,9 @@
     $('updated').textContent = 'chargement…';
     loadJournal();
     loadParties();
+    loadJetons();
+    loadRetention();
+    loadDefis();
     fetch(API, {
       method: 'POST',
       headers: { apikey: ANON, Authorization: 'Bearer ' + ANON, 'Content-Type': 'application/json' },
@@ -307,7 +314,7 @@
       ['Attrition 14 j', v2 ? t.churned_14d : '—', 'appareils sans session depuis 14 j'],
       ['Push activé', v2 ? t.push_users : '—', v2 ? pct(t.push_users, t.accounts) + ' des comptes' : 'migration 76'],
       ['Amitiés', t.friendships, v2 ? t.invites_30d + ' invitations · ' + t.shares_30d + ' partages sur 30 j' : 'liens acceptés'],
-      ['Fondateurs', d.founders == null ? '—' : d.founders, d.founders == null ? 'migration 84' : 'sur 1 000 comptes, jusqu’au 8 octobre'],
+      ['Fondateurs', d.founders == null ? '—' : d.founders, d.founders == null ? 'migration 84' : 'sur 1 000 numéros · premium à vie pour les arrivées jusqu’au 15 octobre inclus'],
       ['Parrainage', t.referrals_qualified != null ? t.referrals_qualified : '—', t.referrals_total != null ? t.referrals_total + ' filleuls · ' + t.referrals_30d + ' sur 30 j · qualifiés affichés' : 'migration 79'],
       ['Visites du site 24 h', t.site_visits_24h, 'pages fr + en']
     ];
@@ -605,6 +612,281 @@
     else if (b.dataset.pp) parties.limite += 30;
     else return;
     renderParties();
+  });
+
+  // ---------- jetons (migration 115) ----------
+  // Chargé à part (RPC ramio_jetons), au plus toutes les 5 minutes.
+  // « quoi » = motif donné par l'app (build >= 85), sinon la fonction
+  // SQL à l'origine de la variation.
+  var jetons = { data: null, charge: 0, limite: 30 };
+  var MOTIFS = { 'analyse-partie': 'Analyse de partie', indice: 'Indice', 'saut-defi': 'Saut de défi', 'chrono-adouci': 'Chrono adouci',
+                 autre: 'Autre', spend_jetons: 'Sans motif (build 84 ou antérieure)', calendrier_sync: 'Calendrier (rattrapage ou gel)',
+                 buy_xp_boost: 'Booster d\'XP', serveur: 'Serveur' };
+  var SOURCES = { claim_offline_progress: 'Défis, solo, chapitres, défi du jour', serveur: 'Parties en ligne', calendrier_sync: 'Calendrier',
+                  claim_level_jetons: 'Paliers de niveau', claim_daily_badges: 'Badges du défi du jour', claim_vague2_badges: 'Badges',
+                  claim_referral_step: 'Parrainage', qualify_referral: 'Parrainage (filleul)' };
+  function motif(q) { return MOTIFS[q] || (q.indexOf('kit:') === 0 ? 'Kit ' + q.slice(4) : q); }
+
+  function loadJetons() {
+    if (!key || Date.now() - jetons.charge < 300000) return;
+    jetons.charge = Date.now();
+    fetch(API.replace('ramio_stats', 'ramio_jetons'), {
+      method: 'POST',
+      headers: { apikey: ANON, Authorization: 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ p_key: key })
+    }).then(function (r) {
+      if (r.status === 404) return { absent: true };
+      if (!r.ok) throw new Error('erreur ' + r.status);
+      return r.json();
+    }).then(function (d) { jetons.data = d; renderJetons(); })
+      .catch(function (e) { jetons.data = { erreur: e.message }; jetons.charge = 0; renderJetons(); });
+  }
+
+  function renderJetons() {
+    var el = $('jetons'), d = jetons.data;
+    if (!d) return;
+    el.hidden = false;
+    var html = '<h2>Jetons</h2>';
+    if (d.absent || d.erreur) {
+      el.innerHTML = html + '<div class="empty">' + (d.absent ? 'Disponible après la migration 115.' :
+        'Indisponible pour l\'instant (' + esc(d.erreur) + ').') + '</div>';
+      return;
+    }
+    var t = d.totaux;
+    html += '<div class="sub">30 jours de Paris, comptes et invités' + (d.depuis ? ' · journal ouvert le ' + fmtDateTime(d.depuis) + ', rien avant' : '') +
+            ' · le motif d\'une dépense n\'est connu qu\'à partir de la build 85.</div>';
+    var tiles = [
+      ['Jetons gagnés', t.gagnes, plur(t.joueurs_gain, 'joueur')],
+      ['Jetons dépensés', t.depenses, pct(t.depenses, t.gagnes) + ' des gains'],
+      ['Joueurs qui dépensent', t.joueurs_depense, pct(t.joueurs_depense, t.joueurs_gain) + ' de ceux qui gagnent']
+    ];
+    html += '<div class="tiles">' + tiles.map(function (x) {
+      return '<div class="tile"><div class="k">' + esc(x[0]) + '</div><div class="v">' + x[1] + '</div><div class="s">' + esc(x[2]) + '</div></div>';
+    }).join('') + '</div><div class="grid">';
+
+    html += tableCard('Dépenses par motif', 'ce que les joueurs achètent avec leurs jetons',
+      [{ t: 'Motif' }, { t: 'Dépenses', n: 1 }, { t: 'Joueurs', n: 1 }, { t: 'Jetons', n: 1 }],
+      d.depenses.map(function (r) { return [motif(r.quoi), r.n, r.joueurs, r.total]; }));
+    html += tableCard('Gains par source', 'd\'où viennent les jetons',
+      [{ t: 'Source' }, { t: 'Versements', n: 1 }, { t: 'Joueurs', n: 1 }, { t: 'Jetons', n: 1 }],
+      d.gains.map(function (r) { return [SOURCES[r.quoi] || r.quoi, r.n, r.joueurs, r.total]; }));
+
+    var reste = d.joueurs.length - jetons.limite;
+    html += carteP('Qui dépense, et pour quoi', 'du plus dépensier au moins dépensier · entre parenthèses, le nombre de fois',
+      reste > 0 ? '<button type="button" data-jp="1">Afficher ' + Math.min(30, reste) + ' de plus (' + reste + ' restants)</button>' : '',
+      [{ t: '#', n: 1 }, { t: 'Joueur', raw: 1 }, { t: 'Dépensé', n: 1 }, { t: 'Détail' }, { t: 'Gagné', n: 1 }, { t: 'Solde', n: 1 }, { t: 'Dernière dépense' }],
+      d.joueurs.slice(0, jetons.limite).map(function (j, i) {
+        var detail = kv(j.detail).map(function (x) { return motif(x[0]) + ' (' + x[1] + ')'; }).join(', ');
+        return [i + 1, nomHtml(j), j.dep, detail, j.gag, j.solde == null ? '' : j.solde, fmtDateTime(j.derniere)];
+      }), 'large');
+
+    // Migration 116, build 85 : achats manqués et analyse de partie.
+    if (d.insuffisants) {
+      html += tableCard('Achats manqués faute de jetons', 'le joueur a voulu acheter, il lui manquait des jetons · par appareil, build 85 et suivantes',
+        [{ t: 'Motif' }, { t: 'Fois', n: 1 }, { t: 'Appareils', n: 1 }, { t: 'Manque médian', n: 1 }],
+        d.insuffisants.map(function (r) { return [motif(r.quoi), r.n, r.appareils, r.manque == null ? '' : Math.round(r.manque)]; }));
+      var a = d.analyse;
+      html += tableCard('Analyse de partie : de la partie au paiement', 'appareils distincts sur 30 jours, build 85 et suivantes',
+        [{ t: 'Étape' }, { t: 'Appareils', n: 1 }, { t: 'De l\'étape d\'avant', n: 1 }],
+        [['Ont terminé une partie', a.parties, ''], ['Ont ouvert l\'analyse (bilan gratuit)', a.ouverte, pct(a.ouverte, a.parties)],
+         ['Ont demandé le détail payant', a.demande, pct(a.demande, a.ouverte)], ['L\'ont payé', a.paye, pct(a.paye, a.demande)],
+         ['N\'avaient pas assez de jetons', a.insuffisant, pct(a.insuffisant, a.demande)]]);
+    }
+
+    el.innerHTML = html + '</div>';
+  }
+  $('jetons').addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('button');
+    if (!b || !b.dataset.jp) return;
+    jetons.limite += 30;
+    renderJetons();
+  });
+
+  // ---------- rétention (migration 116) ----------
+  // Chargé à part (RPC ramio_retention), au plus toutes les 5 minutes.
+  // Par appareil ; joueur = au moins un événement de jeu ; jours UTC.
+  var retention = { data: null, charge: 0 };
+  var JOUR0 = { en_ligne: 'A joué en ligne (file ou partie)', solo: 'A joué contre l\'Ordi hors ligne', defi: 'A lancé un défi du parcours',
+                jour: 'A lancé le défi du jour', compte: 'A créé son compte', termine: 'A terminé une partie ou un défi', didacticiel: 'A fait le didacticiel' };
+  var FINS_R = { defi_jour_debut: 'Défi du jour lancé, pas réussi', defi_jour_reussi: 'Défi du jour réussi', defi_debut: 'Défi lancé, ni réussi ni abandonné',
+                 defi_abandon: 'Défi abandonné', defi_reussi: 'Défi réussi', defi_indice: 'Indice pris', defi_temps_ecoule: 'Défi perdu au temps',
+                 partie_debut: 'Partie lancée, fin inconnue', partie_fin: 'Partie terminée', partie_abandon: 'Partie abandonnée',
+                 file_debut: 'Entrée en file publique', file_abandon: 'File publique quittée sans jouer', file_appariee: 'Adversaire trouvé', file_ordi: 'Ordi accepté en file',
+                 'solo_fin:gagne': 'Solo hors ligne gagné', 'solo_fin:perdu': 'Solo hors ligne perdu', calendrier_case: 'Case du calendrier cochée',
+                 calendrier_ouvert: 'Calendrier ouvert', calendrier_recupere: 'Récompense du calendrier', '(rien)': 'Rien d\'autre que du jeu ancien' };
+
+  function loadRetention() {
+    if (!key || Date.now() - retention.charge < 300000) return;
+    retention.charge = Date.now();
+    fetch(API.replace('ramio_stats', 'ramio_retention'), {
+      method: 'POST',
+      headers: { apikey: ANON, Authorization: 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ p_key: key })
+    }).then(function (r) {
+      if (r.status === 404) return { absent: true };
+      if (!r.ok) throw new Error('erreur ' + r.status);
+      return r.json();
+    }).then(function (d) { retention.data = d; renderRetention(); })
+      .catch(function (e) { retention.data = { erreur: e.message }; retention.charge = 0; renderRetention(); });
+  }
+  // « 34 % (86/250) » ; vide tant qu'aucun appareil n'est assez ancien.
+  function part(a, b) { return b ? pct(a, b) + ' (' + a + '/' + b + ')' : ''; }
+
+  function renderRetention() {
+    var el = $('retention'), d = retention.data;
+    if (!d) return;
+    el.hidden = false;
+    var html = '<h2>Rétention des joueurs</h2>';
+    if (d.absent || d.erreur) {
+      el.innerHTML = html + '<div class="empty">' + (d.absent ? 'Disponible après la migration 116.' :
+        'Indisponible pour l\'instant (' + esc(d.erreur) + ').') + '</div>';
+      return;
+    }
+    var g = d.global;
+    html += '<div class="sub">Par appareil mobile, robots exclus de fait · joueur = a lancé au moins une partie, un défi ou une file · ' +
+            'J1, J7, J30 = a rejoué ce jour-là exactement ; « ou après » = a rejoué ce jour-là ou plus tard · entre parenthèses, les appareils assez anciens pour être jugés.</div>';
+    var tiles = [
+      ['J1', pct(g.d1, g.n_d1), g.d1 + '/' + g.n_d1 + ' · cible 35 %'],
+      ['J7', pct(g.d7, g.n_d7), g.d7 + '/' + g.n_d7 + ' · cible 15 %'],
+      ['J30', pct(g.d30, g.n_d30), g.d30 + '/' + g.n_d30 + ' · cible 5 %'],
+      ['Encore là après J7', pct(g.d7p, g.n_d7), g.d7p + '/' + g.n_d7],
+      ['Encore là après J30', pct(g.d30p, g.n_d30), g.d30p + '/' + g.n_d30]
+    ];
+    html += '<div class="tiles">' + tiles.map(function (x) {
+      return '<div class="tile"><div class="k">' + esc(x[0]) + '</div><div class="v">' + x[1] + '</div><div class="s">' + esc(x[2]) + '</div></div>';
+    }).join('') + '</div><div class="grid">';
+
+    html += tableCard('Par semaine d\'arrivée', 'semaine du premier jour de jeu, 12 semaines',
+      [{ t: 'Semaine du' }, { t: 'Joueurs', n: 1 }, { t: 'J1', n: 1 }, { t: 'J7', n: 1 }, { t: 'J7 ou après', n: 1 }, { t: 'J30', n: 1 }, { t: 'J30 ou après', n: 1 }],
+      d.cohortes.slice().reverse().map(function (c) {
+        return [fmtDay(c.week), c.joueurs, part(c.d1, c.n_d1), part(c.d7, c.n_d7), part(c.d7p, c.n_d7), part(c.d30, c.n_d30), part(c.d30p, c.n_d30)];
+      }), 'large');
+
+    html += tableCard('Selon ce qui a été fait le premier jour', 'joueurs arrivés depuis 60 jours · ceux qui l\'ont fait contre ceux qui ne l\'ont pas fait · un écart ne prouve pas une cause',
+      [{ t: 'Le premier jour' }, { t: 'Joueurs', n: 1 }, { t: 'J1', n: 1 }, { t: 'J7 ou après', n: 1 }, { t: 'Les autres', n: 1 }, { t: 'J1', n: 1 }, { t: 'J7 ou après', n: 1 }],
+      d.jour0.slice().sort(function (a, b) { return b.avec - a.avec; }).map(function (j) {
+        return [JOUR0[j.quoi] || j.quoi, j.avec, part(j.avec_d1, j.avec_n1), part(j.avec_d7, j.avec_n7), j.sans, part(j.sans_d1, j.sans_n1), part(j.sans_d7, j.sans_n7)];
+      }), 'large');
+
+    var p = d.perdus;
+    html += tableCard('Dernière chose faite avant de disparaître', p.total + ' joueurs sans jeu depuis 7 jours (arrivés depuis moins de 90 jours), dont ' + p.un_jour + ' n\'ont joué qu\'un seul jour',
+      [{ t: 'Dernière action' }, { t: 'Joueurs', n: 1 }, { t: 'Dont un seul jour', n: 1 }],
+      p.fins.map(function (f) { return [FINS_R[f.quoi] || JALONS[f.quoi] || f.quoi, f.n, f.un_jour]; }));
+    html += tableCard('Dernier écran ouvert par les joueurs perdus', 'ceux qui ont ouvert un écran le dernier jour',
+      [{ t: 'Écran' }, { t: 'Joueurs', n: 1 }], kv(p.ecrans, ECRANS));
+
+    var s = d.series;
+    html += tableCard('Séries du défi du jour rompues', 'séries d\'au moins 3 jours, rompues depuis 8 à 90 jours · retour dans la semaine qui suit le jour manqué',
+      [{ t: 'Longueur (jours)' }, { t: 'Séries', n: 1 }, { t: 'A refait un défi du jour', n: 1 }, { t: 'A rejoué à quelque chose', n: 1 }],
+      s.rompues.map(function (r) { return [r.tranche, r.n_series, part(r.retour_defi, r.n_series), part(r.retour_jeu, r.n_series)]; }));
+    var ordre = ['1 ou 2', '3 à 6', '7 à 13', '14 et plus'];
+    var rat = kv(s.rattrapages, { gel_offert: 'gel offert', gel_achete: 'gel acheté', gel_flamme: 'gel de la flamme' });
+    html += tableCard('Séries du défi du jour en cours', 'joueurs ayant réussi le défi aujourd\'hui ou hier · jours rattrapés au calendrier (30 j) : ' +
+        (rat.length ? rat.map(function (x) { return x[1] + ' ' + x[0]; }).join(', ') : 'aucun'),
+      [{ t: 'Longueur (jours)' }, { t: 'Joueurs', n: 1 }],
+      ordre.filter(function (t) { return s.en_cours[t]; }).map(function (t) { return [t, s.en_cours[t]]; }));
+
+    el.innerHTML = html + '</div>';
+  }
+
+  // ---------- temps par défi (migration 117) ----------
+  // Chargé à part (RPC ramio_defis), au plus toutes les 5 minutes.
+  // Temps = première réussite de chaque compte ; ref = temps de
+  // référence de la banque (puzzle_ref).
+  var defis = { data: null, charge: 0, tri: 'ordre', limite: 40 };
+  var MIN_COMPTES = 5;   // en dessous, une médiane ne dit rien
+
+  function loadDefis() {
+    if (!key || Date.now() - defis.charge < 300000) return;
+    defis.charge = Date.now();
+    fetch(API.replace('ramio_stats', 'ramio_defis'), {
+      method: 'POST',
+      headers: { apikey: ANON, Authorization: 'Bearer ' + ANON, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ p_key: key })
+    }).then(function (r) {
+      if (r.status === 404) return { absent: true };
+      if (!r.ok) throw new Error('erreur ' + r.status);
+      return r.json();
+    }).then(function (d) { defis.data = d; renderDefis(); })
+      .catch(function (e) { defis.data = { erreur: e.message }; defis.charge = 0; renderDefis(); });
+  }
+  // « 1:35 » ; vide sans mesure.
+  function chrono(ms) {
+    if (ms == null) return '';
+    var s = Math.round(ms / 1000);
+    return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+  }
+  function rapport(x) { return x.med != null && x.ref ? x.med / x.ref : null; }
+  function fois(r) { return r == null ? '' : '× ' + r.toFixed(2).replace('.', ','); }
+  function mediane(v) {
+    if (!v.length) return null;
+    v = v.slice().sort(function (a, b) { return a - b; });
+    var m = v.length >> 1;
+    return v.length % 2 ? v[m] : (v[m - 1] + v[m]) / 2;
+  }
+
+  function renderDefis() {
+    var el = $('defis'), d = defis.data;
+    if (!d) return;
+    el.hidden = false;
+    var html = '<h2>Temps des joueurs par défi</h2>';
+    if (d.absent || d.erreur) {
+      el.innerHTML = html + '<div class="empty">' + (d.absent ? 'Disponible après la migration 117.' :
+        'Indisponible pour l\'instant (' + esc(d.erreur) + ').') + '</div>';
+      return;
+    }
+    html += '<div class="sub">Temps de la première réussite de chaque compte, depuis le début · référence = temps de la banque · « réel / réf. » au-dessus de 1 : ' +
+            'les joueurs mettent plus longtemps que prévu · ' + d.hors_banque + ' réussites sur des défis sortis de la banque, non affichées.</div><div class="grid">';
+
+    var mesures = d.defis.filter(function (x) { return (x.j || 0) >= MIN_COMPTES; });
+    var paliers = {};
+    mesures.forEach(function (x) { (paliers[x.palier] = paliers[x.palier] || []).push(x); });
+    html += tableCard('Par palier', 'défis du parcours et défis libres avec au moins ' + MIN_COMPTES + ' comptes',
+      [{ t: 'Palier', n: 1 }, { t: 'Défis mesurés', n: 1 }, { t: 'Référence médiane', n: 1 }, { t: 'Temps réel médian', n: 1 }, { t: 'Réel / réf.', n: 1 }, { t: 'Abandons', n: 1 }],
+      Object.keys(paliers).sort().map(function (p) {
+        var l = paliers[p], lances = 0, abandons = 0;
+        l.forEach(function (x) { lances += x.lances || 0; abandons += x.abandons || 0; });
+        return [p, l.length, chrono(mediane(l.map(function (x) { return x.ref; }))), chrono(mediane(l.map(function (x) { return x.med; }))),
+                fois(mediane(l.map(rapport))), pct(abandons, lances)];
+      }));
+
+    html += tableCard('Défi du jour', 'un défi par ligne, du plus récent au plus ancien · première réussite de chaque appareil',
+      [{ t: 'Jour' }, { t: 'Défi' }, { t: 'Palier', n: 1 }, { t: 'Lancés', n: 1 }, { t: 'Réussis', n: 1 }, { t: 'Référence', n: 1 }, { t: 'Médiane', n: 1 },
+       { t: 'Quartiles', n: 1 }, { t: 'Réel / réf.', n: 1 }],
+      d.jour.map(function (x) {
+        return [fmtDay(x.jour), x.id, x.palier == null ? '' : x.palier, x.lances, x.reussis + ' (' + pct(x.reussis, x.lances) + ')', chrono(x.ref), chrono(x.med),
+                x.med == null ? '' : chrono(x.q1) + ' – ' + chrono(x.q3), fois(rapport(x))];
+      }), 'large');
+
+    var tris = {
+      ordre: function (a, b) { return (a.src === 'libre') - (b.src === 'libre') || (a.ordre || 0) - (b.ordre || 0) || a.palier - b.palier; },
+      lents: function (a, b) { return rapport(b) - rapport(a); },
+      rapides: function (a, b) { return rapport(a) - rapport(b); },
+      abandons: function (a, b) { return (b.abandons || 0) / (b.lances || 1) - (a.abandons || 0) / (a.lances || 1); }
+    };
+    var liste = (defis.tri === 'ordre' ? d.defis : mesures).slice().sort(tris[defis.tri]);
+    var reste = liste.length - defis.limite;
+    html += carteP('Défi par défi', liste.length + ' défis · hors « ordre du parcours », seuls les défis avec au moins ' + MIN_COMPTES + ' comptes sont classés',
+      boutons('dt', defis.tri, [['ordre', 'Ordre du parcours'], ['lents', 'Plus lents que prévu'], ['rapides', 'Plus rapides que prévu'], ['abandons', 'Les plus abandonnés']]) +
+        (reste > 0 ? '<button type="button" data-dp="1">Afficher ' + Math.min(40, reste) + ' de plus (' + reste + ' restants)</button>' : ''),
+      [{ t: 'Rang', n: 1 }, { t: 'Défi' }, { t: 'Palier', n: 1 }, { t: 'Étoiles', n: 1 }, { t: 'Comptes', n: 1 }, { t: 'Référence', n: 1 }, { t: 'Médiane', n: 1 },
+       { t: 'Quartiles', n: 1 }, { t: 'Réel / réf.', n: 1 }, { t: 'Étoiles gagnées', n: 1 }, { t: 'Lancés', n: 1 }, { t: 'Abandons', n: 1 }, { t: 'Indices', n: 1 }, { t: 'Temps écoulé', n: 1 }],
+      liste.slice(0, defis.limite).map(function (x) {
+        return [x.src === 'libre' ? 'libre' : x.ordre, x.id, x.palier, x.et, x.j || 0, chrono(x.ref), chrono(x.med),
+                x.med == null ? '' : chrono(x.q1) + ' – ' + chrono(x.q3), (x.j || 0) >= MIN_COMPTES ? fois(rapport(x)) : '',
+                x.et_moy == null ? '' : String(x.et_moy).replace('.', ','), x.lances || 0,
+                x.abandons ? x.abandons + ' (' + pct(x.abandons, x.lances) + ')' : '', x.indices || '', x.tempo || ''];
+      }), 'large');
+
+    el.innerHTML = html + '</div>';
+  }
+  $('defis').addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('button');
+    if (!b) return;
+    if (b.dataset.dt) { defis.tri = b.dataset.dt; defis.limite = 40; }
+    else if (b.dataset.dp) defis.limite += 40;
+    else return;
+    renderDefis();
   });
 
   // ---------- journal des joueurs (migration 101) ----------
