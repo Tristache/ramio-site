@@ -2,7 +2,7 @@
 title: Mentions légales — Legal notice
 ---
 
-<p align="right" style="font-size:0.9em;"><a href="./">Retour au site</a> · <a href="en">Back to the site</a></p>
+<p align="right" style="font-size:0.9em;"><a href="./">Retour au site</a> · <a href="en.html">Back to the site</a></p>
 
 # Mentions légales
 

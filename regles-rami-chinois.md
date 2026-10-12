@@ -18,7 +18,7 @@ première pose faite, chacun peut **réorganiser librement toute la table**
 pour caser ses cartes — comme au Rummikub, mais avec de vraies cartes.
 
 Ce guide est la règle de référence du rami chinois telle qu'elle est jouée
-dans [Ramio](index), l'application officielle du jeu. Vous pouvez aussi y
+dans [Ramio](./), l'application officielle du jeu. Vous pouvez aussi y
 jouer avec deux jeux de cartes classiques : tout ce qu'il faut savoir est
 sur cette page.
 
@@ -157,7 +157,7 @@ donc aussi l'application du rami voleur.
 
 ## Jouer au rami chinois en ligne
 
-[Ramio](index) est l'application du rami chinois : salons privés entre
+[Ramio](./) est l'application du rami chinois : salons privés entre
 amis, parties publiques, mode solo contre l'ordinateur (même hors ligne),
 défis à résoudre façon problèmes d'échecs. Les règles de cette page y sont
 arbitrées automatiquement — impossible de se tromper, impossible de
@@ -167,5 +167,5 @@ Installer Ramio : [Google Play](https://play.google.com/store/apps/details?id=co
 
 Contact : contact@quintaingames.com
 
-<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Mentions légales</a></p>
+<p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales.html">Mentions légales</a></p>
 

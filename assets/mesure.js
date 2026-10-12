@@ -13,8 +13,9 @@
   var src = '';
   try { src = (new URLSearchParams(location.search).get('src') || '').slice(0, 40); } catch (e) {}
   // Langue = dernier segment du chemin quand c'est un code de langue du
-  // site (en, es, de, it, pt, pl, tr, ro, hu, ar), sinon fr (accueil).
-  var mLang = location.pathname.match(/\/(en|es|de|it|pt|pl|tr|ro|hu|ar)\/?$/);
+  // site (en, es, de, it, pt, pl, tr, ro, hu, ar), avec ou sans .html,
+  // sinon fr (accueil).
+  var mLang = location.pathname.match(/\/(en|es|de|it|pt|pl|tr|ro|hu|ar)(?:\.html)?\/?$/);
   var lang = mLang ? mLang[1] : 'fr';
   var ref = '';
   try { ref = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) {}

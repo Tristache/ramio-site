@@ -19,7 +19,7 @@
     <div class="page">
       <header class="entete">
         {%- assign accueil = "./" -%}
-        {%- if page.lang == "en" -%}{%- assign accueil = "en" -%}{%- endif %}
+        {%- if page.lang == "en" -%}{%- assign accueil = "en.html" -%}{%- endif %}
         <a class="marque" href="{{ accueil }}">
           <img src="assets/ramio-icone-192.png" alt="" width="40" height="40">
           <div><b>Ramio</b><span>{% if page.lang == "en" %}by{% else %}par{% endif %} Quintain Games</span></div>
@@ -32,7 +32,7 @@
 
       <footer class="pied court">
         <span><a href="https://quintaingames.com/">Quintain Games</a> · France · contact@quintaingames.com</span>
-        <span><a href="{{ accueil }}">Ramio</a> · <a href="mentions-legales">{% if page.lang == "en" %}Legal notice{% else %}Mentions légales{% endif %}</a></span>
+        <span><a href="{{ accueil }}">Ramio</a> · <a href="mentions-legales.html">{% if page.lang == "en" %}Legal notice{% else %}Mentions légales{% endif %}</a></span>
       </footer>
     </div>
     {% if page.mesure %}<script src="assets/mesure.js" defer></script>{% endif %}

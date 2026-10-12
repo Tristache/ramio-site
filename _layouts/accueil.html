@@ -59,16 +59,16 @@
           <a href="#regles">{{ t.nav_regles }}</a>
           <select class="langue" id="langue" aria-label="{{ t.langue }}" onchange="location.href = this.value">
             <option value="./"{% if lang == "fr" %} selected{% endif %}>Français</option>
-            <option value="en"{% if lang == "en" %} selected{% endif %}>English</option>
-            <option value="es"{% if lang == "es" %} selected{% endif %}>Español</option>
-            <option value="de"{% if lang == "de" %} selected{% endif %}>Deutsch</option>
-            <option value="it"{% if lang == "it" %} selected{% endif %}>Italiano</option>
-            <option value="pt"{% if lang == "pt" %} selected{% endif %}>Português</option>
-            <option value="pl"{% if lang == "pl" %} selected{% endif %}>Polski</option>
-            <option value="tr"{% if lang == "tr" %} selected{% endif %}>Türkçe</option>
-            <option value="ro"{% if lang == "ro" %} selected{% endif %}>Română</option>
-            <option value="hu"{% if lang == "hu" %} selected{% endif %}>Magyar</option>
-            <option value="ar"{% if lang == "ar" %} selected{% endif %}>العربية</option>
+            <option value="en.html"{% if lang == "en" %} selected{% endif %}>English</option>
+            <option value="es.html"{% if lang == "es" %} selected{% endif %}>Español</option>
+            <option value="de.html"{% if lang == "de" %} selected{% endif %}>Deutsch</option>
+            <option value="it.html"{% if lang == "it" %} selected{% endif %}>Italiano</option>
+            <option value="pt.html"{% if lang == "pt" %} selected{% endif %}>Português</option>
+            <option value="pl.html"{% if lang == "pl" %} selected{% endif %}>Polski</option>
+            <option value="tr.html"{% if lang == "tr" %} selected{% endif %}>Türkçe</option>
+            <option value="ro.html"{% if lang == "ro" %} selected{% endif %}>Română</option>
+            <option value="hu.html"{% if lang == "hu" %} selected{% endif %}>Magyar</option>
+            <option value="ar.html"{% if lang == "ar" %} selected{% endif %}>العربية</option>
           </select>
         </nav>
       </header>
@@ -170,11 +170,11 @@
       {%- comment -%} Liens classiques entre les langues : le menu déroulant n'est pas suivi par Google. {%- endcomment %}
       <nav class="langues-liens" aria-label="{{ t.langue }}">
         {% assign noms = "Français,English,Español,Deutsch,Italiano,Português,Polski,Türkçe,Română,Magyar,العربية" | split: "," -%}
-        {% for l in langues %}<a href="{% if l == 'fr' %}./{% else %}{{ l }}{% endif %}" hreflang="{{ l }}" lang="{{ l }}">{{ noms[forloop.index0] }}</a> {% endfor %}
+        {% for l in langues %}<a href="{% if l == 'fr' %}./{% else %}{{ l }}.html{% endif %}" hreflang="{{ l }}" lang="{{ l }}">{{ noms[forloop.index0] }}</a> {% endfor %}
       </nav>
       <footer class="pied">
         <span>Quintain Games · {{ t.pays }} · contact@quintaingames.com</span>
-        <span><a href="{{ t.h_conf }}">{{ t.p_conf }}</a> · <a href="{{ t.h_cond }}">{{ t.p_cond }}</a> · <a href="{{ t.h_suppr }}">{{ t.p_suppr }}</a> · <a href="mentions-legales">{{ t.p_mentions }}</a></span>
+        <span><a href="{{ t.h_conf }}.html">{{ t.p_conf }}</a> · <a href="{{ t.h_cond }}.html">{{ t.p_cond }}</a> · <a href="{{ t.h_suppr }}.html">{{ t.p_suppr }}</a> · <a href="mentions-legales.html">{{ t.p_mentions }}</a></span>
       </footer>
     </div>
     <script src="assets/mesure.js" defer></script>
