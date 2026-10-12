@@ -40,3 +40,5 @@ carte che gli restano. Le penalità si sommano mano dopo mano; la partita
 termina appena un giocatore raggiunge 100 punti, e vince chi ne ha meno.
 L'app offre anche la **partita a mano unica**, ideale per una sfida
 veloce.
+
+Per saperne di più: [le regole del Machiavelli, jolly compresi](https://quintaingames.com/ramio/machiavelli/).
