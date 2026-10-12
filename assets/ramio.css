@@ -73,7 +73,7 @@ select.langue { font: inherit; font-size: .9em; color: var(--encre); background:
 .etape p { color: var(--texte); margin-top: 6px; font-size: .97em; }
 code { font-family: ui-monospace, Consolas, monospace; letter-spacing: .14em; color: var(--sable); }
 
-.final { border-radius: 18px; overflow: hidden; border: 1px solid var(--ligne); background: #6b3f21 url("ramio-bandeau.jpg") center / cover no-repeat; color: #F3F1EA; }
+.final { border-radius: 18px; overflow: hidden; border: 1px solid var(--ligne); background: #1b2748 url("ramio-bandeau.jpg") center / cover no-repeat; color: #F3F1EA; }
 .final > div { padding: 150px 30px 30px; background: linear-gradient(180deg, rgba(15, 29, 49, 0) 0%, rgba(15, 29, 49, .93) 58%); }
 .final h2 { font-size: clamp(1.6em, 4vw, 2.4em); }
 .final p { color: #C9D2DF; margin-top: 6px; }
