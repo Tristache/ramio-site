@@ -1,8 +1,8 @@
 ---
 layout: accueil
 lang: hu
-title: "Ramio — tolvaj römi online, barátokkal"
-description: "Ramio, tolvaj römi barátokkal — online játszmák, privát szobák, ingyenes."
+title: "Ramio — rablórömi online, barátokkal"
+description: "Ramio, rablórömi barátokkal — online játszmák, privát szobák, ingyenes."
 ---
 
 ### A cél
