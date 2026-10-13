@@ -2,5 +2,52 @@
   "_doc": "Dernier build publié de l'app Ramio. À mettre à jour à CHAQUE release (latestBuild = numéro après le + dans pubspec.yaml), puis recopier dans le dépôt ramio-site et pousser. L'app compare ce numéro au sien et propose la mise à jour (lib/update_check.dart). Ajouter la clé ios (fiche App Store) à la publication iOS.",
   "latestBuild": 83,
   "android": "https://play.google.com/store/apps/details?id=com.ramio",
-  "ios":"https://apps.apple.com/app/id6788317282"
+  "ios": "https://apps.apple.com/app/id6788317282",
+  "notices": [
+    {
+      "id": "quitter-test",
+      "platform": "android",
+      "installedBefore": "2026-10-08",
+      "url": "https://play.google.com/apps/testing/com.ramio",
+      "title": {
+        "fr": "Ramio est sorti",
+        "en": "Ramio is out",
+        "de": "Ramio ist da",
+        "es": "Ramio ya está disponible",
+        "it": "Ramio è uscito",
+        "pt": "O Ramio foi lançado",
+        "pl": "Ramio już jest",
+        "ro": "Ramio a fost lansat",
+        "hu": "Megjelent a Ramio",
+        "tr": "Ramio yayında",
+        "ar": "صدرت Ramio"
+      },
+      "body": {
+        "fr": "Merci d'avoir testé Ramio. Tu peux maintenant quitter le programme de test : tu gardes le jeu et ta progression, il ne faut rien désinstaller. Tu pourras ensuite donner ton avis sur Google Play. Si tu as déjà quitté le test, ignore ce message.",
+        "en": "Thank you for testing Ramio. You can now leave the testing program: you keep the game and your progress, and there is nothing to uninstall. You can then share your opinion on Google Play. If you have already left the test, ignore this message.",
+        "de": "Danke, dass du Ramio getestet hast. Du kannst das Testprogramm jetzt verlassen: Du behältst das Spiel und deinen Fortschritt, du musst nichts deinstallieren. Danach kannst du deine Meinung bei Google Play abgeben. Wenn du den Test schon verlassen hast, ignoriere diese Nachricht.",
+        "es": "Gracias por haber probado Ramio. Ya puedes salir del programa de pruebas: conservas el juego y tu progreso, no hay que desinstalar nada. Después podrás dar tu opinión en Google Play. Si ya has salido de las pruebas, ignora este mensaje.",
+        "it": "Grazie per aver provato Ramio. Ora puoi lasciare il programma di test: conservi il gioco e i tuoi progressi, non devi disinstallare nulla. Poi potrai lasciare la tua opinione su Google Play. Se hai già lasciato il test, ignora questo messaggio.",
+        "pt": "Obrigado por ter testado o Ramio. Agora você pode sair do programa de testes: você mantém o jogo e o seu progresso, não é preciso desinstalar nada. Depois, poderá dar a sua opinião no Google Play. Se já saiu do teste, ignore esta mensagem.",
+        "pl": "Dzięki za testowanie Ramio. Możesz teraz opuścić program testów: zachowujesz grę i swoje postępy, niczego nie trzeba odinstalowywać. Potem możesz podzielić się opinią w Google Play. Jeśli testy masz już za sobą, zignoruj tę wiadomość.",
+        "ro": "Îți mulțumim că ai testat Ramio. Acum poți părăsi programul de testare: păstrezi jocul și progresul tău, nu trebuie să dezinstalezi nimic. Apoi îți poți spune părerea pe Google Play. Dacă ai părăsit deja testarea, ignoră acest mesaj.",
+        "hu": "Köszönjük, hogy tesztelted a Ramiót. Most már kiléphetsz a tesztprogramból: a játék és az előrehaladásod megmarad, semmit sem kell eltávolítanod. Ezután elmondhatod a véleményedet a Google Playen. Ha már kiléptél a tesztből, hagyd figyelmen kívül ezt az üzenetet.",
+        "tr": "Ramio'yu test ettiğin için teşekkürler. Artık test programından ayrılabilirsin: oyun ve ilerlemen sende kalır, hiçbir şeyi kaldırman gerekmez. Sonrasında Google Play'de görüşünü paylaşabilirsin. Testten zaten ayrıldıysan bu mesajı dikkate alma.",
+        "ar": "شكرًا لأنك جرّبت Ramio. يمكنك الآن مغادرة برنامج الاختبار: تحتفظ باللعبة وبتقدّمك، ولا داعي لإلغاء تثبيت أي شيء. بعدها يمكنك إبداء رأيك على Google Play. إذا غادرت الاختبار من قبل، تجاهل هذه الرسالة."
+      },
+      "button": {
+        "fr": "Quitter le test",
+        "en": "Leave the test",
+        "de": "Test verlassen",
+        "es": "Salir de las pruebas",
+        "it": "Lascia il test",
+        "pt": "Sair do teste",
+        "pl": "Opuść testy",
+        "ro": "Părăsește testarea",
+        "hu": "Kilépés a tesztből",
+        "tr": "Testten ayrıl",
+        "ar": "مغادرة الاختبار"
+      }
+    }
+  ]
 }
