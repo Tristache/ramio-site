@@ -10,7 +10,7 @@ lang: en
 Last updated: 10 September 2026
 
 This is an English translation of the French policy; in case of
-discrepancy, the [French version](politique-confidentialite) prevails.
+discrepancy, the [French version](politique-confidentialite.html) prevails.
 
 This policy describes the data processed by the "Ramio" mobile app
 (a manipulation rummy card game, hereafter "the app") and the players'
@@ -19,11 +19,11 @@ rights.
 ## Who is responsible for the data?
 
 The app is published under the trade name Quintain Games (see the
-[legal notice](mentions-legales)); the data controller is the publisher,
+[legal notice](mentions-legales.html)); the data controller is the publisher,
 Tristan Hurel.
 Contact: contact@quintaingames.com
 
-Use of the game is also governed by the [terms of use](terms-of-use).
+Use of the game is also governed by the [terms of use](terms-of-use.html).
 
 ## What data is collected?
 
@@ -156,7 +156,7 @@ access, rectify, erase, restrict and port your data.
 
 You can **delete your account directly in the app**: "My profile"
 screen, "Delete my account" button (see the
-[Delete your account](delete-account) page). Deletion is immediate and
+[Delete your account](delete-account.html) page). Deletion is immediate and
 erases the account, the statistics and the game history.
 
 To exercise your other rights, or to request deletion without access to
@@ -171,7 +171,7 @@ person with parental authority is required below 15. A legal guardian may
 request the deletion of their child's account at
 contact@quintaingames.com. In-app purchases (tokens, theme kits, premium
 option) will be offered at public release; they are described in the
-[terms of use](terms-of-use).
+[terms of use](terms-of-use.html).
 
 ## Changes
 

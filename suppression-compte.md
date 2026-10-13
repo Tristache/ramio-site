@@ -29,7 +29,7 @@ Si vous ne pouvez plus ouvrir l'application, envoyez votre demande de
 suppression à **contact@quintaingames.com**, de préférence depuis l'adresse
 e-mail du compte concerné ; elle sera traitée sans délai injustifié.
 
-[Politique de confidentialité](politique-confidentialite)
+[Politique de confidentialité](politique-confidentialite.html)
 
 <p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Mentions légales</a></p>
 

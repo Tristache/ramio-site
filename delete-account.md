@@ -32,7 +32,7 @@ If you can no longer open the app, send your deletion request to
 **contact@quintaingames.com**, preferably from the e-mail address of the
 account concerned; it will be handled without undue delay.
 
-[Privacy policy](privacy-policy)
+[Privacy policy](privacy-policy.html)
 
 <p style="font-size:0.85em;color:#666;margin-top:2em;"><a href="mentions-legales">Legal notice</a></p>
 

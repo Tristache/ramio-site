@@ -10,7 +10,7 @@ lang: en
 Version of 10 September 2026.
 
 This is an English translation of the French terms; in case of
-discrepancy, the [French version](conditions-utilisation) prevails.
+discrepancy, the [French version](conditions-utilisation.html) prevails.
 
 These terms govern the use of the **Ramio** mobile app and of
 quintaingames.com/ramio (together, "the service"). By creating an
@@ -19,7 +19,7 @@ account, playing as a guest or using the service, you accept them.
 ## 1. Publisher
 
 The service is published under the trade name **Quintain Games** (see
-the [legal notice](mentions-legales)).
+the [legal notice](mentions-legales.html)).
 Contact and single point of contact: **contact@quintaingames.com**.
 
 ## 2. The service
@@ -55,7 +55,7 @@ comply with the rules of conduct below; the publisher may ask you to
 change it, or change it, if it is unlawful, misleading or offensive.
 
 You may **delete your account at any time** in the app ("My profile"
-then "Delete my account", see [Account deletion](delete-account)).
+then "Delete my account", see [Account deletion](delete-account.html)).
 Deletion is immediate and final: progress, statistics, history, tokens
 and cosmetics acquired are lost, with no refund.
 
@@ -86,7 +86,7 @@ available.
 
 In-game chat messages are not stored; messages between friends are kept
 solely so the conversation remains readable (see the [privacy
-policy](privacy-policy)).
+policy](privacy-policy.html)).
 
 ## 6. Free of charge, advertising
 
@@ -145,7 +145,7 @@ store them strictly as needed to run the game and to moderate it.
 
 ## 10. Personal data
 
-Data processing is described in the [privacy policy](privacy-policy),
+Data processing is described in the [privacy policy](privacy-policy.html),
 which forms an integral part of these terms.
 
 ## 11. Liability

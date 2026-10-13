@@ -13,12 +13,12 @@ des joueurs.
 ## Qui est responsable des données ?
 
 L'application est éditée sous le nom d'usage Quintain Games (voir les
-[mentions légales](mentions-legales)) ; le responsable de traitement est
+[mentions légales](mentions-legales.html)) ; le responsable de traitement est
 l'éditeur, Tristan Hurel.
 Contact : contact@quintaingames.com
 
 L'utilisation du jeu est par ailleurs encadrée par les
-[conditions générales d'utilisation](conditions-utilisation).
+[conditions générales d'utilisation](conditions-utilisation.html).
 
 ## Quelles données sont collectées ?
 
@@ -161,7 +161,7 @@ et de portabilité de vos données.
 
 Vous pouvez **supprimer votre compte directement dans l'application** :
 écran « Mon profil », bouton « Supprimer mon compte » (voir la page
-[Suppression de compte](suppression-compte)). La suppression est immédiate
+[Suppression de compte](suppression-compte.html)). La suppression est immédiate
 et efface le compte, les statistiques et l'historique de parties.
 
 Pour exercer vos autres droits, ou demander la suppression sans accès à
@@ -177,7 +177,7 @@ l'accord d'un titulaire de l'autorité parentale est requis en dessous de
 son enfant à contact@quintaingames.com. Des achats intégrés
 (jetons, kits d'ambiance, option premium) seront proposés à la sortie
 publique ; ils sont décrits dans les
-[conditions générales d'utilisation](conditions-utilisation).
+[conditions générales d'utilisation](conditions-utilisation.html).
 
 ## Évolutions
 

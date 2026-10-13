@@ -16,7 +16,7 @@ utilisant le service, vous les acceptez.
 ## 1. Éditeur
 
 Le service est édité sous le nom d'usage **Quintain Games** (voir les
-[mentions légales](mentions-legales)).
+[mentions légales](mentions-legales.html)).
 Contact et point de contact unique : **contact@quintaingames.com**.
 
 ## 2. Le service
@@ -54,7 +54,7 @@ offensant.
 
 Vous pouvez **supprimer votre compte à tout moment** dans l'application
 (« Mon profil » puis « Supprimer mon compte », voir
-[Suppression de compte](suppression-compte)). La suppression est
+[Suppression de compte](suppression-compte.html)). La suppression est
 immédiate et définitive : progression, statistiques, historique, jetons
 et cosmétiques acquis sont perdus, sans remboursement.
 
@@ -87,7 +87,7 @@ Les voies de recours judiciaires restent ouvertes.
 Les messages de la discussion en partie ne sont pas conservés ; les
 messages entre amis le sont pour la seule consultation de la
 conversation (voir la [politique de
-confidentialité](politique-confidentialite)).
+confidentialité](politique-confidentialite.html)).
 
 ## 6. Gratuité, publicité
 
@@ -151,7 +151,7 @@ fonctionnement du jeu et à la modération.
 ## 10. Données personnelles
 
 Les traitements de données sont décrits dans la [politique de
-confidentialité](politique-confidentialite), qui fait partie intégrante
+confidentialité](politique-confidentialite.html), qui fait partie intégrante
 de ces CGU.
 
 ## 11. Responsabilité
