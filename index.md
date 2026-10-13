@@ -2,7 +2,7 @@
 layout: accueil
 lang: fr
 title: "Ramio — le rami voleur en ligne, en famille ou entre amis"
-description: "Ramio, le rami voleur en application : parties en ligne entre amis, salons privés, 670 casse-têtes. Gratuit."
+description: "Ramio, le rami voleur en application : parties en ligne entre amis, salons privés, 1 000 casse-têtes. Gratuit."
 ---
 
 ### Le but du jeu
