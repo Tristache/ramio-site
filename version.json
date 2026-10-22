@@ -48,6 +48,50 @@
         "tr": "Testten ayrıl",
         "ar": "مغادرة الاختبار"
       }
+    },
+    {
+      "id": "halloween-2026-ouverte",
+      "platform": "android",
+      "url": "https://quintaingames.com/ramio/join?evenement=halloween",
+      "title": {
+        "fr": "La table hantée est ouverte",
+        "en": "The Haunted Table is open",
+        "de": "Der Spuktisch ist offen",
+        "es": "La mesa embrujada está abierta",
+        "it": "Il tavolo stregato è aperto",
+        "pt": "A mesa assombrada está aberta",
+        "pl": "Nawiedzony stół jest otwarty",
+        "ro": "Masa bântuită s-a deschis",
+        "hu": "Megnyílt a kísértetasztal",
+        "tr": "Perili masa açıldı",
+        "ar": "الطاولة المسكونة مفتوحة"
+      },
+      "body": {
+        "fr": "Jusqu'au 4 novembre, une case par jour où tu ouvres l'app ; un jour manqué ne fait rien perdre. Le calendrier est sur l'accueil : d'abord les 4 pièces du tapis d'Halloween, puis trois dos de cartes et trois personnages à garder.",
+        "en": "Until November 4, one box per day you open the app; a missed day loses nothing. The calendar is on the home screen: first the 4 pieces of the Halloween table, then three card backs and three characters to keep.",
+        "de": "Bis zum 4. November ein Feld pro Tag, an dem du die App öffnest; ein verpasster Tag kostet nichts. Der Kalender ist auf dem Startbildschirm: zuerst die 4 Teile des Halloween-Tischs, dann drei Kartenrücken und drei Figuren zum Behalten.",
+        "es": "Hasta el 4 de noviembre, una casilla por cada día que abras la app; un día perdido no te quita nada. El calendario está en la pantalla de inicio: primero las 4 piezas de la mesa de Halloween, luego tres dorsos y tres personajes para conservar.",
+        "it": "Fino al 4 novembre, una casella per ogni giorno in cui apri l'app; un giorno saltato non fa perdere nulla. Il calendario è nella schermata iniziale: prima i 4 pezzi del tavolo di Halloween, poi tre dorsi e tre personaggi da tenere.",
+        "pt": "Até 4 de novembro, uma casa por dia em que você abre o app; perder um dia não tira nada. O calendário está na tela inicial: primeiro as 4 peças da mesa de Halloween, depois três versos e três personagens para guardar.",
+        "pl": "Do 4 listopada jedno okienko za każdy dzień, w którym otworzysz aplikację; opuszczony dzień niczego nie odbiera. Kalendarz jest na ekranie głównym: najpierw 4 elementy stołu Halloween, potem trzy rewersy i trzy postacie na zawsze.",
+        "ro": "Până pe 4 noiembrie, o căsuță pentru fiecare zi în care deschizi aplicația; o zi ratată nu te costă nimic. Calendarul e pe ecranul principal: întâi cele 4 piese ale mesei de Halloween, apoi trei spate de cărți și trei personaje de păstrat.",
+        "hu": "November 4-ig minden nap kinyílik egy ablak, amikor megnyitod az appot; ha kihagysz egy napot, nem veszítesz semmit. A naptár a kezdőképernyőn van: előbb a halloweeni asztal 4 darabja, aztán három kártyahátlap és három karakter, amelyek a tieid maradnak.",
+        "tr": "4 Kasım'a kadar uygulamayı açtığın her gün için bir kutu; kaçırılan bir gün hiçbir şey kaybettirmez. Takvim ana ekranda: önce Cadılar Bayramı masasının 4 parçası, ardından kalıcı üç kart arkası ve üç karakter.",
+        "ar": "حتى 4 نوفمبر، خانة لكل يوم تفتح فيه التطبيق؛ ولا تخسر شيئًا إن فاتك يوم. التقويم في الشاشة الرئيسية: أولًا قطع طاولة الهالوين الأربع، ثم ثلاثة ظهور أوراق وثلاث شخصيات تبقى لك."
+      },
+      "button": {
+        "fr": "Voir le calendrier",
+        "en": "See the calendar",
+        "de": "Zum Kalender",
+        "es": "Ver el calendario",
+        "it": "Vedi il calendario",
+        "pt": "Ver o calendário",
+        "pl": "Zobacz kalendarz",
+        "ro": "Vezi calendarul",
+        "hu": "Naptár megnyitása",
+        "tr": "Takvimi gör",
+        "ar": "عرض التقويم"
+      }
     }
   ]
 }
