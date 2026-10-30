@@ -1001,8 +1001,12 @@
   function itemHtml(i) {
     var t;
     if (i.k === 'partie') {
-      t = 'Partie ' + esc(MODES[i.mode] || i.mode || '?') + (i.ms != null ? ' · ' + duree(i.ms) : '') + resultat(i.res) +
-          (i.adv && i.mode !== 'solo' ? ' · contre ' + esc(i.adv) : '') + (i.fin ? ' · fin : ' + esc(i.fin) : '');
+      // Abandon depuis la build 87 : mode suivi de -p<0|1>-t<tours>.
+      var pt = /-p([01])-t(\d+)$/.exec(i.mode || '');
+      var mode = pt ? i.mode.slice(0, pt.index) : i.mode;
+      t = 'Partie ' + esc(MODES[mode] || mode || '?') + (i.ms != null ? ' · ' + duree(i.ms) : '') + resultat(i.res) +
+          (pt ? ' · ' + (pt[1] === '1' ? 'a posé' : 'sans pose') + ', ' + plur(+pt[2], 'tour') : '') +
+          (i.adv && mode !== 'solo' ? ' · contre ' + esc(i.adv) : '') + (i.fin ? ' · fin : ' + esc(i.fin) : '');
     } else if (i.k === 'solo') {
       t = 'Solo hors ligne' + (i.nb ? ' contre ' + plur(+i.nb, 'Ordi') : '') + (i.niv ? ' niveau ' + esc(i.niv) : '') +
           resultat(i.res) + (i.pts != null ? ' · ' + i.pts + ' pts' : '') + (i.ms != null ? ' après ' + duree(i.ms) : '');
