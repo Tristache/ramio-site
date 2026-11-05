@@ -392,6 +392,8 @@ tuiles, et la table se réorganise librement. Les différences tiennent à
 l'ouverture, une tierce franche au lieu de 30 points, et au décompte des
 pénalités.
 
+Le détail, tuile par tuile : [jouer au Rummikub avec des cartes](https://quintaingames.com/ramio/rummikub-avec-des-cartes.html).
+
 ### Où jouer au rami voleur en ligne ?
 
 Ramio est une application gratuite pour Android et iPhone : parties en
