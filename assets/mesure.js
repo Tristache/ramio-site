@@ -4,6 +4,8 @@
 // pour que la Play Console attribue les installations Android.
 (function () {
   'use strict';
+  // Accueil en partance vers la page de langue : c'est elle qui compte.
+  if (window.ramioRedirige) return;
   var URL_API = 'https://zkrkaimrybxbdrznxhxx.supabase.co/rest/v1/rpc/log_site_visit';
   var KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InprcmthaW1yeWJ4YmRyem54aHh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDkzMTYsImV4cCI6MjA5NjY4NTMxNn0.28Ns814SQSFXaKRR0-ZrHoX1G8Cpnhf6sNCZ6kgtAio';
   var PLAY = 'https://play.google.com/store/apps/details?id=com.ramio';
@@ -19,6 +21,14 @@
   var lang = mLang ? mLang[1] : 'fr';
   var ref = '';
   try { ref = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) {}
+  // Arrivée par la redirection de l'accueil : on garde l'origine réelle.
+  try {
+    var avant = sessionStorage.getItem('ramio-ref');
+    sessionStorage.removeItem('ramio-ref');
+    if (avant !== null && ref === location.hostname) {
+      ref = avant ? new URL(avant).hostname : '';
+    }
+  } catch (e) {}
 
   function log(kind) {
     try {

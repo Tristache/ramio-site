@@ -32,6 +32,29 @@
 <html lang="{{ lang }}"{% if lang == "ar" %} dir="rtl"{% endif %}>
   <head>
     <meta charset="UTF-8">
+{%- if lang == "fr" %}
+    <script>
+      // Accueil sans langue dans l'adresse : le visiteur part vers la page de
+      // sa langue (choix retenu ou ?lang=, sinon langues du navigateur, sinon
+      // anglais). Les robots restent ici : la page reste indexée en français.
+      (function () {
+        if (/bot|crawl|spider|slurp|lighthouse|facebookexternalhit|whatsapp/i.test(navigator.userAgent)) return;
+        var site = ["fr", "en", "es", "de", "it", "pt", "pl", "tr", "ro", "hu", "ar"];
+        var choix = new URLSearchParams(location.search).get("lang");
+        try { choix = choix || localStorage.getItem("ramio-langue"); } catch (e) {}
+        var voeux = choix ? [choix] : (navigator.languages || [navigator.language || ""]);
+        var cible = "en";
+        for (var i = 0; i < voeux.length; i++) {
+          var code = String(voeux[i]).slice(0, 2).toLowerCase();
+          if (site.indexOf(code) >= 0) { cible = code; break; }
+        }
+        if (cible === "fr") return;
+        try { sessionStorage.setItem("ramio-ref", document.referrer); } catch (e) {}
+        window.ramioRedirige = true;
+        location.replace(cible + ".html" + location.search + location.hash);
+      })();
+    </script>
+{%- endif %}
 {%- comment -%} Adresse de référence = quintaingames.com/ramio : l'ancien hôte
      (tristache.github.io/ramio-site) ne doit pas concurrencer le site dans Google. {%- endcomment -%}
 {%- capture seo -%}{% seo %}{%- endcapture -%}
@@ -177,6 +200,18 @@
         <span><a href="{{ t.h_conf }}.html">{{ t.p_conf }}</a> · <a href="{{ t.h_cond }}.html">{{ t.p_cond }}</a> · <a href="{{ t.h_suppr }}.html">{{ t.p_suppr }}</a> · <a href="mentions-legales.html">{{ t.p_mentions }}</a></span>
       </footer>
     </div>
+    <script>
+      // Langue choisie à la main : l'accueil ne redirige plus ailleurs.
+      (function () {
+        function retiens(code) { try { localStorage.setItem("ramio-langue", code); } catch (e) {} }
+        document.querySelectorAll(".langues-liens a").forEach(function (a) {
+          a.addEventListener("click", function () { retiens(a.hreflang); });
+        });
+        document.getElementById("langue").addEventListener("change", function () {
+          retiens(this.value === "./" ? "fr" : this.value.replace(".html", ""));
+        });
+      })();
+    </script>
     <script src="assets/mesure.js" defer></script>
   </body>
 </html>
