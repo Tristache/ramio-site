@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Ramio — Manipulation Rummy online with friends</title>
+    <link rel="canonical" href="https://quintaingames.com/ramio/">
+    <meta http-equiv="refresh" content="0; url=./?lang=en">
+    <script>
+      // Ancienne adresse de la page anglaise, devenue l'accueil le 28/11/2026
+      // (liens de pagat.com, des stores...) : on y renvoie en gardant
+      // ?src=, l'ancre et l'origine de la visite pour le compteur.
+      var q = new URLSearchParams(location.search);
+      q.set("lang", "en");
+      try { sessionStorage.setItem("ramio-ref", document.referrer); } catch (e) {}
+      location.replace("./?" + q + location.hash);
+    </script>
+  </head>
+  <body><p><a href="./">Ramio</a></p></body>
+</html>

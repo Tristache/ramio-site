@@ -32,11 +32,11 @@
 <html lang="{{ lang }}"{% if lang == "ar" %} dir="rtl"{% endif %}>
   <head>
     <meta charset="UTF-8">
-{%- if lang == "fr" %}
+{%- if page.url == "/" %}
     <script>
-      // Accueil sans langue dans l'adresse : le visiteur part vers la page de
-      // sa langue (choix retenu ou ?lang=, sinon langues du navigateur, sinon
-      // anglais). Les robots restent ici : la page reste indexée en français.
+      // Accueil (en anglais, langue de base) : le visiteur part vers la page de
+      // sa langue (choix retenu ou ?lang=, sinon langues du navigateur), sinon
+      // il reste ici. Les robots restent ici : la page reste indexée en anglais.
       (function () {
         if (/bot|crawl|spider|slurp|lighthouse|facebookexternalhit|whatsapp/i.test(navigator.userAgent)) return;
         var site = ["fr", "en", "es", "de", "it", "pt", "pl", "tr", "ro", "hu", "ar"];
@@ -48,7 +48,7 @@
           var code = String(voeux[i]).slice(0, 2).toLowerCase();
           if (site.indexOf(code) >= 0) { cible = code; break; }
         }
-        if (cible === "fr") return;
+        if (cible === "en") return;
         try { sessionStorage.setItem("ramio-ref", document.referrer); } catch (e) {}
         window.ramioRedirige = true;
         location.replace(cible + ".html" + location.search + location.hash);
@@ -59,10 +59,10 @@
      (tristache.github.io/ramio-site) ne doit pas concurrencer le site dans Google. {%- endcomment -%}
 {%- capture seo -%}{% seo %}{%- endcapture -%}
 {{ seo | replace: 'https://tristache.github.io/ramio-site/', 'https://quintaingames.com/ramio/' }}
-{%- comment -%} Pages de langue déclarées à Google (hreflang), anglais par défaut. {%- endcomment %}
+{%- comment -%} Pages de langue déclarées à Google (hreflang), anglais à la racine et par défaut. {%- endcomment %}
 {% assign langues = "fr,en,es,de,it,pt,pl,tr,ro,hu,ar" | split: "," -%}
-{% for l in langues %}    <link rel="alternate" hreflang="{{ l }}" href="https://quintaingames.com/ramio/{% unless l == 'fr' %}{{ l }}.html{% endunless %}">
-{% endfor %}    <link rel="alternate" hreflang="x-default" href="https://quintaingames.com/ramio/en.html">
+{% for l in langues %}    <link rel="alternate" hreflang="{{ l }}" href="https://quintaingames.com/ramio/{% unless l == 'en' %}{{ l }}.html{% endunless %}">
+{% endfor %}    <link rel="alternate" hreflang="x-default" href="https://quintaingames.com/ramio/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#F3F1EA">
     <link rel="icon" type="image/png" href="assets/ramio-icone-192.png">
@@ -81,8 +81,8 @@
           <a href="#jeu">{{ t.jeu }}</a>
           <a href="#regles">{{ t.nav_regles }}</a>
           <select class="langue" id="langue" aria-label="{{ t.langue }}" onchange="location.href = this.value">
-            <option value="./"{% if lang == "fr" %} selected{% endif %}>Français</option>
-            <option value="en.html"{% if lang == "en" %} selected{% endif %}>English</option>
+            <option value="fr.html"{% if lang == "fr" %} selected{% endif %}>Français</option>
+            <option value="./"{% if lang == "en" %} selected{% endif %}>English</option>
             <option value="es.html"{% if lang == "es" %} selected{% endif %}>Español</option>
             <option value="de.html"{% if lang == "de" %} selected{% endif %}>Deutsch</option>
             <option value="it.html"{% if lang == "it" %} selected{% endif %}>Italiano</option>
@@ -193,7 +193,7 @@
       {%- comment -%} Liens classiques entre les langues : le menu déroulant n'est pas suivi par Google. {%- endcomment %}
       <nav class="langues-liens" aria-label="{{ t.langue }}">
         {% assign noms = "Français,English,Español,Deutsch,Italiano,Português,Polski,Türkçe,Română,Magyar,العربية" | split: "," -%}
-        {% for l in langues %}<a href="{% if l == 'fr' %}./{% else %}{{ l }}.html{% endif %}" hreflang="{{ l }}" lang="{{ l }}">{{ noms[forloop.index0] }}</a> {% endfor %}
+        {% for l in langues %}<a href="{% if l == 'en' %}./{% else %}{{ l }}.html{% endif %}" hreflang="{{ l }}" lang="{{ l }}">{{ noms[forloop.index0] }}</a> {% endfor %}
       </nav>
       <footer class="pied">
         <span>Quintain Games · {{ t.pays }} · contact@quintaingames.com</span>
@@ -208,7 +208,7 @@
           a.addEventListener("click", function () { retiens(a.hreflang); });
         });
         document.getElementById("langue").addEventListener("change", function () {
-          retiens(this.value === "./" ? "fr" : this.value.replace(".html", ""));
+          retiens(this.value === "./" ? "en" : this.value.replace(".html", ""));
         });
       })();
     </script>

@@ -30,7 +30,7 @@ Sa grande particularité : **on ne se défausse jamais**, et une fois sa
 première pose faite, chacun peut **réorganiser librement toute la table**
 pour caser ses cartes — comme au Rummikub, mais avec de vraies cartes.
 
-Cette page décrit la règle telle qu'elle est jouée dans [Ramio](./),
+Cette page décrit la règle telle qu'elle est jouée dans [Ramio](fr.html),
 application gratuite pour Android et iPhone. Le jeu est traditionnel et se
 transmet de table en table : là où l'usage courant diffère, c'est signalé
 au fil du texte. Vous pouvez aussi y jouer avec deux jeux de cartes
@@ -48,7 +48,7 @@ L'essentiel, en cinq lignes :
 - le premier qui **vide sa main** gagne la manche.
 
 Pour voir tout cela joué carte après carte : [Rami voleur : la règle en
-2 minutes](https://www.youtube.com/watch?v=5oETEAFIu_s) (vidéo, 2 min 13).
+2 minutes](https://www.youtube.com/watch?v=EyOOPrnz4xU) (vidéo, 2 min 13).
 
 ## Combien de cartes au rami voleur ?
 
@@ -318,11 +318,11 @@ donc aussi l'application du rami voleur.
 
 ## La règle du rami voleur en vidéo
 
-[Rami voleur : la règle en 2 minutes](https://www.youtube.com/watch?v=5oETEAFIu_s)
+[Rami voleur : la règle en 2 minutes](https://www.youtube.com/watch?v=EyOOPrnz4xU)
 (YouTube, chaîne Quintain Games, 2 min 13) montre la règle de Ramio,
 chaque coup étant joué dans l'application : le but, les
 combinaisons, le tour, la première pose, la table à défaire,
-[le joker](https://www.youtube.com/watch?v=5oETEAFIu_s&t=91s) et la fin de
+[le joker](https://www.youtube.com/watch?v=EyOOPrnz4xU&t=91s) et la fin de
 manche.
 
 ## Le même jeu dans d'autres pays
@@ -337,7 +337,7 @@ expliquent les règles dans la langue de chaque pays.
 
 ## Jouer au rami voleur en ligne
 
-[Ramio](./) est l'application du rami voleur, ou rami chinois : salons
+[Ramio](fr.html) est l'application du rami voleur, ou rami chinois : salons
 privés entre amis, parties publiques, mode solo contre l'ordinateur (même
 hors ligne), et 1 000 casse-têtes à résoudre façon problèmes d'échecs.
 L'application applique les règles de cette page : une pose qui ne tient
@@ -444,7 +444,7 @@ Contact : contact@quintaingames.com
           "@type": "ListItem",
           "position": 2,
           "name": "Ramio",
-          "item": "https://quintaingames.com/ramio/"
+          "item": "https://quintaingames.com/ramio/fr.html"
         },
         {
           "@type": "ListItem",
@@ -458,12 +458,12 @@ Contact : contact@quintaingames.com
       "@type": "VideoObject",
       "name": "Rami voleur : la règle en 2 minutes (Ramio)",
       "description": "Apprenez la règle du rami voleur telle qu'elle se joue dans Ramio : deux jeux de cartes, 13 cartes chacun, pas de défausse, et une table que l'on peut défaire et recomposer à chaque tour.",
-      "thumbnailUrl": "https://i.ytimg.com/vi/5oETEAFIu_s/hqdefault.jpg",
-      "uploadDate": "2026-10-07T22:00:32-07:00",
+      "thumbnailUrl": "https://i.ytimg.com/vi/EyOOPrnz4xU/hqdefault.jpg",
+      "uploadDate": "2026-10-19T06:46:32-07:00",
       "duration": "PT2M13S",
       "inLanguage": "fr",
-      "url": "https://www.youtube.com/watch?v=5oETEAFIu_s",
-      "embedUrl": "https://www.youtube.com/embed/5oETEAFIu_s"
+      "url": "https://www.youtube.com/watch?v=EyOOPrnz4xU",
+      "embedUrl": "https://www.youtube.com/embed/EyOOPrnz4xU"
     }
   ]
 }

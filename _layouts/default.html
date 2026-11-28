@@ -18,8 +18,8 @@
   <body>
     <div class="page">
       <header class="entete">
-        {%- assign accueil = "./" -%}
-        {%- if page.lang == "en" -%}{%- assign accueil = "en.html" -%}{%- endif %}
+        {%- assign accueil = "fr.html" -%}
+        {%- if page.lang == "en" -%}{%- assign accueil = "./" -%}{%- endif %}
         <a class="marque" href="{{ accueil }}">
           <img src="assets/ramio-icone-192.png" alt="" width="40" height="40">
           <div><b>Ramio</b><span>{% if page.lang == "en" %}by{% else %}par{% endif %} Quintain Games</span></div>

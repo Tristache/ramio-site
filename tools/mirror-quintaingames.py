@@ -23,7 +23,7 @@ BASE = "https://tristache.github.io/ramio-site/"
 SRC = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DST = os.path.normpath(os.path.join(SRC, "..", "..", "quintaingames-site", "ramio"))
 
-LANGUES = ["en", "es", "de", "it", "pt", "pl", "tr", "ro", "hu", "ar"]
+LANGUES = ["fr", "en", "es", "de", "it", "pt", "pl", "tr", "ro", "hu", "ar"]
 PAGES = {"": "index.html"}
 PAGES.update({l: f"{l}.html" for l in LANGUES})
 PAGES.update({

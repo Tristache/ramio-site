@@ -1,47 +1,42 @@
 ---
 layout: accueil
-lang: fr
-title: "Ramio — le rami voleur en ligne, en famille ou entre amis"
-description: "Ramio, le rami voleur en application : parties en ligne entre amis, salons privés, 1 000 casse-têtes. Gratuit."
+lang: en
+title: "Ramio — Manipulation Rummy online with friends"
+description: "Ramio, manipulation rummy with friends — online games, private rooms, free."
 ---
 
-### Le but du jeu
+### The goal
 
-Être le premier à se débarrasser de toutes ses cartes en les posant sur
-la table, sous forme de combinaisons :
+Be the first to get rid of all your cards by laying them on the table
+as combinations:
 
-- **Suite** : au moins trois cartes qui se suivent, de la même couleur
-  (l'As peut se placer avant le 2 ou après le Roi, mais la suite ne
-  « tourne » pas : Roi-As-2 est interdit).
-- **Brelan ou carré** : trois ou quatre cartes de même valeur, de
-  couleurs toutes différentes.
+- **Run**: at least three consecutive cards of the same suit (the ace
+  can sit before the 2 or after the king, but runs never wrap around:
+  K-A-2 is not allowed).
+- **Set**: three or four cards of the same rank, all suits different.
 
-### Le déroulement
+### How a turn works
 
-1. Chaque joueur reçoit **13 cartes**.
-2. À son tour, un joueur **pioche une carte**, puis peut poser des
-   combinaisons sur la table. On ne se défausse jamais : la main ne
-   diminue qu'en posant.
-3. **Première pose** : pour commencer à poser, il faut d'abord une
-   **tierce franche** — trois cartes qui se suivent, de la même couleur,
-   sans joker.
-4. Une fois sa première pose faite, le joueur peut aussi **réorganiser
-   librement la table** (déplacer, découper, recombiner les poses de tout
-   le monde) pour caser ses cartes, tant que la table reste entièrement
-   valide à la fin de son tour.
-5. Le **joker** remplace n'importe quelle carte. Sur la table, il peut
-   être réutilisé lors des réorganisations, tant qu'il reste sur la
-   table. Les jokers sont optionnels : chaque partie se crée avec ou
-   sans.
+1. Each player is dealt **13 cards**.
+2. On your turn you **draw one card**, then you may lay down
+   combinations. There is no discarding, ever: your hand only shrinks
+   by melding.
+3. **Opening**: your first meld must include a **clean run of three** —
+   three consecutive cards of the same suit, without a joker.
+4. Once you have opened, you may also **freely rearrange the table**
+   (move, split and recombine everyone's melds) to fit your cards in,
+   as long as the whole table is valid again at the end of your turn.
+5. The **joker** stands for any card. On the table it can be reused
+   during rearrangements, as long as it stays on the table. Jokers are
+   optional: every game is created with or without them.
 
-### La fin de manche et les points
+### End of a round, and scoring
 
-La manche s'arrête quand un joueur a vidé sa main. Les autres comptent
-leurs pénalités : les cartes 2 à 10 valent leur valeur, les figures 10,
-l'As 11 et le joker 20 ou 50 points (50 dans la version actuelle de
-l'application). Si la pioche s'épuise avant qu'un joueur ait fini,
-la manche s'arrête et chacun compte les points restants dans sa main.
-Les pénalités s'additionnent de manche en manche ; la partie se termine
-dès qu'un joueur atteint 100 points, et le joueur le moins pénalisé
-gagne. L'application propose aussi une **partie simple** : une seule
-manche gagnante, idéale pour une partie rapide.
+A round ends when a player empties their hand. The others count
+penalties: cards 2 to 10 at face value, court cards 10, aces 11 and
+jokers 20 or 50 points (50 in the current version of the app). If the
+stock runs out before anyone finishes, the round
+stops and every player counts the cards left in their own hand.
+Penalties add up from round to round; the game ends as soon as a player
+reaches 100 points, and the least penalized player wins. The app also
+offers a **single-round game**, ideal for a quick match.

@@ -14,11 +14,9 @@
 
   var src = '';
   try { src = (new URLSearchParams(location.search).get('src') || '').slice(0, 40); } catch (e) {}
-  // Langue = dernier segment du chemin quand c'est un code de langue du
-  // site (en, es, de, it, pt, pl, tr, ro, hu, ar), avec ou sans .html,
-  // sinon fr (accueil).
-  var mLang = location.pathname.match(/\/(en|es|de|it|pt|pl|tr|ro|hu|ar)(?:\.html)?\/?$/);
-  var lang = mLang ? mLang[1] : 'fr';
+  // Langue = celle de la page (<html lang>), l'accueil étant en anglais
+  // depuis le 28/11/2026.
+  var lang = (document.documentElement.lang || 'fr').slice(0, 2).toLowerCase();
   var ref = '';
   try { ref = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) {}
   // Arrivée par la redirection de l'accueil : on garde l'origine réelle.
