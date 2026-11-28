@@ -34,7 +34,7 @@ combinații:
 
 Runda se termină când un jucător își golește mâna. Ceilalți numără
 penalizările: cărțile de la 2 la 10 la valoarea lor, figurile 10, așii
-11, jokerii 20 sau 50 de puncte (50 în versiunea actuală a aplicației).
+11, jokerii 50 de puncte.
 Dacă pachetul se termină înainte ca cineva să încheie, runda se oprește
 și fiecare numără cărțile rămase în propria mână. Penalizările se adună
 de la o rundă la alta; partida se termină când un jucător ajunge la 100

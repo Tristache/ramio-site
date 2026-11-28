@@ -31,8 +31,7 @@ olmak:
 ### El sonu ve puanlama
 
 Bir oyuncu elini boşalttığında el biter. Diğerleri ceza sayar: 2-10
-kendi değeri, resimli kartlar 10, aslar 11, joker 20 veya 50 puan
-(uygulamanın güncel sürümünde 50). Kimse bitirmeden deste tükenirse el
+kendi değeri, resimli kartlar 10, aslar 11, joker 50 puan. Kimse bitirmeden deste tükenirse el
 durur ve herkes elinde kalan kartları sayar. Cezalar elden ele
 birikir; bir oyuncu 100 puana ulaşınca oyun biter ve en az ceza alan
 kazanır. Uygulama ayrıca hızlı bir maç için **tek elli oyun** da sunar.

@@ -33,8 +33,7 @@ układach:
 ### Koniec rozdania i punktacja
 
 Rozdanie kończy się, gdy gracz opróżni rękę. Pozostali liczą punkty
-karne: karty od 2 do 10 według wartości, figury 10, asy 11, jokery 20
-lub 50 punktów (50 w obecnej wersji aplikacji). Jeśli stos się skończy,
+karne: karty od 2 do 10 według wartości, figury 10, asy 11, jokery 50 punktów. Jeśli stos się skończy,
 zanim ktoś skończy, rozdanie zostaje przerwane i każdy liczy karty, które
 mu zostały. Punkty karne sumują się z rozdania na rozdanie; gra kończy
 się, gdy gracz osiągnie 100 punktów, a wygrywa ten z najmniejszą liczbą.

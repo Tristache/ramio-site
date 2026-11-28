@@ -36,8 +36,7 @@ den Tisch legt:
 ### Rundenende und Wertung
 
 Eine Runde endet, wenn ein Spieler seine Hand leert. Die anderen zählen
-Minuspunkte: 2 bis 10 nach Wert, Bilder 10, Asse 11, Joker 20 oder 50
-Punkte (50 in der aktuellen App-Version). Ist der Stapel leer, bevor
+Minuspunkte: 2 bis 10 nach Wert, Bilder 10, Asse 11, Joker 50 Punkte. Ist der Stapel leer, bevor
 jemand fertig ist, endet die Runde und jeder zählt die Karten in der
 eigenen Hand. Die Minuspunkte summieren sich Runde für Runde; die Partie
 endet, sobald ein Spieler 100 Punkte erreicht, und der mit den wenigsten

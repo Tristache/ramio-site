@@ -35,8 +35,7 @@ combinações:
 ### Fim da rodada e pontuação
 
 A rodada termina quando um jogador esvazia a mão. Os outros contam
-penalidades: do 2 ao 10 o valor da carta, figuras 10, ases 11 e curingas
-20 ou 50 pontos (50 na versão atual do app). Se o monte acabar antes de
+penalidades: do 2 ao 10 o valor da carta, figuras 10, ases 11 e curingas 50 pontos. Se o monte acabar antes de
 alguém terminar, a rodada para e cada jogador conta as cartas que
 sobraram na própria mão. As penalidades se acumulam de rodada em rodada;
 a partida termina assim que um jogador chega a 100 pontos, e vence o

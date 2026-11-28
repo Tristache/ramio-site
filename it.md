@@ -34,7 +34,7 @@ combinazioni:
 
 La mano finisce quando un giocatore svuota la propria mano. Gli altri
 contano le penalità: dal 2 al 10 il valore nominale, figure 10, assi 11,
-jolly 20 o 50 punti (50 nella versione attuale dell'app). Se il mazzo si
+jolly 50 punti. Se il mazzo si
 esaurisce prima che qualcuno finisca, la mano si ferma e ognuno conta le
 carte che gli restano. Le penalità si sommano mano dopo mano; la partita
 termina appena un giocatore raggiunge 100 punti, e vince chi ne ha meno.

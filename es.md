@@ -34,8 +34,7 @@ combinaciones:
 ### Fin de la ronda y puntuación
 
 La ronda termina cuando un jugador se queda sin cartas. Los demás cuentan
-penalizaciones: del 2 al 10 su valor, figuras 10, ases 11 y comodines
-20 o 50 puntos (50 en la versión actual de la app). Si el mazo se agota
+penalizaciones: del 2 al 10 su valor, figuras 10, ases 11 y comodines 50 puntos. Si el mazo se agota
 antes de que alguien termine, la ronda se detiene y cada jugador cuenta
 las cartas que le quedan en la mano. Las penalizaciones se acumulan
 ronda tras ronda; la partida termina en cuanto un jugador llega a 100

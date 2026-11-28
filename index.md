@@ -34,9 +34,10 @@ as combinations:
 
 A round ends when a player empties their hand. The others count
 penalties: cards 2 to 10 at face value, court cards 10, aces 11 and
-jokers 20 or 50 points (50 in the current version of the app). If the
+jokers 50 points. If the
 stock runs out before anyone finishes, the round
 stops and every player counts the cards left in their own hand.
 Penalties add up from round to round; the game ends as soon as a player
-reaches 100 points, and the least penalized player wins. The app also
-offers a **single-round game**, ideal for a quick match.
+reaches 100 points, and the least penalized player wins. The app also offers a **single-round game**, ideal for a quick match.
+These points only count in a custom game: public games are played in a
+single round, without points.

@@ -225,7 +225,8 @@ La suite <span class="k kt">7♣&#xFE0E;</span> <span class="k kj">Joker</span> 
 est valide : il suffit d'une vraie carte. À table, on voit
 aussi la limite d'un seul joker par combinaison.
 
-Un joker encore en main à la fin de la manche coûte **50 points**, plus
+Un joker encore en main à la fin de la manche coûte **50 points** dans
+une partie personnalisée à points, plus
 que toute autre carte : mieux vaut le poser tôt. Selon les tables, on voit
 aussi 15 à 25 points.
 
@@ -330,8 +331,8 @@ manche.
 Le rami voleur porte d'autres noms ailleurs : en Allemagne, <a href="https://quintaingames.com/ramio/raeuber-romme/">Räuber-Rommé</a> ;
 en Italie, <a href="https://quintaingames.com/ramio/machiavelli/">Machiavelli</a> ;
 au Brésil et au Portugal, <a href="https://quintaingames.com/ramio/mexe-mexe/">mexe-mexe</a> ;
-en Hongrie, rablórömi ; en Espagne, Maquiavelo ; en anglais, manipulation
-rummy. L'idée est la même partout : la table est à tout le monde et, à son
+en Hongrie, rablórömi ; en Espagne, Maquiavelo ; en anglais, [manipulation
+rummy](https://quintaingames.com/ramio/manipulation-rummy/). L'idée est la même partout : la table est à tout le monde et, à son
 tour, on peut recomposer les combinaisons déjà posées. Les pages liées
 expliquent les règles dans la langue de chaque pays.
 
@@ -371,7 +372,8 @@ joker contre la carte qu'il remplace.
 ### Combien vaut le joker au rami voleur ?
 
 Dans Ramio, un joker resté en main à la fin de la manche coûte 50 points
-de pénalité. C'est la carte la plus chère, devant l'As (11 points) et les
+de pénalité dans une partie personnalisée à points (les parties publiques
+se jouent en une seule manche, sans points). C'est la carte la plus chère, devant l'As (11 points) et les
 figures (10 points). Selon les tables, on voit aussi 15 à 25 points.
 
 ### Peut-on jouer au rami voleur à deux ?

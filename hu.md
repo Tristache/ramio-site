@@ -36,7 +36,7 @@ asztalra rakod őket:
 
 A menet akkor ér véget, amikor egy játékos kiüríti a kezét. A többiek
 büntetőpontokat számolnak: 2-től 10-ig a lap értéke, figurák 10, ászok
-11, dzsóker 20 vagy 50 pont (az app jelenlegi verziójában 50). Ha a
+11, dzsóker 50 pont. Ha a
 talon elfogy, mielőtt bárki befejezné, a menet megáll, és mindenki a
 saját kezében maradt lapokat számolja. A büntetőpontok menetről menetre
 összeadódnak; a játszma véget ér, amint egy játékos eléri a 100 pontot,
